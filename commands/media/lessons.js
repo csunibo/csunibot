@@ -3,7 +3,7 @@ const axios = require('axios');
 
 module.exports = {
 	name: "lessons",
-	usage: "/lessons <year> <date>",
+	usage: "/lessons <year> <date?>",
 	options: [
 		{
 			type: 4, // "INTEGER"
@@ -43,22 +43,15 @@ module.exports = {
 	ownerOnly: false,
 	run: async (client, interaction) => {
 		const year = interaction.options.getInteger("year");
-		
-		// This guard is useless effectively, but just in case right?
-		if(year < 1 || year > 3)
-		return interaction.reply({ 
-			embeds: [new MessageEmbed().setDescription("Invalid year option, the available years are `1`, `2` and `3`")], 
-			ephemeral: true
-		});
-		
-		let url = `https://corsi.unibo.it/laurea/informatica/orario-lezioni/@@orario_reale_json?anno=${interaction.options.getInteger("year")}`
+		let url = `https://corsi.unibo.it/laurea/informatica/orario-lezioni/@@orario_reale_json?anno=${year}`
+	
 		let validLessons = [];
 		let date = new Date();
 		if(interaction.options.getString("date") === "tomorrow") {
 			date.setDate(date.getDate() + 1);
 		}
 		// Copied from the telegram bot lul
-		let contents = axios.get(url).then((res) => {
+		await axios.get(url).then((res) => {
 			for(element of res.data) {
 				let start = new Date(element.start);
 				if(date.getFullYear() == start.getFullYear() &&
@@ -73,12 +66,13 @@ module.exports = {
 					.addField("IT", "Nessuna lezione trovata per questa data")] 
 				});
 			}
-			let resultDate = `${date.getDate()} - ${date.getMonth() + 1} - ${date.getFullYear()}`;
+			// Date objects have zero indexed months
+			let resultDate = `${date.toDateString()}`;
 			let lessonsEmbed = new MessageEmbed().setColor(client.config.embedColor).setTitle(`Here are the lessons for ${resultDate}`);
 			for(element of validLessons) {
 				lessonsEmbed
-				.addField(`${element.title} | ${element.time}`, 
-				`**Prof:**\n${element.docente}\n**Class:**\n${element.aule[0].des_edificio}\n**Address:**\n${element.aule[0].des_indirizzo}\n**[Teams](${element.teams})**`)
+				.addField(`${element.time} | ${element.title}`, 
+				`**Prof:**\n${element.docente}\n**In:**\n${element.aule[0].des_edificio}\n${element.aule[0].des_indirizzo}\n**[Teams](${element.teams})**`)
 			}
 			return interaction.reply({ 
 				embeds: [lessonsEmbed]
