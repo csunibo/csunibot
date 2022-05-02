@@ -22,7 +22,7 @@ Any folder and file within can be removed or added freely and will automatically
     - Select the "bot" and "applications.commands" scopes (A new table should open upon clicking on the "bot" scope)
     - In the "Bot Permissions" table you can select what permissions your bot will ask to have upon entering a new server, as you're setting it up it might be useful to give it "Administrator"
   - Now a link will have generated at the bottom which you can copy and paste in your browser search bar, this will allow you to invite the first instance of the bot in your server
-(It should look something like `https://discord.com/oauth2/authorize?client_id=${clientId}&permissions=${permissions}&scope=bot%20applications.commands`)
+(It should look something like `https://discord.com/oauth2/authorize?client_id={clientId}&permissions={permissions}&scope=bot%20applications.commands` Obviously remove the {variables} if you intend to write it out yourself)
 
 ### Now that everything is set up on the discord side of things:
   - To actually set up the bot and get it running you can run
