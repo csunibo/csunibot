@@ -1,9 +1,10 @@
 <h1 align="left"><img src="./assets/Seal_of_the_University_of_Bologna.svg.png" width="30px"> InfoBot </h1>
 
 A completeley modular Discord Bot made for and by Computer Science student's of the University of Bologna as ease of access to utility styled commands for notes, lessons, music, time tables and more...
-The bot hopes to allow the student's to be more efficient and sociable as a means of use in the appropriate Discord servers
+The bot hopes to allow the student's to be more efficient and sociable as a means of use in the appropriate Discord servers.
 The commands are completely modular and can be created with little to no knowledge of JS or Discord.js, as examples there are a lot of differently styled commands in the `./commands` sub-folders.
 Any folder and file within can be removed or added freely and will automatically be integrated into the structure of the bot.
+Same for the `./schedules` folder.
 
 ## ⛔ | Prerequisites
 
@@ -22,7 +23,7 @@ Any folder and file within can be removed or added freely and will automatically
     - Select the "bot" and "applications.commands" scopes (A new table should open upon clicking on the "bot" scope)
     - In the "Bot Permissions" table you can select what permissions your bot will ask to have upon entering a new server, as you're setting it up it might be useful to give it "Administrator"
   - Now a link will have generated at the bottom which you can copy and paste in your browser search bar, this will allow you to invite the first instance of the bot in your server
-(It should look something like `https://discord.com/oauth2/authorize?client_id=${clientId}&permissions=${permissions}&scope=bot%20applications.commands`)
+(It should look something like `https://discord.com/oauth2/authorize?client_id={clientId}&permissions={permissions}&scope=bot%20applications.commands` Obviously replace the {variables} with the correct values if you intend to write it out yourself)
 
 ### Now that everything is set up on the discord side of things:
   - To actually set up the bot and get it running you can run
@@ -35,3 +36,5 @@ to install all required dependencies and automatically post slash commands to th
 ```bash
 node run start
 ```
+
+[OG Music bot structure credits](https://github.com/SudhanPlayz/Discord-MusicBot)
