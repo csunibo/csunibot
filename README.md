@@ -1,7 +1,7 @@
 <h1 align="left"><img src="./assets/Seal_of_the_University_of_Bologna.svg.png" width="30px"> InfoBot </h1>
 
 A completeley modular Discord Bot made for and by Computer Science student's of the University of Bologna as ease of access to utility styled commands for notes, lessons, music, time tables and more...
-The bot hopes to allow the student's to be more efficient and sociable as a means of use in the appropriate Discord servers
+The bot hopes to allow the student's to be more efficient and sociable as a means of use in the appropriate Discord servers.
 The commands are completely modular and can be created with little to no knowledge of JS or Discord.js, as examples there are a lot of differently styled commands in the `./commands` sub-folders.
 Any folder and file within can be removed or added freely and will automatically be integrated into the structure of the bot.
 
