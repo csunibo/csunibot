@@ -36,4 +36,4 @@ to install all required dependencies and automatically post slash commands to th
 node run start
 ```
 
-[OG Music bot credits](https://github.com/SudhanPlayz/Discord-MusicBot)
+[OG Music bot structure credits](https://github.com/SudhanPlayz/Discord-MusicBot)
