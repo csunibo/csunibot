@@ -1,0 +1,23 @@
+const { MessageEmbed } = require("discord.js");
+
+module.exports = async (client, message) => {
+	const mention = new RegExp(`^<@!?${client.user.id}>( |)$`);
+	if (message.content.match(mention)) {
+		message.delete();
+		let timeout;
+		let embed = new MessageEmbed().setColor(client.config.embedColor);
+		if (client.config.ownerID.includes(message.author.id)) {
+			timeout = 10000;
+			embed
+			.setTitle("Reinvite")
+			.setURL(`https://discord.com/oauth2/authorize?client_id=${client.config.clientId}&permissions=${client.config.permissions}&scope=bot%20applications.commands`)
+		} else {
+			timeout = 15000;
+			embed
+			.setDescription(`To use my commands use the \`/\` (Slash Command).\nTo see a list of the available commands type \`/help\`.\nIf you can't see the list, make sure you're using me in the appropriate channels. If you have trouble please contact a server Mod.`)
+			.setThumbnail(`${client.config.iconURL}`)
+		}
+		embed.setFooter({ text: `Message will be deleted in ${timeout / 1000} seconds`});
+		return message.channel.send({ embeds: [embed], }).then(msg => setTimeout(() => msg.delete(), timeout));
+	}
+};

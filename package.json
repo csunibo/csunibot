@@ -1,0 +1,41 @@
+{
+  "name": "infobot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "node deploy/global",
+    "guild": "node deploy/guild"
+  },
+  "engines": {
+    "node": ">=16.x"
+  },
+  "keywords": [],
+  "author": "Brian Ferri",
+  "license": "MIT",
+  "devDependencies": {
+    "node": "^16.14.2"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "better-erela.js-apple": "^1.0.1",
+    "better-erela.js-spotify": "^1.3.6",
+    "colors": "^1.4.0",
+    "cron": "^1.8.3",
+    "discord.js": "^13.6.0",
+    "erela.js": "^2.3.3",
+    "erela.js-deezer": "^1.0.7",
+    "erela.js-facebook": "^1.0.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "moment-duration-format": "^2.3.2",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "pretty-ms": "^7.0.1",
+    "winston": "^3.7.2"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "description": ""
+}
