@@ -1,16 +1,14 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = async (client, oldState, newState) => {
-	// get guild and player
 	let guildId = newState.guild.id;
 	const player = client.manager.get(guildId);
 	
-	// check if the bot is active (playing, paused or empty does not matter (return otherwise))
+	// check if the bot is active
 	if (!player || player.state !== "CONNECTED") return;
 	
-	// prepreoces the data
 	const stateChange = {};
-	// get the state change
+	// get the state changes
 	if (oldState.channel === null && newState.channel !== null)
 	stateChange.type = "JOIN";
 	if (oldState.channel !== null && newState.channel === null)
@@ -27,15 +25,13 @@ module.exports = async (client, oldState, newState) => {
 		if (oldState.channel.id === player.voiceChannel) stateChange.type = "LEAVE";
 		if (newState.channel.id === player.voiceChannel) stateChange.type = "JOIN";
 	}
-	// double triggered on purpose for MOVE events
+	// double triggered for MOVE events
 	if (stateChange.type === "JOIN") stateChange.channel = newState.channel;
 	if (stateChange.type === "LEAVE") stateChange.channel = oldState.channel;
 	
-	// check if the bot's voice channel is involved (return otherwise)
 	if (!stateChange.channel || stateChange.channel.id !== player.voiceChannel)
 	return;
 	
-	// filter current users based on being a bot
 	stateChange.members = stateChange.channel.members.filter((member) => !member.user.bot);
 	
 	switch (stateChange.type) {
@@ -51,11 +47,9 @@ module.exports = async (client, oldState, newState) => {
 				.get(player.textChannel)
 				.send({ embeds: [playerResumed] });
 				
-				//!BUG Updated nowplaying message doesn't show buttons
-				// update the now playing message and bring it to the front
 				let playerPlaying = await client.channels.cache
 				.get(player.textChannel)
-				.send({embeds: [player.nowPlayingMessage.embeds[0]], components: [client.createController(player.options.guild)] });
+				.send({embeds: [player.nowPlayingMessage.embeds[0]] });
 				player.setNowplayingMessage(playerPlaying);
 				player.pause(false);
 			}
@@ -63,7 +57,7 @@ module.exports = async (client, oldState, newState) => {
 		break;
 		case "LEAVE":
 		if (client.config.alwaysplay === false) {
-			if (stateChange.members.size === 0 && !player.paused &&nplayer.playing) {
+			if (stateChange.members.size === 0 && !player.paused && player.playing) {
 				player.pause(true);
 				
 				let playerPaused = new MessageEmbed()

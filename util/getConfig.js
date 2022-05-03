@@ -6,5 +6,7 @@ module.exports = () => {
 		} catch {
 			rj("No config file found.");
 		}
+	}).catch(err => {
+		console.log(err);
 	});
 };

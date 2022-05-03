@@ -29,7 +29,6 @@ module.exports = async (client, interaction) => {
 			});
 			return resolve(false);
 		}
-		
 		resolve(interaction.member.voice.channel);
 	});
 };

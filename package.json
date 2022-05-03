@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "Brian Ferri",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
     "node": "^16.14.2"
   },
@@ -37,5 +37,13 @@
   "directories": {
     "lib": "lib"
   },
-  "description": ""
+  "description": "<h1 align=\"left\"><img src=\"./assets/Seal_of_the_University_of_Bologna.svg.png\" width=\"30px\"> InfoBot </h1>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BioCla/InfoBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BioCla/InfoBot/issues"
+  },
+  "homepage": "https://github.com/BioCla/InfoBot#readme"
 }
