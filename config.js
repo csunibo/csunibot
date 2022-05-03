@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
 	ownerID: ["AdminID"], //Admin of the bot
 	token: process.env.TOKEN || "", //Bot's Token

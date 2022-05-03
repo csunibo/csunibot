@@ -23,6 +23,7 @@
     "colors": "^1.4.0",
     "cron": "^1.8.3",
     "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
     "erela.js": "^2.3.3",
     "erela.js-deezer": "^1.0.7",
     "erela.js-facebook": "^1.0.4",
@@ -37,7 +38,7 @@
   "directories": {
     "lib": "lib"
   },
-  "description": "<h1 align=\"left\"><img src=\"./assets/Seal_of_the_University_of_Bologna.svg.png\" width=\"30px\"> InfoBot </h1>",
+  "description": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BioCla/InfoBot.git"
