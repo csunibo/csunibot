@@ -32,12 +32,12 @@ module.exports = {
 			required: true,
 			choices: [
 				{
-					name: "Domani / Tomorrow",
-					value: "tomorrow"
-				},
-				{
 					name: "Oggi / Today",
 					value: "today"
+				},
+				{
+					name: "Domani / Tomorrow",
+					value: "tomorrow"
 				},
 			]
 		}
