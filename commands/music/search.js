@@ -17,7 +17,9 @@ option
 
 .setRun(async (client, interaction, options) => {
 	const result = interaction.options.getString("query");
-	let player = client.manager.get(interaction.guild.id);
+	let player;
+	if(client.manager)
+	player = client.manager.get(interaction.guild.id);
 	
 	if (!interaction.member.voice.channel) {
 		const joinEmbed = new MessageEmbed()

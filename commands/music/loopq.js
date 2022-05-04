@@ -5,7 +5,10 @@ const command = new SlashCommand()
 .setName("loopq")
 .setDescription("Loop the current song queue")
 .setRun(async (client, interaction, options) => {
-	let player = client.manager.players.get(interaction.guild.id);
+	let player;
+	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
+else 
+return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
 	if (!player) {
 		return interaction.reply({
 			embeds: [client.ErrorEmbed("There is no music playing.")],

@@ -5,7 +5,10 @@ const command = new SlashCommand()
 .setName("shuffle")
 .setDescription("Randomizes the queue")
 .setRun(async (client, interaction, options) => {
-	let player = client.manager.players.get(interaction.guild.id);
+	let player;
+	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
+else 
+return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
 	if (!player) {
 		const queueEmbed = new MessageEmbed()
 		.setColor(client.config.embedColor)

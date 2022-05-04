@@ -6,7 +6,10 @@ const command = new SlashCommand()
 .setName("playing")
 .setDescription("Shows the current song playing in the voice channel.")
 .setRun(async (client, interaction, options) => {
-	const player = interaction.client.manager.players.get(interaction.guild.id);
+	
+	let player;
+	if(client.manager)
+	player = interaction.client.manager.players.get(interaction.guild.id);
 	
 	if (!player) {
 		const queueEmbed = new MessageEmbed()

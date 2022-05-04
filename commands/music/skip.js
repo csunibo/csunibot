@@ -7,7 +7,10 @@ const command = new SlashCommand()
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
-	let player = client.manager.players.get(interaction.guild.id);
+	let player;
+	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
+else 
+return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
 	if (!player)
 	return interaction.reply({
 		embeds: [client.ErrorEmbed("❌ | There's nothing to skip!")],
