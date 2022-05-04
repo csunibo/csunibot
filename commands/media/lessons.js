@@ -29,11 +29,15 @@ module.exports = {
 			type: 3, // "STRING"
 			name: 'date',
 			description: "Date range for the lessons to look up (Leaving this blank will give you today's lessons)",
-			required: false,
+			required: true,
 			choices: [
 				{
 					name: "Domani / Tomorrow",
 					value: "tomorrow"
+				},
+				{
+					name: "Oggi / Today",
+					value: "today"
 				},
 			]
 		}
