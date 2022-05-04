@@ -17,8 +17,8 @@ module.exports = {
 		{
 			//Or host one yourself -> https://github.com/freyacodes/Lavalink
 			identifier: "Lavalink 1", // log id string
-			host: "",
-			port: 0,
+			host: "lavalink.darrenofficial.com",
+			port: 80,
 			password: "password",
 			retryAmount: 15, // for lavalink connection attempts
 			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.

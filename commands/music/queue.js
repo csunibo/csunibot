@@ -56,45 +56,51 @@ module.exports = {
 			]})
 		}
 
+		// Buttons function in case the embed needs more pages
+		const getButtons = (pageNo) => {
+			return new MessageActionRow().addComponents(
+				new MessageButton()
+				.setCustomId("queue_previous_page")
+				.setEmoji("◀️")
+				.setStyle("PRIMARY")
+				.setDisabled(pageNo == 0),
+				new MessageButton()
+				.setCustomId("queue_next_page")
+				.setEmoji("▶️")
+				.setStyle("PRIMARY")
+				.setDisabled(pageNo == (maxPages - 1))
+			);
+		};
+		await interaction.deferReply().catch((_) => {});
+
 		const offset = 10
 		let maxPages = Math.ceil(tracks.size / offset);
+		// If there are enough songs, make an embed list of them
+		let pageNo = 0;
+		let currentPageSlice = tracks.slice(pageNo * offset, (pageNo * offset) + offset)
+
+		let queuePageEmbed = new MessageEmbed()
+		.setColor(client.config.embedColor)
+		.setAuthor({ name: `Queue list | ${pageNo + 1} of ${maxPages} (${tracks.size})`, iconURL: client.config.iconURL})
+		.setTimestamp()
+		.setTitle(`Currently playing: ${player.queue.current.title}`)
+		.setURL(`${player.queue.current.uri}`)
+		.setThumbnail(player.queue.current.thumbnail)
+		.setDescription(`Playing: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\`\n
+		**__Coming up:__**`);
+		for (const track of currentPageSlice) {
+			queuePageEmbed.addField(`${track.title} || \`${ms(track.duration, { colonNotation: true })}\``, `**Author: **${track.author}\n`)
+		}
+		
+		const pageEmbed = await interaction.editReply({ 
+			embeds: [queuePageEmbed], 
+			components: [getButtons(pageNo)], 
+			fetchReply: true
+		});
+
+		// If the songs surpass the offset, update the pages on button clicks
 		if (maxPages > 1) {
-			await interaction.deferReply().catch((_) => {});
-			let pageNo = 0;
-			let currentPageSlice = tracks.slice(pageNo * offset, (pageNo * offset) + offset)
-
-			let queuePageEmbed = new MessageEmbed()
-			.setColor(client.config.embedColor)
-			.setAuthor({ name: `Queue list | ${pageNo + 1} of ${maxPages} (${tracks.size})`, iconURL: client.config.iconURL})
-			.setTimestamp()
-			.setTitle(`Currently playing: ${player.queue.current.title}`)
-			.setURL(`${player.queue.current.uri}`)
-			.setThumbnail(player.queue.current.thumbnail)
-			.setDescription(`Duration of current song: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\``);
-			for (const track of currentPageSlice) {
-				queuePageEmbed.addField(`${track.title} || \`${ms(track.duration, { colonNotation: true })}\``, `**Author: **${track.author}\n`)
-			}
 			
-			const getButtons = (pageNo) => {
-				return new MessageActionRow().addComponents(
-					new MessageButton()
-					.setCustomId("queue_previous_page")
-					.setEmoji("◀️")
-					.setStyle("PRIMARY")
-					.setDisabled(pageNo == 0),
-					new MessageButton()
-					.setCustomId("queue_next_page")
-					.setEmoji("▶️")
-					.setStyle("PRIMARY")
-					.setDisabled(pageNo == (maxPages - 1))
-				);
-			};
-
-			const pageEmbed = await interaction.editReply({ 
-				embeds: [queuePageEmbed], 
-				components: [getButtons(pageNo)], 
-				fetchReply: true
-			});
 			const collector = pageEmbed.createMessageComponentCollector({ time: 60000, componentType: "BUTTON" });
 
 			collector.on("collect", async (buttonInteraction) => {
@@ -109,8 +115,8 @@ module.exports = {
 				.setTitle(`Currently playing: ${player.queue.current.title}`)
 				.setURL(`${player.queue.current.uri}`)
 				.setThumbnail(player.queue.current.thumbnail)
-				.setDescription(`Duration of current song: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\``);
-			
+				.setDescription(`Playing: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\`\n
+				**__Coming up:__**`);			
 				currentPageSlice = tracks.slice(pageNo * offset, (pageNo * offset) + offset);
 				for (const track of currentPageSlice) {
 					queuePageEmbed.addField(`${track.title} || \`${ms(track.duration, { colonNotation: true })}\``, `**Author: **${track.author}\n`);
