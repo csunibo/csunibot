@@ -11,12 +11,12 @@ module.exports = {
 	permissions: 8, // 8 = Administrator
 	disconnectTime: 30000, // If nothing is playing wait : in milliseconds
 	alwaysplay: false, // ignore presence of members in voice channels
-	debug: false,
+	debug: true,
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
 	nodes: [
 		{
 			//Or host one yourself -> https://github.com/freyacodes/Lavalink
-			identifier: "Lavalink Connection Stable", // log id string
+			identifier: "Lavalink 1", // log id string
 			host: "",
 			port: 0,
 			password: "password",
