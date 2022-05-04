@@ -30,12 +30,11 @@ Same for the `./schedules` folder.
 ```bash
 bash kickstart.sh
 ```
-or alternatively (in the root directory of the bot):
+or alternatively (in the root directory of the bot) to install all required dependencies and automatically post slash commands to the discord bot application:
 ```bash
 npm i
 node run deploy
 ``` 
-to install all required dependencies and automatically post slash commands to the discord bot application.
   - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application or make a `.env` file and fill in the contents in this manner:
 ```env
 TOKEN=botToken
@@ -50,5 +49,7 @@ or
 ```bash
 node run start
 ```
+If you want to test/host it on replit:
+[![Run on Repl.it](https://repl.it/badge/github/csunibo/InfoBot)](https://repl.it/github/csunibo/InfoBot)
 
 [OG Music bot structure credits](https://github.com/SudhanPlayz/Discord-MusicBot)
