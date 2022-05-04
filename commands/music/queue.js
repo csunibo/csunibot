@@ -1,5 +1,6 @@
 const ms = require("pretty-ms");
 const { MessageEmbed } = require(`discord.js`);
+const { lastIndexOf } = require("lodash");
 module.exports = {
 	name: `queue`,
 	category: `music`,
@@ -53,5 +54,15 @@ return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescri
 				})
 			]
 		})
+		let queueEmbed = new MessageEmbed()
+		.setColor(client.config.embedColor)
+		.setTitle("Song queue list")
+		.setThumbnail(player.queue.current.thumbnail)
+		let queueDescription = [];
+		for (const [index, track] of tracks.entries()) {
+			queueDescription.push(`\`${index}.)\` [${track.title}](${track.uri})`)
+		}
+		queueDescription = queueDescription.join('\n').substring(0, 4095)
+		interaction.reply({ embeds: [queueEmbed.setDescription(queueDescription.substring(0, queueDescription.lastIndexOf('\n')))] });
 	}
 };
