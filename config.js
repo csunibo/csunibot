@@ -15,7 +15,7 @@ module.exports = {
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
 	nodes: [
 		{
-			//Or host one yourself -> https://github.com/freyacodes/Lavalink
+			//Or host one yourself -> https://github.com/freyacodes/Lavalink --> https://darrennathanael.com/post/how-to-lavalink/
 			identifier: "Lavalink 1", // log id string
 			host: "lavalink.darrenofficial.com",
 			port: 80,
