@@ -36,10 +36,19 @@ npm i
 node run deploy
 ``` 
 to install all required dependencies and automatically post slash commands to the discord bot application.
-  - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application
+  - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application or make a `.env` file and fill in the contents in this manner:
+```env
+TOKEN=botToken
+CLIENTID=botClientId
+CLIENTSECRET=botClientSecretToken
+```
   - To run the bot:
 ```bash
 npm start
+```
+or
+```bash
+node run start
 ```
 
 [OG Music bot structure credits](https://github.com/SudhanPlayz/Discord-MusicBot)
