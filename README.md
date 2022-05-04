@@ -30,11 +30,16 @@ Same for the `./schedules` folder.
 ```bash
 bash kickstart.sh
 ```
+or alternatively (in the root directory of the bot):
+```bash
+npm i
+node run deploy
+``` 
 to install all required dependencies and automatically post slash commands to the discord bot application.
   - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application
   - To run the bot:
 ```bash
-node run start
+npm start
 ```
 
 [OG Music bot structure credits](https://github.com/SudhanPlayz/Discord-MusicBot)
