@@ -1,3 +1,4 @@
+// Promise based module to get and return the contents of `config.js`
 module.exports = () => {
 	return new Promise((re, rj) => {
 		try {

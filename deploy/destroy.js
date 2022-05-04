@@ -8,6 +8,7 @@ const rl = readline.createInterface({
 	output: process.stdout,
 });
 
+// Removes all slash commands from a given guild (shell command `node "./deploy/destroy"`)
 (async () => {
 	const config = await getConfig();
 	const rest = new REST({ version: "9" }).setToken(config.token);

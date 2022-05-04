@@ -1,6 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const cron = require('cron');
 
+
+// https://crontab.guru/
+// https://cronitor.io/cron-reference?utm_source=crontabguru&utm_campaign=cron_reference
+// https://cron-job.org/en/
+// https://it.wikipedia.org/wiki/Crontab
+
+// Sends a message every saturday 
 module.exports = (client) => {
 	const embed = new MessageEmbed()
 	.setColor(client.config.embedColor)

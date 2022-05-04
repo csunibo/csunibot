@@ -1,3 +1,5 @@
+// Checks if, on every message sent in a server in which the bot is in, the bot is being mentioned and
+// determines if it should behave in a manner or another according to if the user is a bot dev or not
 const { MessageEmbed } = require("discord.js");
 
 module.exports = async (client, message) => {

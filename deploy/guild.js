@@ -9,6 +9,7 @@ const rl = readline.createInterface({
 	output: process.stdout,
 });
 
+// Posts slash commands to a given guild containing the bot
 (async () => {
 	const config = await getConfig();
 	const rest = new REST({ version: "9" }).setToken(config.token);

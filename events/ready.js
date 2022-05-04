@@ -1,3 +1,4 @@
+// this fires once on the bot being launched, initializes all the main client constructors
 module.exports = (client) => {
 	if(client.manager)
 	client.manager.init(client.user.id);

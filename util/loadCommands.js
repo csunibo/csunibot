@@ -1,14 +1,16 @@
 const path = require("path");
 const fs = require("fs");
 
+// Modular functions to load directories
 const LoadCommands = () => {
 	return new Promise(async (resolve) => {
-		let slash = await LoadDirectory("slash");
+		let slash = await LoadDirectory();
 		
 		resolve({ slash });
 	});
 };
 
+// fills the commands array and resolves it to the calling file
 const LoadDirectory = () => {
 	return new Promise((resolve) => {
 		let commands = [];
@@ -33,6 +35,7 @@ const LoadDirectory = () => {
 	});
 };
 
+// Reads all files of a dir and sub dirs
 const getFiles = (dir, files_) => {
 	files_ = files_ || [];
 	let files = fs.readdirSync(dir);

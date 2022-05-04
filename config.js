@@ -1,5 +1,7 @@
+// Allows for .env files to be imported and used
 require('dotenv').config()
 
+// Allows for other files to see all the properties in this module
 module.exports = {
 	ownerID: ["AdminID"], //Admin of the bot
 	token: process.env.TOKEN || "", //Bot's Token
@@ -15,7 +17,8 @@ module.exports = {
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
 	nodes: [
 		{
-			//Or host one yourself -> https://github.com/freyacodes/Lavalink --> https://darrennathanael.com/post/how-to-lavalink/
+			//Or host one yourself -> https://github.com/freyacodes/Lavalink 
+			//--> https://darrennathanael.com/post/how-to-lavalink/
 			identifier: "Lavalink 1", // log id string
 			host: "lavalink.darrenofficial.com",
 			port: 80,

@@ -1,5 +1,6 @@
 const {MessageEmbed} = require('discord.js');
 
+// Module checks if you meet the channel requirements to use music commands
 module.exports = async (client, interaction) => {
 	return new Promise(async (resolve) => {
 		if (!interaction.member.voice.channel) {

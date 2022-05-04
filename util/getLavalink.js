@@ -1,3 +1,4 @@
+// checks if the lavalink nodes specified in `config.js` are valid
 module.exports = async (client) => {
 	if(client.manager) {
 		return new Promise((resolve) => {

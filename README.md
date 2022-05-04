@@ -28,7 +28,7 @@ Same for the `./schedules` folder.
 ### Now that everything is set up on the discord side of things:
   - To actually set up the bot and get it running you can run
 ```bash
-bash kickstart.sh
+bash build.sh
 ```
 or alternatively (in the root directory of the bot) to install all required dependencies and automatically post slash commands to the discord bot application:
 ```bash

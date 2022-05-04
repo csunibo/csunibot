@@ -3,6 +3,7 @@ const { Routes } = require("discord-api-types/v9");
 const getConfig = require("../util/getConfig");
 const LoadCommands = require("../util/loadCommands");
 
+// Posts slash commands to all guilds containing the bot
 (async () => {
 	const config = await getConfig();
 	const rest = new REST({ version: "9" }).setToken(config.token);

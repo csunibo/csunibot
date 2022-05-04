@@ -1,3 +1,6 @@
+// Defines whenever a "interactionCreate" event is fired, basically whenever a user writes a slash command in 
+// a server in which the bot is present
+// This module checks some properties of the command and determines if it should be ran for that user or not
 module.exports = (client, interaction) => {
 	if (interaction.isCommand()) {
 		const command = client.slash.get(interaction.commandName);
