@@ -66,7 +66,9 @@ module.exports = {
 			}
 			if(!validLessons.length) {
 				return interaction.reply({ 
-					embeds: [new MessageEmbed().addField("EN", "No lessons found for this date")
+					embeds: [new MessageEmbed()
+					.setColor("RED")
+					.addField("EN", "No lessons found for this date")
 					.addField("IT", "Nessuna lezione trovata per questa data")] 
 				});
 			}

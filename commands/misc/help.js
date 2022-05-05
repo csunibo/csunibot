@@ -61,10 +61,10 @@ module.exports = {
 				commands.forEach((command, index) => {
 					commands[index] = "`/" + command.split(".")[0] + "`";
 				});
-				initialEmbed.addField(category.charAt(0).toUpperCase() + category.substr(1).toLowerCase(), commands.toString().replace(/,/g, ", "));
+				initialEmbed.addField(category.charAt(0).toUpperCase() + category.substring(1).toLowerCase(), commands.toString().replace(/,/g, ", "));
 				helpSelectMenu.addOptions([
 					{
-						label: `${category.charAt(0).toUpperCase() + category.substr(1).toLowerCase()} commands`,
+						label: `${category.charAt(0).toUpperCase() + category.substring(1).toLowerCase()} commands`,
 						value: category
 					}
 				]);
@@ -91,7 +91,7 @@ module.exports = {
 				}
 				helpCategoryEmbed
 				.setColor(client.config.embedColor)
-				.setTitle(`${category.charAt(0).toUpperCase() + category.substr(1).toLowerCase()} Commands`);
+				.setTitle(`${category.charAt(0).toUpperCase() + category.substring(1).toLowerCase()} Commands`);
 
 				for (let command of commandFiles) {
 					command = command.split(".")[0];
