@@ -88,8 +88,8 @@ module.exports = {
 		.setThumbnail(player.queue.current.thumbnail)
 		.setDescription(`Playing: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\`\n
 		**__Coming up:__**`);
-		for (const track of currentPageSlice) {
-			queuePageEmbed.addField(`${track.title} || \`${ms(track.duration, { colonNotation: true })}\``, `**Author: **${track.author}\n`)
+		for (const [index, track] of currentPageSlice.entries()) {
+			queuePageEmbed.addField(`​`, `[${track.title}](${track.uri}) || \`${ms(track.duration, {colonNotation: true})}\`\n**Requested by: **${track.requester}`);
 		}
 		
 		const pageEmbed = await interaction.editReply({ 
@@ -109,6 +109,8 @@ module.exports = {
 				} else if (buttonInteraction.customId === "queue_previous_page") {
 					pageNo--;
 				}
+
+				// epmtying, refilling the fields to update the latest occurences in the queue
 				queuePageEmbed.fields = [];
 				queuePageEmbed
 				.setAuthor({ name: `Queue list | ${pageNo + 1} of ${maxPages} (${tracks.size})`, iconURL: client.config.iconURL})
@@ -118,8 +120,8 @@ module.exports = {
 				.setDescription(`Playing: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\`\n
 				**__Coming up:__**`);			
 				currentPageSlice = tracks.slice(pageNo * offset, (pageNo * offset) + offset);
-				for (const track of currentPageSlice) {
-					queuePageEmbed.addField(`${track.title} || \`${ms(track.duration, { colonNotation: true })}\``, `**Author: **${track.author}\n`);
+				for (const [index, track] of currentPageSlice.entries()) {
+					queuePageEmbed.addField(`​`, `[${track.title}](${track.uri}) || \`${ms(track.duration, {colonNotation: true})}\`\n**Requested by: **${track.requester}`);
 				}
 				await buttonInteraction.update({ embeds: [queuePageEmbed], components: [getButtons(pageNo)], fetchReply: true });
 			});
