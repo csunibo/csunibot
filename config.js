@@ -18,6 +18,7 @@ module.exports = {
 	nodes: [
 		{
 			//Or host one yourself -> https://github.com/freyacodes/Lavalink 
+			//--> https://github.com/melike2d/lavalink
 			//--> https://darrennathanael.com/post/how-to-lavalink/
 			identifier: "Lavalink 1", // log id string
 			host: "lavalink.darrenofficial.com",
