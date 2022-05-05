@@ -47,7 +47,7 @@ module.exports = {
 				embeds: [
 					new MessageEmbed()
 					.setColor(client.config.embedColor)
-					.setDescription("❌ | **Invalid, Not enough track to be cleared.**")
+					.setDescription("Invalid, Not enough track to be cleared.")
 				], 
 				ephemeral: true
 			});
