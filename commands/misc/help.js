@@ -7,6 +7,7 @@ const {
 } = require("discord.js");
 const { filter } = require("lodash");
 const fs = require("fs");
+const command = require("../music/save");
 
 module.exports = {
 	name: "help",
@@ -37,7 +38,7 @@ module.exports = {
 				embeds: [new MessageEmbed()
 				.setColor(client.config.embedColor)
 				.setTitle(commandArg)
-				.setDescription(client.slash.get(commandArg).description)
+				.setDescription(`${client.slash.get(commandArg).description}\n${(client.slash.get(commandArg).usage ? client.slash.get(commandArg).usage : "")}`)
 				.setFooter({ text: "For a more complete list of the available commands use `/help` without any arguments."})]
 			})
 		}
