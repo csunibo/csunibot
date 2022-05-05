@@ -7,42 +7,60 @@ const command = new SlashCommand()
 .setRun(async (client, interaction, options) => {
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
-else 
-return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
+	else 
+	return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
 	if (!player) {
-		const queueEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | **Nothing is playing.**");
-		return interaction.reply({ embeds: [queueEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("Nothing is playing.")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	if (!interaction.member.voice.channel) {
-		const joinEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | **You must be in a voice channel to use this command!**");
-		return interaction.reply({ embeds: [joinEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("You must be in a voice channel to use this command!")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {
-		const sameEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | **You must be in the same voice channel as me to use this command!**");
-		return interaction.reply({ embeds: [sameEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("You must be in the same voice channel as me to use this command!")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	if (player.paused) {
-		let pembed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | **Current playing track is already paused!**");
-		return interaction.reply({ embeds: [pembed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("Current playing track is already paused!")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	player.pause(true);
-	
-	let pauseembed = new MessageEmbed()
-	.setColor(client.config.embedColor)
-	.setDescription(`⏸ | **Paused!**`);
-	return interaction.reply({ embeds: [pauseembed] });
+	return interaction.reply({ 
+		embeds: [
+			new MessageEmbed()
+			.setColor(client.config.embedColor)
+			.setDescription(`⏸ | **Paused!**`)
+		]
+	});
 });
 
 module.exports = command;

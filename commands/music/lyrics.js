@@ -15,7 +15,8 @@ option
 )
 .setRun(async (client, interaction, options) => {
 	await interaction.reply({
-		embeds: [new MessageEmbed()
+		embeds: [
+			new MessageEmbed()
 			.setColor(client.config.embedColor)
 			.setDescription(":mag_right: **Searching...**")
 		],
@@ -25,12 +26,16 @@ option
 	
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
-else 
-return interaction.editReply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
+	else 
+	return interaction.editReply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
 	
 	if (!args && !player)
 	return interaction.editReply({
-		embeds: [client.ErrorEmbed("**There's nothing playing**")],
+		embeds: [
+			new MessageEmbed()
+			.setColor("RED")
+			.setDescription("There's nothing playing")
+		],
 	});
 	
 	let search = args ? args : player.queue.current.title;
@@ -40,9 +45,12 @@ return interaction.editReply({ embeds: [new MessageEmbed().setColor("RED").setDe
 	let lyrics = await fetch(url).then((res) => res.json());
 	// If the status is not ok return
 	if (lyrics.response !== 200) {
-		return interaction.editReply({ embeds: [new MessageEmbed()
-			.setColor("RED")
-			.setDescription(`❌ | No lyrics found for ${search}!`)]
+		return interaction.editReply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription(`No lyrics found for ${search}!`)
+			]
 		});
 	}
 	

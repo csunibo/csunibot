@@ -24,10 +24,14 @@ const command = new SlashCommand()
 	if(client.manager)
 	player = client.createPlayer(interaction.channel, channel);
 	if (!interaction.member.voice.channel) {
-		const joinEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("**You must be in a voice channel to use this command.**");
-		return interaction.reply({ embeds: [joinEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("You must be in a voice channel to use this command.")
+			], 
+			ephemeral: true 
+		});
 	}
 	if (player.state !== "CONNECTED") {
 		player.connect();
@@ -45,77 +49,84 @@ const command = new SlashCommand()
 	}
 	
 	await interaction.reply({
-		embeds: [new MessageEmbed()
+		embeds: [
+			new MessageEmbed()
 			.setColor(client.config.embedColor)
-			.setDescription(":mag_right: **Searching...**")],
-		});
-		
-		let res = await player.search(query, interaction.user).catch((err) => {
-			client.error(err);
-			return {
-				loadType: "LOAD_FAILED",
-			};
-		});
-		
-		if (res.loadType === "LOAD_FAILED") {
-			if (!player.queue.current) player.destroy();
-			return interaction
-			.editReply({embeds: [new MessageEmbed()
-				.setColor("RED")
-				.setDescription("There was an error while searching")],
-			})
-			.catch(this.warn);
-		}
-		
-		if (res.loadType === "NO_MATCHES") {
-			if (!player.queue.current) player.destroy();
-			return interaction
-			.editReply({embeds: [new MessageEmbed()
-				.setColor("RED")
-				.setDescription("No results were found")],
-			})
-			.catch(this.warn);
-		}
-		
-		if (res.loadType === "TRACK_LOADED" || res.loadType === "SEARCH_RESULT") {
-			player.queue.add(res.tracks[0]);
-			if (!player.playing && !player.paused && !player.queue.size)
-			player.play();
-			let addQueueEmbed = new MessageEmbed()
-			.setColor(client.config.embedColor)
-			.setAuthor({ name: "Added to queue", iconURL: client.config.iconURL })
-			.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})` || "No Title")
-			.setURL(res.tracks[0].uri)
-			.addField("Added by", `<@${interaction.user.id}>`, true)
-			.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, {colonNotation: true, })}\``, true);
-			try {
-				addQueueEmbed.setThumbnail(res.tracks[0].displayThumbnail("maxresdefault"));
-			} catch (err) {
-				addQueueEmbed.setThumbnail(res.tracks[0].thumbnail);
-			}
-			if (player.queue.totalSize > 1)
-			addQueueEmbed.addField("Position in queue",	`${player.queue.size - 0}`,	true);
-			return interaction
-			.editReply({ embeds: [addQueueEmbed] })
-			.catch(this.warn);
-		}
-		
-		if (res.loadType === "PLAYLIST_LOADED") {
-			player.queue.add(res.tracks);
-			if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length)
-			player.play();
-			let playlistEmbed = new MessageEmbed()
-			.setColor(client.config.embedColor)
-			.setAuthor({name: "Playlist added to queue", iconURL: client.config.iconURL,})
-			.setThumbnail(res.tracks[0].thumbnail)
-			.setDescription(`[${res.playlist.name}](${query})`)
-			.addField("Enqueued", `\`${res.tracks.length}\` songs`, false)
-			.addField("Playlist duration",`\`${client.ms(res.playlist.duration, {colonNotation: true,})}\``,false);
-			return interaction
-			.editReply({ embeds: [playlistEmbed] })
-			.catch(this.warn);
-		}
+			.setDescription(":mag_right: **Searching...**")
+		],
 	});
 	
-	module.exports = command;
+	let res = await player.search(query, interaction.user).catch((err) => {
+		client.error(err);
+		return {
+			loadType: "LOAD_FAILED",
+		};
+	});
 	
+	if (res.loadType === "LOAD_FAILED") {
+		if (!player.queue.current) player.destroy();
+		return interaction
+		.editReply({
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("There was an error while searching")
+			],
+		})
+		.catch(this.warn);
+	}
+	
+	if (res.loadType === "NO_MATCHES") {
+		if (!player.queue.current) player.destroy();
+		return interaction
+		.editReply({
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("No results were found")
+			],
+		})
+		.catch(this.warn);
+	}
+	
+	if (res.loadType === "TRACK_LOADED" || res.loadType === "SEARCH_RESULT") {
+		player.queue.add(res.tracks[0]);
+		if (!player.playing && !player.paused && !player.queue.size)
+		player.play();
+		let addQueueEmbed = new MessageEmbed()
+		.setColor(client.config.embedColor)
+		.setAuthor({ name: "Added to queue", iconURL: client.config.iconURL })
+		.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})` || "No Title")
+		.setURL(res.tracks[0].uri)
+		.addField("Added by", `<@${interaction.user.id}>`, true)
+		.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, {colonNotation: true, })}\``, true);
+		try {
+			addQueueEmbed.setThumbnail(res.tracks[0].displayThumbnail("maxresdefault"));
+		} catch (err) {
+			addQueueEmbed.setThumbnail(res.tracks[0].thumbnail);
+		}
+		if (player.queue.totalSize > 1)
+		addQueueEmbed.addField("Position in queue",	`${player.queue.size - 0}`,	true);
+		return interaction
+		.editReply({ embeds: [addQueueEmbed] })
+		.catch(this.warn);
+	}
+	
+	if (res.loadType === "PLAYLIST_LOADED") {
+		player.queue.add(res.tracks);
+		if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length)
+		player.play();
+		let playlistEmbed = new MessageEmbed()
+		.setColor(client.config.embedColor)
+		.setAuthor({name: "Playlist added to queue", iconURL: client.config.iconURL,})
+		.setThumbnail(res.tracks[0].thumbnail)
+		.setDescription(`[${res.playlist.name}](${query})`)
+		.addField("Enqueued", `\`${res.tracks.length}\` songs`, false)
+		.addField("Playlist duration",`\`${client.ms(res.playlist.duration, {colonNotation: true,})}\``,false);
+		return interaction
+		.editReply({ embeds: [playlistEmbed] })
+		.catch(this.warn);
+	}
+});
+
+module.exports = command;

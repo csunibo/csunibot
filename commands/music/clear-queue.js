@@ -13,7 +13,7 @@ module.exports = {
 			return interaction.reply({ 
 				embeds: [
 					new MessageEmbed()
-					.setColor(client.config.embedColor)
+					.setColor("RED")
 					.setDescription("There's nothing playing in the queue")
 				], 
 				ephemeral: true 
@@ -24,7 +24,7 @@ module.exports = {
 			return interaction.reply({ 
 				embeds: [
 					new MessageEmbed()
-					.setColor(client.config.embedColor)
+					.setColor("RED")
 					.setDescription("There's nothing playing.")
 				], 
 				ephemeral: true 
@@ -35,7 +35,7 @@ module.exports = {
 			return interaction.reply({ 
 				embeds: [
 					new MessageEmbed()
-					.setColor(client.config.embedColor)
+					.setColor("RED")
 					.setDescription("You must be in the same voice channel as me to use this command!")
 				], 
 				ephemeral: true 
@@ -46,8 +46,8 @@ module.exports = {
 			return interaction.reply({ 
 				embeds: [
 					new MessageEmbed()
-					.setColor(client.config.embedColor)
-					.setDescription("Invalid, Not enough track to be cleared.")
+					.setColor("RED")
+					.setDescription("Not enough track to be cleared.")
 				], 
 				ephemeral: true
 			});

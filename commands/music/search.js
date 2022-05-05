@@ -22,18 +22,25 @@ option
 	player = client.manager.get(interaction.guild.id);
 	
 	if (!interaction.member.voice.channel) {
-		const joinEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | **You need to join voice channel before you can use this command.**");
-		return interaction.reply({ embeds: [joinEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("You need to join voice channel before you can use this command.")
+			], 
+			ephemeral: true 
+		});
 	}
 	
-	if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {
-		const sameEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | **You must be in the same voice channel as me.**");
-		
-		return interaction.reply({ embeds: [sameEmbed], ephemeral: true });
+	if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {		
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("You must be in the same voice channel as me.")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	if (!player) {
@@ -60,7 +67,7 @@ option
 				embeds: [
 					new MessageEmbed()
 					.setDescription("An error occured while searching for the song")
-					.setColor(client.config.embedColor),
+					.setColor("RED")
 				],
 				ephemeral: true,
 			});
@@ -70,7 +77,7 @@ option
 			embeds: [
 				new MessageEmbed()
 				.setAuthor({name: "An error occured while searching for the song",})
-				.setColor(client.config.embedColor),
+				.setColor("RED")
 			],
 			ephemeral: true,
 		});
@@ -81,7 +88,7 @@ option
 			embeds: [
 				new MessageEmbed()
 				.setDescription(`No results found for \`${search}\``)
-				.setColor(client.config.embedColor),
+				.setColor("RED")
 			],
 			ephemeral: true,
 		});

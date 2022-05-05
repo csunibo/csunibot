@@ -12,17 +12,25 @@ const command = new SlashCommand()
 	player = interaction.client.manager.players.get(interaction.guild.id);
 	
 	if (!player) {
-		const queueEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | The bot isn't in a channel.");
-		return interaction.reply({ embeds: [queueEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("The bot isn't in a channel.")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	if (!player.playing) {
-		const queueEmbed = new MessageEmbed()
-		.setColor(client.config.embedColor)
-		.setDescription("❌ | There's nothing playing.");
-		return interaction.reply({ embeds: [queueEmbed], ephemeral: true });
+		return interaction.reply({ 
+			embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("There's nothing playing.")
+			], 
+			ephemeral: true 
+		});
 	}
 	
 	const song = player.queue.current;
