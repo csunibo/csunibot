@@ -35,8 +35,8 @@ module.exports = {
 		status: "online", // online, idle, dnd, invisible
 		activities: [
 			{
-				name: "Computer science documentaries", //Status Text
-				type: "WATCHING", // PLAYING, WATCHING, LISTENING, STREAMING
+				name: "/help", //Status Text
+				type: "LISTENING", // PLAYING, WATCHING, LISTENING, STREAMING
 			},
 		],
 	},
