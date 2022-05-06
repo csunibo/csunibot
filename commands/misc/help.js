@@ -1,11 +1,11 @@
-const { 
-	Client, 
-	Interaction, 
+const {
 	MessageEmbed, 
 	MessageActionRow, 
 	MessageSelectMenu 
 } = require("discord.js");
 const fs = require("fs");
+const LoadCommands = require("../../util/loadCommands");
+
 
 module.exports = {
 	name: "help",
@@ -14,10 +14,16 @@ module.exports = {
 		{
 			type: 3, // "STRING"
 			name: 'command',
-			description: 'What command do you need help',
-			required: false
+			description: 'What command do you want to view',
+			required: false,
+			autocomplete: true,
 		}
 	],
+	autocompleteOptions: LoadCommands().then((cmds) => {
+		return cmds.slash.map(cmd => {
+			return { name: cmd.name, value: cmd.name }
+		});
+	}),
 	category: "misc",
 	description: "Return all commands, or one specific command!",
 	ownerOnly: false,

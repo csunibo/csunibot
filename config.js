@@ -40,5 +40,5 @@ module.exports = {
 			},
 		],
 	},
-	iconURL: "", //This icon will be in every embed's author field
+	iconURL: "https://cdn.discordapp.com/attachments/972036024790298644/972036386322534420/logo-unibo1-1.png", //This icon will be in every embed's author field
 };

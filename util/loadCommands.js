@@ -4,14 +4,14 @@ const fs = require("fs");
 // Modular functions to load directories
 const LoadCommands = () => {
 	return new Promise(async (resolve) => {
-		let slash = await LoadDirectory();
+		let slash = await LoadCommandsDir();
 		
 		resolve({ slash });
 	});
 };
 
-// fills the commands array and resolves it to the calling file
-const LoadDirectory = () => {
+// fills the commands array and resolves it to the calling function
+const LoadCommandsDir = () => {
 	return new Promise((resolve) => {
 		let commands = [];
 		let CommandsDir = fs.readdirSync("./commands") // Relative Path: "../commands"
