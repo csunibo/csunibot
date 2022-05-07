@@ -4,6 +4,9 @@ const getConfig = require("../util/getConfig");
 const LoadCommands = require("../util/loadCommands");
 
 // Posts slash commands to all guilds containing the bot
+// Docs: https://discordjs.guide/interactions/slash-commands.html#global-commands
+// https://github.com/discordjs/discord.js/tree/main/packages/rest
+// https://github.com/discordjs/discord-api-types/
 (async () => {
 	const config = await getConfig();
 	const rest = new REST({ version: "9" }).setToken(config.token);

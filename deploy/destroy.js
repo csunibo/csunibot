@@ -9,6 +9,9 @@ const rl = readline.createInterface({
 });
 
 // Removes all slash commands from a given guild (shell command `node "./deploy/destroy"`)
+// Basically a reverse `guild.js`, instead of 'put' it's 'delete' iykyk
+// https://github.com/discordjs/discord.js/tree/main/packages/rest
+// https://github.com/discordjs/discord-api-types/
 (async () => {
 	const config = await getConfig();
 	const rest = new REST({ version: "9" }).setToken(config.token);

@@ -10,6 +10,9 @@ const rl = readline.createInterface({
 });
 
 // Posts slash commands to a given guild containing the bot
+// Docs: https://discordjs.guide/interactions/slash-commands.html#guild-commands
+// https://github.com/discordjs/discord.js/tree/main/packages/rest
+// https://github.com/discordjs/discord-api-types/
 (async () => {
 	const config = await getConfig();
 	const rest = new REST({ version: "9" }).setToken(config.token);
