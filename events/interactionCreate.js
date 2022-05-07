@@ -1,7 +1,7 @@
 // Defines whenever a "interactionCreate" event is fired, basically whenever a user writes a slash command in 
 // a server in which the bot is present
 
-// Orders a list of strings according to similarity to a string using levenshtein algorithm
+// Determines the Levenshtein distance between two given strings
 const levDistance = (S = '', T = '') => {
 	let i, j;
 	const n = S.length, m = T.length;
@@ -24,10 +24,13 @@ module.exports = async (client, interaction) => {
 	// Autocomplete handler, takes autocomplete options specified in the command properties 
 	// and shows them to the user
 	if (interaction.isAutocomplete()) {
+		// Gets the autocomplete options provided by the command
 		let options = await client.slash.get(interaction.commandName).autocompleteOptions;
+		// Assigns Levenshtein distances for each option based on what the user is currently typing
 		for (let option of options) {
 			option.levenshteinDistance = levDistance(option.name, interaction.options._hoistedOptions[0].value);
 		}
+		// Sorts the array of options and displays it according to the Levenshtein distance from the typed value
 		options.sort((a, b) => a.levenshteinDistance - b.levenshteinDistance)
 		interaction.respond(options);
 	}
