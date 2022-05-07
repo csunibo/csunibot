@@ -1,4 +1,4 @@
-<h1 align="left"><img src="./assets/Seal_of_the_University_of_Bologna.svg.png" width="30px"> InfoBot </h1>
+<h1 align="left"><img src="./assets/Seal_of_the_University_of_Bologna.svg.png" width="50px"> InfoBot </h1>
 
 A completeley modular Discord Bot made for and by Computer Science student's of the University of Bologna as ease of access to utility styled commands for notes, lessons, [music](https://github.com/SudhanPlayz/Discord-MusicBot), time tables and more...
 The bot hopes to allow the student's to be more efficient and sociable as a means of use in the appropriate Discord servers.
