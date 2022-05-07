@@ -6,8 +6,8 @@ module.exports = {
 	usage: "/lessons <year> <date?>",
 	options: [
 		{
-			type: 4, // "INTEGER"
 			name: 'year',
+			type: 4, // "INTEGER"
 			description: 'What year are you looking for',
 			required: true,
 			choices: [
@@ -23,12 +23,12 @@ module.exports = {
 					name: "Terzo Anno / Third Year",
 					value: 3
 				},
-			]
+			],
 		},
 		{
-			type: 3, // "STRING"
 			name: 'date',
-			description: "Date range for the lessons to look up (Leaving this blank will give you today's lessons)",
+			type: 3, // "STRING"
+			description: "Date range for the lessons to look up",
 			required: true,
 			choices: [
 				{
@@ -39,8 +39,8 @@ module.exports = {
 					name: "Domani / Tomorrow",
 					value: "tomorrow"
 				},
-			]
-		}
+			],
+		},
 	],
 	category: "media",
 	description: "Check the lessons",
