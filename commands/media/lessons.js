@@ -1,5 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const axios = require('axios');
+const { thisWeek } = require('../../util/dateFetcher');
+
 
 module.exports = {
 	name: "lessons",
@@ -47,7 +49,9 @@ module.exports = {
 	ownerOnly: false,
 	run: async (client, interaction) => {
 		const year = interaction.options.getInteger("year");
-		let url = `https://corsi.unibo.it/laurea/informatica/orario-lezioni/@@orario_reale_json?anno=${year}`
+		// Added week to have smaller interval on which to interate everything, should speed up the search
+		const week = thisWeek();
+		let url = `https://corsi.unibo.it/laurea/informatica/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
 	
 		let validLessons = [];
 		let date = new Date();
