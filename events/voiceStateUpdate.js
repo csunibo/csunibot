@@ -43,7 +43,6 @@ module.exports = async (client, oldState, newState) => {
 				if (stateChange.members.size === 1 && player.paused) {
 					let playerResumed = new MessageEmbed()
 					.setColor(client.config.embedColor)
-					// say that the queue has been resumed
 					.setTitle(`Resumed!`, client.config.iconURL)
 					.setFooter({ text: `The current song has been resumed.` });
 					await client.channels.cache
