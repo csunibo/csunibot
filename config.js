@@ -15,11 +15,11 @@ module.exports = {
 	alwaysplay: false, // ignore presence of members in voice channels
 	debug: true,
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
+	//Or host one yourself -> https://github.com/freyacodes/Lavalink 
+	//--> https://github.com/melike2d/lavalink
+	//--> https://darrennathanael.com/post/how-to-lavalink/
 	nodes: [
 		{
-			//Or host one yourself -> https://github.com/freyacodes/Lavalink 
-			//--> https://github.com/melike2d/lavalink
-			//--> https://darrennathanael.com/post/how-to-lavalink/
 			identifier: "Lavalink 1", // log id string
 			host: "lavalink.darrenofficial.com",
 			port: 80,
