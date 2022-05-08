@@ -52,4 +52,4 @@ node run start
 If you want to test/host it on replit:
 [![Run on Repl.it](https://repl.it/badge/github/csunibo/InfoBot)](https://repl.it/github/csunibo/InfoBot)
 
-## [Original Music Client Structure](https://github.com/SudhanPlayz/Discord-MusicBot/tree/v5)
+# [Original Music Client Structure](https://github.com/SudhanPlayz/Discord-MusicBot/tree/v5)
