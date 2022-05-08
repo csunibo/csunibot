@@ -1,6 +1,6 @@
 const { DateTime } = require("luxon");
 
-// Returns a two extremes of the current week as an array of date formatted strings
+// Returns an array with two Date formatted strings containing the dates for the extremes of this week [Today, Next Monday]
 const thisWeek = () => {
 	const now = DateTime.now();
 	// substring ensures that only the date part of the DateTime object gets returned, we don't really care for the times
