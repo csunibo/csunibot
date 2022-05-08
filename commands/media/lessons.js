@@ -49,7 +49,7 @@ module.exports = {
 	ownerOnly: false,
 	run: async (client, interaction) => {
 		const year = interaction.options.getInteger("year");
-		// Added week to have smaller interval on which to interate everything, should speed up the search
+		// Added week to have smaller interval on which to iterate everything, should speed up the search
 		const week = thisWeek();
 		let url = `https://corsi.unibo.it/laurea/informatica/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
 	
