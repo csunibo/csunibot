@@ -1,9 +1,11 @@
-// Checks if, on every message sent in a server in which the bot is in, the bot is being mentioned and
-// determines if it should behave in a manner or another according to if the user is a bot dev or not
 const { MessageEmbed } = require("discord.js");
 
+// node_modules\discord.js\typings\index.d.ts:3940
+// @messageCreate: [message: Message];
 module.exports = async (client, message) => {
 	const mention = new RegExp(`^<@!?${client.user.id}>( |)$`);
+	// Checks if, on every message sent in a server in which the bot is in, the bot is being mentioned and
+	// determines if it should behave in a manner or another according to if the user is a bot dev or not
 	if (message.content.match(mention)) {
 		message.delete();
 		let timeout;

@@ -2,6 +2,7 @@
 // a server in which the bot is present
 
 // Determines the Levenshtein distance between two given strings
+// This could be moved in a separate util file if needed
 const levDistance = (S = '', T = '') => {
 	let i, j;
 	const n = S.length, m = T.length;
@@ -18,11 +19,15 @@ const levDistance = (S = '', T = '') => {
 	return L[n][m];
 }
 
+
+// node_modules\discord.js\typings\index.d.ts:3971
+// @interactionCreate: [interaction: Interaction];
 // This module checks some properties of the command and determines if it should be ran for that user or not
 module.exports = async (client, interaction) => {
 	
 	// Autocomplete handler, takes autocomplete options specified in the command properties 
 	// and shows them to the user
+	// node_modules\discord.js\src\structures\AutocompleteInteraction.js
 	if (interaction.isAutocomplete()) {
 		// Gets the autocomplete options provided by the command
 		let options = await client.slash.get(interaction.commandName).autocompleteOptions;

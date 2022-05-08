@@ -1,10 +1,14 @@
 const { MessageEmbed } = require('discord.js');
 
+//node_modules\discord.js\src\structures\VoiceState.js
+//node_modules\discord.js\typings\index.d.ts:3968
+// @voiceStateUpdate: [oldState: VoiceState, newState: VoiceState];
 module.exports = async (client, oldState, newState) => {
 	let guildId = newState.guild.id;
 
-	//Checks if the music manager is setup correctly in order to use it's update functions in a particular way
+	//Checks if the music manager is setup correctly in order to use it's update functions
 	if(client.manager) {
+		//gets player for the guild where the new voiceStateUpdate happened
 		const player = client.manager.get(guildId);
 		
 		// check if the bot is active
