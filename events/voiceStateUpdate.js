@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 
+// Original Music Client Structure from -> https://github.com/SudhanPlayz/Discord-MusicBot/tree/v5 <-
 //node_modules\discord.js\src\structures\VoiceState.js
 //node_modules\discord.js\typings\index.d.ts:3968
 // @voiceStateUpdate: [oldState: VoiceState, newState: VoiceState];
