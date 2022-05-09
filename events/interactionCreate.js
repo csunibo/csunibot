@@ -29,13 +29,14 @@ module.exports = async (client, interaction) => {
 	// and shows them to the user
 	// node_modules\discord.js\src\structures\AutocompleteInteraction.js
 	if (interaction.isAutocomplete()) {
+		let input = interaction.options._hoistedOptions[0].value || " ";
 		// Gets the autocomplete options provided by the command
-		let options = await client.slash.get(interaction.commandName).autocompleteOptions;
+		let options = await client.slash.get(interaction.commandName).autocompleteOptions(input);
 		// Avoiding calculating levenshteing distances if it's not needed
 		if (options.length > 1) {
 			// Assigns Levenshtein distances for each option based on what the user is currently typing
 			for (let option of options) {
-				option.levenshteinDistance = levDistance(option.name, interaction.options._hoistedOptions[0].value);
+				option.levenshteinDistance = levDistance(option.name, input);
 			}
 			// Sorts the array of options and displays it according to the Levenshtein distance from the typed value
 			options.sort((a, b) => a.levenshteinDistance - b.levenshteinDistance)

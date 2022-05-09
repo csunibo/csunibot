@@ -19,7 +19,7 @@ module.exports = {
 			autocomplete: true,
 		}
 	],
-	autocompleteOptions: LoadCommands().then((cmds) => {
+	autocompleteOptions: () => LoadCommands().then((cmds) => {
 		return cmds.slash.map(cmd => {
 			return { name: cmd.name, value: cmd.name }
 		});
@@ -42,7 +42,7 @@ module.exports = {
 				embeds: [new MessageEmbed()
 				.setColor(client.config.embedColor)
 				.setTitle(commandArg)
-				.setDescription(`**Description:**\n${client.slash.get(commandArg).description}\n${(client.slash.get(commandArg).usage ? "**Usage:**\n" + client.slash.get(commandArg).usage : "")}`)
+				.setDescription(`${(client.slash.get(commandArg).ownerOnly ? "**(Owner Only)**" : "")}\n**Description:**\n${client.slash.get(commandArg).description}\n${(client.slash.get(commandArg).usage ? "**Usage:**\n" + client.slash.get(commandArg).usage : "")}`)
 				.setFooter({ text: "For a more complete list of the available commands use `/help` without any arguments."})]
 			})
 		}
