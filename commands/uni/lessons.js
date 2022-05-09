@@ -44,7 +44,7 @@ module.exports = {
 			],
 		},
 	],
-	category: "media",
+	category: "uni",
 	description: "Check the lessons",
 	ownerOnly: false,
 	run: async (client, interaction) => {
