@@ -31,12 +31,15 @@ module.exports = async (client, interaction) => {
 	if (interaction.isAutocomplete()) {
 		// Gets the autocomplete options provided by the command
 		let options = await client.slash.get(interaction.commandName).autocompleteOptions;
-		// Assigns Levenshtein distances for each option based on what the user is currently typing
-		for (let option of options) {
-			option.levenshteinDistance = levDistance(option.name, interaction.options._hoistedOptions[0].value);
+		// Avoiding calculating levenshteing distances if it's not needed
+		if (options.length > 1) {
+			// Assigns Levenshtein distances for each option based on what the user is currently typing
+			for (let option of options) {
+				option.levenshteinDistance = levDistance(option.name, interaction.options._hoistedOptions[0].value);
+			}
+			// Sorts the array of options and displays it according to the Levenshtein distance from the typed value
+			options.sort((a, b) => a.levenshteinDistance - b.levenshteinDistance)
 		}
-		// Sorts the array of options and displays it according to the Levenshtein distance from the typed value
-		options.sort((a, b) => a.levenshteinDistance - b.levenshteinDistance)
 		interaction.respond(options);
 	}
 	
