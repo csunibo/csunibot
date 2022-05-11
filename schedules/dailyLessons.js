@@ -7,7 +7,7 @@ const { MessageEmbed } = require("discord.js");
 // https://cron-job.org/en/
 // https://it.wikipedia.org/wiki/Crontab
 
-// module is just a cron job which gets loaded on startup and executes on cron tab syntax `30 6 * * 1-5`
+// module is just a cron job which gets loaded on startup and executes on cron tab syntax `30 4 * * 1-5` Universal Standard Time
 module.exports = async (client) => {
 	const embed = new MessageEmbed()
 	.setColor(client.config.embedColor)
@@ -34,7 +34,7 @@ module.exports = async (client) => {
 		}
 	})
 	
-	const dailyLessons = new cron.CronJob('30 6 * * 1-5', () => {
+	const dailyLessons = new cron.CronJob('30 4 * * 1-5', () => {
 		// You got to change these according to where you want to sen the message
 		const guild = client.guilds.cache.get('872001318800203846');
 		const channel = guild.channels.cache.get('872064345218088982');
