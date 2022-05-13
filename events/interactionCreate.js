@@ -41,7 +41,7 @@ module.exports = async (client, interaction) => {
 			// Sorts the array of options and displays it according to the Levenshtein distance from the typed value
 			options.sort((a, b) => a.levenshteinDistance - b.levenshteinDistance)
 		}
-		interaction.respond(options);
+		interaction.respond(options.slice(0, 24));
 	}
 	
 	// Gets general info from a command during execution, if sent then check the guards
