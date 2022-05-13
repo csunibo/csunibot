@@ -5,7 +5,7 @@ const { thisWeek } = require('../../util/dateFetcher');
 
 module.exports = {
 	name: "lessons",
-	usage: "/lessons <year> <date?>",
+	usage: "/lessons <year> <date>",
 	options: [
 		{
 			name: 'year',

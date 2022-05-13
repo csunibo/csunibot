@@ -7,6 +7,14 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+# Test commands
+commands/utility/test.js
+commands/media/anime.js
+commands/media/manga.js
+
+# Scrape directory
+scraped/
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
