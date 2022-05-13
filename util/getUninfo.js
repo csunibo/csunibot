@@ -199,11 +199,11 @@ const getHTML = async (URL) => {
 		if (!error){
 			HTML = body;
 		} else {
-			console.log("We've encountered an error in scraping the topics: " + error);
+			console.log("We've encountered an error in scraping the site: " + error);
 		}
 	});
 	while (!HTML) await new Promise((re,rj) => setTimeout(re, 100));
 	return HTML;
 }
 
-module.exports = {getCourses, getProfessors, getTopics, getHTML, getVirtualLink, getCourseId };
+module.exports = { getCourses, getProfessors, getTopics, getHTML, getVirtualLink, getCourseId };
