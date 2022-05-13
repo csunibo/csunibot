@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const { indexOf } = require('lodash');
 
 /**
- * 
+ * Gets the number of pages on one of the parameter links
  * @param {string} url of type https://corsi.unibo.it/laurea/ or 
  * https://corsi.unibo.it/magistrale/
  * @returns {number}
@@ -28,10 +28,11 @@ const getPages = async (url) => {
 }
 
 /**
- * 
+ * Grabs all the names and links of the courses offered by the Univeristy of Bologna
+ * by reading all the pages on the parameter links
  * @param {string} url of type https://corsi.unibo.it/laurea/ or 
  * https://corsi.unibo.it/magistrale/
- * @returns {string[]}
+ * @returns {[{name: string, link: string}]}
  */
 const getCourses = async (url) => {
 	const pages = await getPages(url);
@@ -65,9 +66,9 @@ const getCourses = async (url) => {
 }
 
 /**
- * 
+ * Gets all the professors from a given course, independent of year or role
  * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {string[]}
+ * @returns {[{name: string, site: string}]}
  */
 const getProfessors = async (courseURL) => {
 	const url = courseURL + "/docenti";
@@ -93,9 +94,9 @@ const getProfessors = async (courseURL) => {
 	return prof;
 }
 /**
- * 
+ * Gets all the topics of a given course independent of year
  * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {string[]}
+ * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
  */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
@@ -140,8 +141,8 @@ function getPosition(string = '', subString = '', index = 0) {
 	return string.toString().split(subString, index).join(subString).length;
 }
 /**
- * 
- * @param {string} courseURL 
+ * Gets the ID number of a course for the main site 
+ * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
  * @returns {number}
  */
 const getCourseId = async (courseURL) => {
@@ -165,7 +166,8 @@ const getCourseId = async (courseURL) => {
 
 /**
  * 
- * @param {string} courseURL of type https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2021/320578
+ * @param {string} courseURL of type https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2021/460495 or
+ * https://www.unibo.it/it/didattica/insegnamenti?codiceMateria=13477&annoAccademico=2021&codiceCorso=8009&single=True&search=True
  * @returns {string}
  */
 const getVirtualLink = async (courseURL) => {
@@ -187,7 +189,7 @@ const getVirtualLink = async (courseURL) => {
 }
 
 /**
- * 
+ * Gets the HTML from a site... all of it
  * @param {string} URL 
  * @returns {string}
  */

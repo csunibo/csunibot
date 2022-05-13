@@ -55,9 +55,9 @@ module.exports = {
 		let topics;
 		let docenti;
 		
-		if (interaction.options.getString('laurea / magistrale') === 'laurea')
+		if (interaction.options.getString('lom') === 'laurea')
 			laureaEntries = getCourses(`https://corsi.unibo.it/laurea/`);
-		else if (interaction.options.getString('laurea / magistrale') === 'magistrale')
+		else if (interaction.options.getString('lom') === 'magistrale')
 			magistraleEntries = getCourses(`https://corsi.unibo.it/magistrale/`);
 		if (interaction.options.getString('docenti'))
 			docenti = getProfessors(interaction.options.getString('docenti'))
@@ -81,7 +81,7 @@ module.exports = {
 			] })
 		})
 
-		if (interaction.options.getString('laurea / magistrale') === 'laurea')
+		if (interaction.options.getString('lom') === 'laurea')
 		fs.writeFile('./scraped/corsi_di_laurea.json', JSON.stringify(await laureaEntries, null, 4), err => {
 			if (err) {
 				console.error(err)
@@ -96,7 +96,7 @@ module.exports = {
 			] })
 		})
 
-		else if (interaction.options.getString('laurea / magistrale') === 'magistrale')
+		else if (interaction.options.getString('lom') === 'magistrale')
 		fs.writeFile('./scraped/corsi_magistrali.json', JSON.stringify(await magistraleEntries, null, 4), err => {
 			if (err) {
 				console.error(err)
