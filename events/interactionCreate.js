@@ -34,7 +34,9 @@ module.exports = async (client, interaction) => {
 		// Avoiding calculating levenshteing distances if it's not needed
 		if (options.length > 1) {
 			// Assigns Levenshtein distances for each option based on what the user is currently typing
-			for (let option of options) {
+			for (let option of options) { // I use '⟨⟨' and '⟩⟩' to delimit some "additional information" for options, 
+				// which shouldn't be looked at in the search, so I only base the levenshtein distanc on everything
+				// before those characters
 				option.levenshteinDistance = levDistance(option.name.substring(0, getPosition(option.name, '⟨')), input);
 			}
 			// Sorts the array of options and displays it according to the Levenshtein distance from the typed value
