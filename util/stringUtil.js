@@ -27,7 +27,7 @@ const levDistance = (S = '', T = '') => {
 * @param {string} subString the character to search the index of
 * @param {number} index the occurence of the chracter which you would like to search for default is `1`
 * @returns {number}
-* this could be exported at some point, perhaps moved to it's own file
+* if the `subString` is not found then it returns the length of the string
 */
 function getPosition(string, subString, index = 1) {
 	return string.toString().split(subString, index).join(subString).length;

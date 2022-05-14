@@ -9,8 +9,7 @@ lerna-debug.log*
 
 # Test commands
 commands/utility/test.js
-commands/media/anime.js
-commands/media/manga.js
+commands/media/
 
 # Scrape directory
 scraped/
