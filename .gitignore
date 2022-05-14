@@ -9,7 +9,6 @@ lerna-debug.log*
 
 # Test commands
 commands/utility/test.js
-commands/media/
 
 # Scrape directory
 scraped/
