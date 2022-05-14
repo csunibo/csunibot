@@ -21,7 +21,7 @@ const rl = readline.createInterface({
 		let commands = await rest.get(Routes.applicationGuildCommands(config.clientId, guild));
 		for (cmd of commands) {
 			await rest.delete(Routes.applicationGuildCommand(config.clientId, guild, cmd.id)).catch(console.log);
-			client.warn(`Deleted command: ${cmd.name}`);
+			console.log(`Deleted command: ${cmd.name}`);
 		}
 		if (commands.length === 0) console.log("No commands need to be deleted");
 		return rl.close;

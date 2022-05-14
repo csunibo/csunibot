@@ -8,7 +8,7 @@ module.exports = {
 		{
 			name: 'lom',
 			type: 3, // "STRING"
-			description: "bachelor's / master's",
+			description: "bachelor's / master's / all",
 			required: false,
 			choices: [
 				{
@@ -19,6 +19,10 @@ module.exports = {
 					name: "master",
 					value: "master"
 				},
+				{
+					name: "all",
+					value: "all"
+				},
 			],
 		},
 		{
@@ -26,36 +30,44 @@ module.exports = {
 			type: 3, // "STRING"
 			description: "url of a course",
 			required: false,
+			autocomplete: true,
 		},
 		{
 			name: 'topics',
 			type: 3, // "STRING"
 			description: "url of a course",
 			required: false,
+			autocomplete: true,
 		},
 	],
+	autocompleteOptions: async () => require('../../scraped/courses.json')
+	.map(course => {
+		return { name: course.name, value: course.link }
+	}),
 	category: "utility",
 	description: "Get information from the official sites of UNIBO",
 	ownerOnly: false,
 	run: async (client, interaction) => {
 		await interaction.deferReply().catch((_) => {});
 		interaction.editReply({ content: "This may take some time..."})
-
+		let option = interaction.options.getString('lom');
+		
 		let laureaEntries;
 		let magistraleEntries;
+		let allCourses;
 		let topics;
 		let professors;
 		
-		if (interaction.options.getString('lom') === 'bachelor')
-			laureaEntries = getCourses(`https://corsi.unibo.it/laurea/`);
-		else if (interaction.options.getString('lom') === 'master')
-			magistraleEntries = getCourses(`https://corsi.unibo.it/magistrale/`);
+		if (option === 'bachelor' || option === 'all')
+		laureaEntries = getCourses(`https://corsi.unibo.it/laurea/`);
+		if (option === 'master' || option === 'all')
+		magistraleEntries = getCourses(`https://corsi.unibo.it/magistrale/`);
 		if (interaction.options.getString('professors'))
-			professors = getProfessors(interaction.options.getString('professors'))
+		professors = getProfessors(interaction.options.getString('professors'))
 		if (interaction.options.getString('topics'))
-			topics = getTopics(interaction.options.getString('topics'));
-
-		if (interaction.options.getString('lom') === 'bachelor')
+		topics = getTopics(interaction.options.getString('topics'));
+		
+		if (option === 'bachelor')
 		fs.writeFile('./scraped/bachelor_courses.json', JSON.stringify(await laureaEntries, null, 4), err => {
 			if (err) {
 				console.error(err)
@@ -69,8 +81,8 @@ module.exports = {
 				}
 			] })
 		})
-
-		else if (interaction.options.getString('lom') === 'master')
+		
+		else if (option === 'master')
 		fs.writeFile('./scraped/master_courses.json', JSON.stringify(await magistraleEntries, null, 4), err => {
 			if (err) {
 				console.error(err)
@@ -84,7 +96,25 @@ module.exports = {
 				}
 			] })
 		})
-
+		
+		else if (option === 'all') {
+			allCourses = await magistraleEntries;
+			allCourses = allCourses.concat(await laureaEntries);
+			fs.writeFile('./scraped/courses.json', JSON.stringify(allCourses, null, 4), err => {
+				if (err) {
+					console.error(err)
+					return
+				}
+				interaction.channel.send({ files: [
+					{
+						name: './scraped/courses.json',
+						attachment: './scraped/courses.json',
+						description: "courses.json",
+					}
+				] })
+			})
+		}
+		
 		if (interaction.options.getString('professors'))
 		fs.writeFile('./scraped/professors.json', JSON.stringify(await professors, null, 4), err => {
 			if (err) {
@@ -99,7 +129,7 @@ module.exports = {
 				}
 			] })
 		})
-
+		
 		if (interaction.options.getString('topics'))
 		fs.writeFile('./scraped/topics.json', JSON.stringify(await topics, null, 4), err => {
 			if (err) {

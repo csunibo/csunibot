@@ -50,7 +50,7 @@ const getCourses = async (url) => {
 				.toArray()
 				.map(element => { 
 					return { 
-						name: $(element).text().replace(/[\n ]/g, ''), 
+						name: $(element).text().replace(/[\n ]/g, '') + ` ⟨⟨${url.substring(getPosition(url, '/', 3) + 1, url.lastIndexOf('/'))}⟩⟩`, 
 						link: $(element).attr('href'),
 					}
 				});
@@ -101,7 +101,7 @@ const getProfessors = async (courseURL) => {
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
 	const courseId = await getCourseId(courseURL);
-	const url = courseURL + `/insegnamenti/piano/${year}/${courseId}/000/000/${year}`;
+	const url = courseURL + `/insegnamenti/piano/${year}/${courseId}/${year}`;
 	let topics;
 	request({ url:url }, async (error, response, body) => {
 		if (!error){
@@ -136,14 +136,21 @@ const getTopics = async (courseURL) => {
 	return topics;
 }
 
-
-function getPosition(string = '', subString = '', index = 0) {
+/**
+ * get's the `index` occurence of the `subString` in a `string`
+ * @param {string} string String in which to find the `n'th`character
+ * @param {string} subString the character to search the index of
+ * @param {number} index the occurence of the chracter which you would like to search for default is `0`
+ * @returns {number}
+ * this could be exported at some point, perhaps moved to it's own file
+ */
+function getPosition(string, subString, index = 0) {
 	return string.toString().split(subString, index).join(subString).length;
 }
 /**
- * Gets the ID number of a course for the main site 
+ * Gets the ID code of a course for the main site 
  * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {number}
+ * @returns {string}
  */
 const getCourseId = async (courseURL) => {
 	const url = courseURL + `/insegnamenti`;
@@ -161,7 +168,7 @@ const getCourseId = async (courseURL) => {
 		}
 	})
 	while (!courseId) await new Promise((re,rj) => setTimeout(re, 100));
-	return parseInt(courseId.toString().substring(getPosition(courseId, '/', 8) + 1, getPosition(courseId, '/', 9)));
+	return courseId.toString().substring(getPosition(courseId, '/', 8) + 1, getPosition(courseId, '/', 11));
 }
 
 /**
