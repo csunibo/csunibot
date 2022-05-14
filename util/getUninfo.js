@@ -1,13 +1,13 @@
 const request = require('request');
 const cheerio = require('cheerio');
-const { indexOf } = require('lodash');
+const { getPosition } = require('./stringUtil');
 
 /**
- * Gets the number of pages on one of the parameter links
- * @param {string} url of type https://corsi.unibo.it/laurea/ or 
- * https://corsi.unibo.it/magistrale/
- * @returns {number}
- */
+* Gets the number of pages on one of the parameter links
+* @param {string} url of type https://corsi.unibo.it/laurea/ or 
+* https://corsi.unibo.it/magistrale/
+* @returns {number}
+*/
 const getPages = async (url) => {
 	let pages = 0;
 	request({ url:url }, async (error, response, body) => {
@@ -28,12 +28,12 @@ const getPages = async (url) => {
 }
 
 /**
- * Grabs all the names and links of the courses offered by the Univeristy of Bologna
- * by reading all the pages on the parameter links
- * @param {string} url of type https://corsi.unibo.it/laurea/ or 
- * https://corsi.unibo.it/magistrale/
- * @returns {[{name: string, link: string}]}
- */
+* Grabs all the names and links of the courses offered by the Univeristy of Bologna
+* by reading all the pages on the parameter links
+* @param {string} url of type https://corsi.unibo.it/laurea/ or 
+* https://corsi.unibo.it/magistrale/
+* @returns {[{name: string, link: string}]}
+*/
 const getCourses = async (url) => {
 	const pages = await getPages(url);
 	let corsi = [];
@@ -44,14 +44,23 @@ const getCourses = async (url) => {
 		request({ url:url+`?b_start:int=${i * 20}` }, async (error, response, body) => {
 			if (!error){
 				let $ = cheerio.load(body.replace(/^\s+/gm, ''))
-				
+				let campus = [
+					'bologna', 'cesena', 'forli', 'ravenna', 'rimini',
+					'Bologna', 'Cesena', 'Forli', 'Ravenna', 'Rimini',
+				]
 				lauree = $('div[class="entries"]')
 				.find('div > article > header > span > a')
 				.toArray()
 				.map(element => { 
+					let type = url.substring(getPosition(url, '/', 3) + 1, url.lastIndexOf('/'));
+					let name = $(element).text().replace(/[\n ]/g, '') + ` ⟨⟨${type}⟩⟩`;
+					let link = $(element).attr('href');
+					let city;
+					if (link.includes('-') && campus.includes(link.substring(link.lastIndexOf('-') + 1)))
+						city = link.substring(link.lastIndexOf('-') + 1)
 					return { 
-						name: $(element).text().replace(/[\n ]/g, '') + ` ⟨⟨${url.substring(getPosition(url, '/', 3) + 1, url.lastIndexOf('/'))}⟩⟩`, 
-						link: $(element).attr('href'),
+						name: city ? `${name} ⟨⟨${city}⟩⟩` : `${name}`, 
+						link: link,
 					}
 				});
 				corsi = corsi.concat(lauree);
@@ -66,10 +75,10 @@ const getCourses = async (url) => {
 }
 
 /**
- * Gets all the professors from a given course, independent of year or role
- * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {[{name: string, site: string}]}
- */
+* Gets all the professors from a given course, independent of year or role
+* @param {string} courseURL of type https://corsi.unibo.it/laurea/test
+* @returns {[{name: string, site: string}]}
+*/
 const getProfessors = async (courseURL) => {
 	const url = courseURL + "/docenti";
 	let prof;
@@ -94,10 +103,10 @@ const getProfessors = async (courseURL) => {
 	return prof;
 }
 /**
- * Gets all the topics of a given course independent of year
- * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
- */
+* Gets all the topics of a given course independent of year
+* @param {string} courseURL of type https://corsi.unibo.it/laurea/test
+* @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
+*/
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
 	const courseId = await getCourseId(courseURL);
@@ -123,7 +132,7 @@ const getTopics = async (courseURL) => {
 			console.log("We've encountered an error in getting the topics: " + error);
 		}
 	})
-
+	
 	// While this works, it's really bad, please fix
 	while (!topics) await new Promise((re,rj) => setTimeout(re, 100));
 	for (element of topics) {
@@ -137,21 +146,10 @@ const getTopics = async (courseURL) => {
 }
 
 /**
- * get's the `index` occurence of the `subString` in a `string`
- * @param {string} string String in which to find the `n'th`character
- * @param {string} subString the character to search the index of
- * @param {number} index the occurence of the chracter which you would like to search for default is `0`
- * @returns {number}
- * this could be exported at some point, perhaps moved to it's own file
- */
-function getPosition(string, subString, index = 0) {
-	return string.toString().split(subString, index).join(subString).length;
-}
-/**
- * Gets the ID code of a course for the main site 
- * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {string}
- */
+* Gets the ID code of a course for the main site 
+* @param {string} courseURL of type https://corsi.unibo.it/laurea/test
+* @returns {string}
+*/
 const getCourseId = async (courseURL) => {
 	const url = courseURL + `/insegnamenti`;
 	let courseId = 0;
@@ -172,17 +170,17 @@ const getCourseId = async (courseURL) => {
 }
 
 /**
- * 
- * @param {string} courseURL of type https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2021/460495 or
- * https://www.unibo.it/it/didattica/insegnamenti?codiceMateria=13477&annoAccademico=2021&codiceCorso=8009&single=True&search=True
- * @returns {string}
- */
+* 
+* @param {string} courseURL of type https://www.unibo.it/it/didattica/insegnamenti/insegnamento/2021/460495 or
+* https://www.unibo.it/it/didattica/insegnamenti?codiceMateria=13477&annoAccademico=2021&codiceCorso=8009&single=True&search=True
+* @returns {string}
+*/
 const getVirtualLink = async (courseURL) => {
 	let link;
 	request({ url:courseURL }, (error, response, body) => {
 		if (!error) {
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
-
+			
 			link = $('li[class="almadlcourseware"]')
 			.find('li > p')
 			.toArray()
@@ -196,10 +194,10 @@ const getVirtualLink = async (courseURL) => {
 }
 
 /**
- * Gets the HTML from a site... all of it
- * @param {string} URL 
- * @returns {string}
- */
+* Gets the HTML from a site... all of it
+* @param {string} URL 
+* @returns {string}
+*/
 const getHTML = async (URL) => {
 	let HTML;
 	request({ url:URL }, async (error, response, body) => {
