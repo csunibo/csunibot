@@ -102,6 +102,7 @@ const getProfessors = async (courseURL) => {
 	while (!prof) await new Promise((re,rj) => setTimeout(re, 100));
 	return prof;
 }
+
 /**
 * Gets all the topics of a given course independent of year
 * @param {string} courseURL of type https://corsi.unibo.it/laurea/test

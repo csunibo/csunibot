@@ -28,14 +28,14 @@ module.exports = {
 		{
 			name: 'professors',
 			type: 3, // "STRING"
-			description: "url of a course",
+			description: "Select a course from the list",
 			required: false,
 			autocomplete: true,
 		},
 		{
 			name: 'topics',
 			type: 3, // "STRING"
-			description: "url of a course",
+			description: "Select a course from the list",
 			required: false,
 			autocomplete: true,
 		},

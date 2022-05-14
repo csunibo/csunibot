@@ -13,7 +13,7 @@ module.exports = async (client, interaction) => {
 	// and shows them to the user
 	// node_modules\discord.js\src\structures\AutocompleteInteraction.js
 	if (interaction.isAutocomplete()) {
-		let input = interaction.options._hoistedOptions[0].value || " ";
+		let input = interaction.options.getFocused() || " ";
 		// Gets the autocomplete options provided by the command
 		let options = await client.slash.get(interaction.commandName).autocompleteOptions(input);
 		
@@ -21,8 +21,8 @@ module.exports = async (client, interaction) => {
 		// options.forEach(option => option.filePrepared = fuzzysort.prepare(option.name)); 
 		// options.map(option => option.filePrepared);
 
-		fuzzysort.go(interaction.options._hoistedOptions[0].value, options, {
-			threshold: -1000, // Don't return matches worse than this (higher is faster)
+		fuzzysort.go(input, options, {
+			threshold: -100, // Don't return matches worse than this (higher is faster)
 			limit: 24, // Don't return more results than this (lower is faster)
 			all: false, // If true, returns all results for an empty search
 		  
