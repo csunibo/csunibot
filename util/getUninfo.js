@@ -23,7 +23,7 @@ const getPages = async (url) => {
 			console.log("We've encountered an error in counting the pages of the pagination: " + error);
 		}
 	});
-	while (!pages) await new Promise((re,rj) => setTimeout(re, 100));
+	while (!pages) await new Promise((re,rj) => setTimeout(re, 10));
 	return pages;
 }
 
@@ -68,9 +68,9 @@ const getCourses = async (url) => {
 				console.log("We've encountered an error in scraping the entries: " + error);
 			}
 		})
-		while (!lauree) await new Promise((re,rj) => setTimeout(re, 10));
+		// Waits for the degrees on the current iterating page to be found
+		while (!lauree) await new Promise((re,rj) => setTimeout(re, 50));
 	}
-	while (i !== pages) await new Promise((re,rj) => setTimeout(re, 100));
 	return corsi;
 }
 
@@ -99,7 +99,7 @@ const getProfessors = async (courseURL) => {
 			console.log("We've encountered an error in scraping the professors: " + error);
 		}
 	})
-	while (!prof) await new Promise((re,rj) => setTimeout(re, 100));
+	while (!prof) await new Promise((re,rj) => setTimeout(re, 50));
 	return prof;
 }
 
@@ -190,7 +190,7 @@ const getVirtualLink = async (courseURL) => {
 			console.log("We've encountered an error in getting the Virtual E-Learning Platform Link" + error)
 		}
 	})
-	while (!link) await new Promise((re,rj) => setTimeout(re, 10));
+	while (!link) await new Promise((re,rj) => setTimeout(re, 20));
 	return link[0];
 }
 
@@ -212,4 +212,11 @@ const getHTML = async (URL) => {
 	return HTML;
 }
 
-module.exports = { getCourses, getProfessors, getTopics, getHTML, getVirtualLink, getCourseId };
+module.exports = { 
+	getVirtualLink, 
+	getProfessors, 
+	getCourseId, 
+	getCourses, 
+	getTopics, 
+	getHTML, 
+};
