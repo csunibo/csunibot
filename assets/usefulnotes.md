@@ -1,5 +1,18 @@
 # Useful structures
 
+## Table of contents
+
+- [Messages](#messages)
+  - [Base Message](#base-message)
+  - [Message Embed](#message-embed)
+- [Interactions](#interactions)
+  - [Base Interaction Class](#base-interaction-class)
+  - [Autocomplete Option Structure](#autocomplete-option-structure)
+  - [Autocomplete Interaction](#autocomplete-interaction)
+- [Events](#events)
+  - [Client events with sharding](#client-events-with-sharding)
+  - [Client events without sharding](#client-events-without-sharding)
+
 ## Messages
 
 ### Base Message
@@ -172,6 +185,23 @@ class Interaction<Cached extends CacheType = CacheType> extends Base {
 	public isMessageContextMenu(): this is MessageContextMenuInteraction<Cached>;
 	public isMessageComponent(): this is MessageComponentInteraction<Cached>;
 	public isSelectMenu(): this is SelectMenuInteraction<Cached>;
+}
+```
+
+### Autocomplete Option Structure
+
+```ts
+CommandInteractionOptionResolver {
+	_group: null,
+	_subcommand: null,
+	_hoistedOptions: [
+		{
+			name: 'option',
+			type: 'STRING',
+			value: 'typin',
+			focused: true
+		}
+	]
 }
 ```
 
