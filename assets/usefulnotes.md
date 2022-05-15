@@ -10,8 +10,10 @@
   - [Autocomplete Option Structure](#autocomplete-option-structure)
   - [Autocomplete Interaction](#autocomplete-interaction)
 - [Events](#events)
+  - [Base Client Events](#base-client-events)
+- [Shard Manager](#shard-manager)
+  - [Base ShardingManager EventEmitter Structure](#base-shardingmanager-eventemitter-structure)
   - [Client events with sharding](#client-events-with-sharding)
-  - [Client events without sharding](#client-events-without-sharding)
 
 ## Messages
 
@@ -308,6 +310,59 @@ class AutocompleteInteraction extends Interaction {
 
 ## Events
 
+### Base Client Events
+
+```ts
+_events: [Object: null prototype] {
+	shardDisconnect: [Function (anonymous)],
+	ready: [Function: bound ],
+	interactionCreate: [Function: bound ] AsyncFunction,
+	messageCreate: [Function: bound ] AsyncFunction,
+	raw: [Function: bound ],
+	voiceStateUpdate: [Function: bound ] AsyncFunction
+},
+```
+
+## Shard Manager
+
+### Base ShardingManager EventEmitter Structure
+
+```ts
+class ShardingManager extends EventEmitter {
+	public constructor(file: string, options?: ShardingManagerOptions);
+	private _performOnShards(method: string, args: unknown[]): Promise<unknown[]>;
+	private _performOnShards(method: string, args: unknown[], shard: number): Promise<unknown>;
+
+	public file: string;
+	public respawn: boolean;
+	public shardArgs: string[];
+	public shards: Collection<number, Shard>;
+	public token: string | null;
+	public totalShards: number | 'auto';
+	public shardList: number[] | 'auto';
+	public broadcast(message: unknown): Promise<Shard[]>;
+	public broadcastEval<T>(fn: (client: Client) => Awaitable<T>): Promise<Serialized<T>[]>;
+	public broadcastEval<T>(fn: (client: Client) => Awaitable<T>, options: { shard: number }): Promise<Serialized<T>>;
+	public broadcastEval<T, P>(
+		fn: (client: Client, context: Serialized<P>) => Awaitable<T>,
+		options: { context: P },
+	): Promise<Serialized<T>[]>;
+	public broadcastEval<T, P>(
+		fn: (client: Client, context: Serialized<P>) => Awaitable<T>,
+		options: { context: P; shard: number },
+	): Promise<Serialized<T>>;
+	public createShard(id: number): Shard;
+	public fetchClientValues(prop: string): Promise<unknown[]>;
+	public fetchClientValues(prop: string, shard: number): Promise<unknown>;
+	public respawnAll(options?: MultipleShardRespawnOptions): Promise<Collection<number, Shard>>;
+	public spawn(options?: MultipleShardSpawnOptions): Promise<Collection<number, Shard>>;
+
+	public on(event: 'shardCreate', listener: (shard: Shard) => Awaitable<void>): this;
+
+	public once(event: 'shardCreate', listener: (shard: Shard) => Awaitable<void>): this;
+}
+```
+
 ### Client events with sharding
 
 ```js
@@ -316,19 +371,6 @@ _events: [Object: null prototype] {
 	ready: [Array],
 	disconnect: [Function (anonymous)],
 	reconnecting: [Function (anonymous)],
-	interactionCreate: [Function: bound ] AsyncFunction,
-	messageCreate: [Function: bound ] AsyncFunction,
-	raw: [Function: bound ],
-	voiceStateUpdate: [Function: bound ] AsyncFunction
-},
-```
-
-### Client events without sharding
-
-```js
-_events: [Object: null prototype] {
-	shardDisconnect: [Function (anonymous)],
-	ready: [Function: bound ],
 	interactionCreate: [Function: bound ] AsyncFunction,
 	messageCreate: [Function: bound ] AsyncFunction,
 	raw: [Function: bound ],

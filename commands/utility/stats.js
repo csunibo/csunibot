@@ -39,7 +39,7 @@ module.exports = {
 			},
 			{
 				name: "System stats",
-				value: `\`\`\`yml\nOS: ${osver}\nUptime: ${sysuptime}\nShards: ${client.ws.totalShards}\`\`\``,
+				value: `\`\`\`yml\nOS: ${osver}\nUptime: ${sysuptime}\nShards: ${client.ws.totalShards}\nOn: ${interaction.member.guild.shardId}\`\`\``,
 				inline: false,
 			},
 		]);

@@ -27,7 +27,7 @@ module.exports = {
 			}
 			
 			const commandsSize = `Reloaded ${client.slash.size} Commands.`;
-			client.info(commandsSize);
+			client.info(commandsSize + `\nIn: ${interaction.member.guild.name} - ${interaction.member.guild.id}\nOn shard: ${interaction.member.guild.shardId}`);
 			return interaction.reply({
 				embeds: [new MessageEmbed()
 					.setColor(client.config.embedColor)
@@ -38,7 +38,7 @@ module.exports = {
 				ephemeral: true
 			});
 		} catch (err) {
-			client.error(err);
+			client.error(err + `\nIn: ${interaction.member.guild.name} - ${interaction.member.guild.id}\n On shard: ${interaction.member.guild.shardId}`);
 			console.log(err);
 			return interaction.reply({ 
 				embeds: [new MessageEmbed().setColor("RED")
