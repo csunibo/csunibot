@@ -2,6 +2,11 @@ const request = require('request');
 const cheerio = require('cheerio');
 const { getPosition } = require('./stringUtil');
 
+const campus = [
+	'bologna', 'cesena', 'forli', 'ravenna', 'rimini',
+	'Bologna', 'Cesena', 'Forli', 'Ravenna', 'Rimini',
+]
+
 /**
 * Gets the number of pages on one of the parameter links
 * @param {string} url of type https://corsi.unibo.it/laurea/ or 
@@ -40,14 +45,9 @@ const getCourses = async (url) => {
 	let i;
 	for (i = 0; i < pages; i++) {
 		let lauree;
-		// ?b_start:int=0
 		request({ url:url+`?b_start:int=${i * 20}` }, async (error, response, body) => {
 			if (!error){
 				let $ = cheerio.load(body.replace(/^\s+/gm, ''))
-				let campus = [
-					'bologna', 'cesena', 'forli', 'ravenna', 'rimini',
-					'Bologna', 'Cesena', 'Forli', 'Ravenna', 'Rimini',
-				]
 				lauree = $('div[class="entries"]')
 				.find('div > article > header > span > a')
 				.toArray()
@@ -57,7 +57,7 @@ const getCourses = async (url) => {
 					let link = $(element).attr('href');
 					let city;
 					if (link.includes('-') && campus.includes(link.substring(link.lastIndexOf('-') + 1)))
-						city = link.substring(link.lastIndexOf('-') + 1)
+					city = link.substring(link.lastIndexOf('-') + 1)
 					return { 
 						name: city ? `${name} ⟨⟨${city}⟩⟩` : `${name}`, 
 						link: link,
@@ -104,9 +104,11 @@ const getProfessors = async (courseURL) => {
 }
 
 /**
-* Gets all the topics of a given course independent of year
-* @param {string} courseURL of type https://corsi.unibo.it/laurea/test
-* @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
+ * Gets all the topics of a given course independent of year
+ * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
+ * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
+ * Sometimes the sites have this stupid thing going on... `assets\Bro.jpg` so the results may not be accurate.
+ * Please check `assets\how-its-supposed-to-be.jpg`
 */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
