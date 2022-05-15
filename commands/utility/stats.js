@@ -30,23 +30,23 @@ module.exports = {
 		const statsEmbed = new MessageEmbed()
 		.setTitle(`${client.user.username} Information`)
 		.setColor(client.config.embedColor)
-		.setDescription(`\`\`\`yml\nName: ${client.user.username}#${client.user.discriminator} [${client.user.id}]\nAPI: ${client.ws.ping}ms\nRuntime: ${runtime}\`\`\``)
+		.setDescription(`\`\`\`yml\nName: ${client.user.username}#${client.user.discriminator} [${client.user.id}]\nAPI: ${client.ws.ping}ms\nRuntime: ${runtime}\n\`\`\``)
 		.setFields([
 			{
 				name: "Bot stats",
-				value: `\`\`\`yml\nGuilds: ${client.guilds.cache.size} \nNodeJS: ${nodeVersion}\nInfoBot: v${require("../../package.json").version} \`\`\``,
+				value: `\`\`\`yml\nGuilds: ${client.guilds.cache.size} \nNodeJS: ${nodeVersion}\nInfoBot: v${require("../../package.json").version}\n\`\`\``,
 				inline: true,
 			},
 			{
 				name: "System stats",
-				value: `\`\`\`yml\nOS: ${osver}\nUptime: ${sysuptime}\nShards: ${client.ws.totalShards}\nOn: ${interaction.member.guild.shardId}\`\`\``,
+				value: `\`\`\`yml\nOS: ${osver}\nUptime: ${sysuptime}\nShards: ${client.ws.totalShards}\nOn: ${interaction.member.guild.shardId}\n\`\`\``,
 				inline: false,
 			},
 		]);
 		
 		if (client.manager) {
 			statsEmbed.addField( `Lavalink stats`,
-			`\`\`\`yml\nUptime: ${lavauptime}\nRAM: ${lavaram} MB\nPlaying: ${lavaclientstats.playingPlayers} out of ${client.manager.nodes.values().next().value.stats.players}\`\`\``, true,
+			`\`\`\`yml\nUptime: ${lavauptime}\nRAM: ${lavaram} MB\nPlaying: ${lavaclientstats.playingPlayers} out of ${client.manager.nodes.values().next().value.stats.players}\n\`\`\``, true,
 			)
 		}
 		return interaction.reply({ embeds: [statsEmbed], ephemeral: true });
