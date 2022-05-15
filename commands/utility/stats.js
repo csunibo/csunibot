@@ -7,7 +7,7 @@ module.exports = {
 	name: "stats",
 	category: "utility",
 	description: "Check the bot's stats! (This is a debug command available only to the developer of the bot)",
-	ownerOnly: true,
+	ownerOnly: false,
 	run: async (client, interaction) => {
 		let lavauptime, lavaram, lavaclientstats;
 		if(client.manager) {
@@ -39,7 +39,7 @@ module.exports = {
 			},
 			{
 				name: "System stats",
-				value: `\`\`\`yml\nOS: ${osver}\nUptime: ${sysuptime}\n\`\`\``,
+				value: `\`\`\`yml\nOS: ${osver}\nUptime: ${sysuptime}\nShards: ${client.ws.totalShards}\`\`\``,
 				inline: false,
 			},
 		]);

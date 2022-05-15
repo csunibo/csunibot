@@ -7,9 +7,10 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-# Test commands
+# Test files
 commands/utility/test.js
-
+commands/utility/reload.js
+assets/shardFile.js
 # Scrape directory
 scraped/
 
