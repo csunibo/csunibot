@@ -22,10 +22,10 @@ module.exports = {
 					if (!command || !command.run || !command.name) {
 						return client.error(`Unable to load command: ${file} does not have a valid command with run function or name`);
 					}
-					client.slash.set(file.name, file);
+					client.slash.set(command.name, command);
 				}
 			}
-
+			
 			const commandsSize = `Reloaded ${client.slash.size} Commands.`;
 			client.info(commandsSize);
 			return interaction.reply({
@@ -36,9 +36,10 @@ module.exports = {
 					.setTimestamp(),
 				], 
 				ephemeral: true
-			  });
+			});
 		} catch (err) {
 			client.error(err);
+			console.log(err);
 			return interaction.reply({ 
 				embeds: [new MessageEmbed().setColor("RED")
 				.setDescription("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!")

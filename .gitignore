@@ -11,6 +11,7 @@ lerna-debug.log*
 commands/utility/test.js
 commands/utility/reload.js
 assets/shardFile.js
+
 # Scrape directory
 scraped/
 
