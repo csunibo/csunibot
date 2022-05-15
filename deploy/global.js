@@ -16,7 +16,7 @@ const LoadCommands = require("../util/loadCommands");
 	
 	try {
 		console.log('Started refreshing application (/) commands.');
-		await rest.put( Routes.applicationGuildCommands(config.clientId), { body: commands },);
+		await rest.put( Routes.applicationCommands(config.clientId), { body: commands },);
 		console.log('Successfully reloaded application (/) commands.');
 	} catch (error) {
 		console.error(error);
