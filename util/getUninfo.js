@@ -104,11 +104,19 @@ const getProfessors = async (courseURL) => {
 }
 
 /**
- * Gets all the topics of a given course independent of year
- * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
- * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
- * Sometimes the sites have this stupid thing going on... `assets\Bro.jpg` so the results may not be accurate.
- * Please check `assets\how-its-supposed-to-be.jpg`
+* Gets all the topics of a given course independent of year
+* @param {string} courseURL of type https://corsi.unibo.it/laurea/test
+* @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
+* Sometimes the sites have this stupid thing going on... `assets\Bro.jpg` so the results may not be accurate.
+* Please check `assets\how-its-supposed-to-be.jpg`
+* ```json
+* {
+* 	"code": "", // Number should be here
+* 	"title": "85304STRUCTURAL BIOLOGY", // not here
+* 	"site": "https://www.unibo.it/it/didattica/insegnamenti?..."
+* },
+* ```
+* this could be fixed with some parsing and guards to check if the code has been misplaced
 */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
@@ -169,6 +177,7 @@ const getCourseId = async (courseURL) => {
 		}
 	})
 	while (!courseId) await new Promise((re,rj) => setTimeout(re, 100));
+	// This is the part that actually gets the ID, by parsing the link it grabs from the appropriate course
 	return courseId.toString().substring(getPosition(courseId, '/', 8) + 1, getPosition(courseId, '/', 11));
 }
 
