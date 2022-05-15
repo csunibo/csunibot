@@ -4,7 +4,7 @@ A completeley modular Discord Bot made for and by Computer Science student's of 
 The bot hopes to allow the student's to be more efficient and sociable as a means of use in the appropriate Discord servers.
 The commands are completely modular and can be created with little to no knowledge of JS or Discord.js, as examples there are a lot of differently styled commands in the `./commands` sub-folders.
 Any folder and file within can be removed or added freely and will automatically be integrated into the structure of the bot.
-Same for the `./schedules` folder.
+Same for the `./schedules` folder. Keeping this in mind, the code will have A LOT of comments scattered around in order to guide you through the program and allow you to understand the diverse features that have been implemented and how they are used.
 
 ## ⛔ | Prerequisites
 

@@ -36,7 +36,7 @@ module.exports = async (client, interaction) => {
 			// Assigns Levenshtein distances for each option based on what the user is currently typing
 			for (let option of options) { 
 				// I use '⟨⟨' and '⟩⟩' to delimit some "additional information" for options, 
-				// which shouldn't be looked at in the search, so I only base the levenshtein distanc on everything
+				// which shouldn't be looked at in the search, so I only base the levenshtein distance on everything
 				// before those characters
 				option.levenshteinDistance = levDistance(option.name.substring(0, getPosition(option.name, '⟨')), input);
 			}
