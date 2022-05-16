@@ -54,7 +54,7 @@ If you want to test/host it on replit:
 
 ## Gracious Contributors
 <a href = "https://github.com/csunibo/cs-discord-bot/contributors">
-  <img src = "https://contrib.rocks/image?repo = csunibo/cs-discord-bot"/>
+  <img src = "https://contributors-img.web.app/image?repo=csunibo/cs-discord-bot"/>
 </a>
 
 # [Original Music Client Structure](https://github.com/SudhanPlayz/Discord-MusicBot/tree/v5)
