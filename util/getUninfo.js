@@ -1,7 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
 const { getPosition } = require('./stringUtil');
-const { indexOf } = require('lodash');
 
 const campus = [
 	'bologna', 'cesena', 'forli', 'ravenna', 'rimini',
@@ -108,16 +107,6 @@ const getProfessors = async (courseURL) => {
 * Gets all the topics of a given course independent of year
 * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
 * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
-* Sometimes the sites have this stupid thing going on... `assets\Bro.jpg` so the results may not be accurate.
-* Please check `assets\how-its-supposed-to-be.jpg`
-* ```json
-* {
-* 	"code": "", // Number should be here
-* 	"title": "85304STRUCTURAL BIOLOGY", // not here
-* 	"site": "https://www.unibo.it/it/didattica/insegnamenti?..."
-* },
-* ```
-* this misplacement is fixed by parsing the info before it's posted to the output
 */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
@@ -126,7 +115,7 @@ const getTopics = async (courseURL) => {
 	let topics;
 	request({ url:url }, async (error, response, body) => {
 		if (!error){
-			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
+			let $ = cheerio.load(body.replace(/^\s+/gm, ''));
 			
 			topics = $('div[class="table-text"]')
 			.find('div[class="table-text"] > table > tbody > tr')
@@ -134,12 +123,12 @@ const getTopics = async (courseURL) => {
 			.map(async (element) => {
 				//Parsing section
 				let topicCode;
-				let topicTitle = $(element).find('td[class="title"]').text()
+				let topicTitle = $(element).find('td[class="title"]').text();
 				let siteLink = $(element).find('td[class="title"] > a').attr('href');
 				
 				if (parseInt(topicTitle)) {
 					topicCode = parseInt(topicTitle).toString();
-					topicTitle = topicTitle.substring(topicCode.length)
+					topicTitle = topicTitle.substring(topicCode.length);
 				} else {
 					topicCode = $(element).find('td[class="code"]').text();
 				}
@@ -156,7 +145,7 @@ const getTopics = async (courseURL) => {
 		}
 	})
 	while (!topics) await new Promise((re,rj) => setTimeout(re, 100));
-	topics = await Promise.all(topics).catch(err => console.log(err))
+	topics = await Promise.all(topics).catch(err => console.log(err));
 
 	return topics;
 }
