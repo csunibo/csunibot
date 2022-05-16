@@ -1,6 +1,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
 const { getPosition } = require('./stringUtil');
+const { indexOf } = require('lodash');
 
 const campus = [
 	'bologna', 'cesena', 'forli', 'ravenna', 'rimini',
@@ -116,7 +117,7 @@ const getProfessors = async (courseURL) => {
 * 	"site": "https://www.unibo.it/it/didattica/insegnamenti?..."
 * },
 * ```
-* this could be fixed with some parsing and guards to check if the code has been misplaced
+* this misplacement is fixed by parsing the info before it's posted to the output
 */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
@@ -131,11 +132,18 @@ const getTopics = async (courseURL) => {
 			.find('div[class="table-text"] > table > tbody > tr')
 			.toArray()
 			.map((element) => {
+				//Parsing section
+				let topicCode;
+				let topicTitle = $(element).find('td[class="title"]').text()
+				if (parseInt(topicTitle)) {
+					topicCode = parseInt(topicTitle).toString();
+					topicTitle = topicTitle.substring(topicCode.length)
+				} else topicCode = $(element).find('td[class="code"]').text()
 				let siteLink = $(element).find('td[class="title"] > a').attr('href');
 				
 				return { 
-					code: $(element).find('td[class="code"]').text(),
-					title: $(element).find('td[class="title"]').text().replace(/[\n ]/g, ''), 
+					code: topicCode,
+					title: topicTitle.replace(/[\n ]/g, ''), 
 					site: siteLink ? siteLink : undefined,
 				}
 			});
