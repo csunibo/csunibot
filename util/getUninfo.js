@@ -22,7 +22,7 @@ const getPages = async (url) => {
 			pages = $('nav[class="pagination"]')
 			.find('ul > li')
 			.toArray()
-			.map(element => $(element).text().replace(/[\n ]/g, ''));
+			.map(element => $(element).text().replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, ''));
 			pages = parseInt(pages.slice(pages.length - 2, pages.length - 1)[0]);
 		} else {
 			console.log("We've encountered an error in counting the pages of the pagination: " + error);
@@ -53,7 +53,7 @@ const getCourses = async (url) => {
 				.toArray()
 				.map(element => { 
 					let type = url.substring(getPosition(url, '/', 3) + 1, url.lastIndexOf('/'));
-					let name = $(element).text().replace(/[\n ]/g, '') + ` ⟨⟨${type}⟩⟩`;
+					let name = $(element).text().replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, '') + ` ⟨⟨${type}⟩⟩`;
 					let link = $(element).attr('href');
 					let city;
 					if (link.includes('-') && campus.includes(link.substring(link.lastIndexOf('-') + 1)))
@@ -91,7 +91,7 @@ const getProfessors = async (courseURL) => {
 			.toArray()
 			.map(element => { 
 				return { 
-					name: $(element).find('h2[class="text-secondary"]').text().replace(/[\n ]/g, ''), 
+					name: $(element).find('h2[class="text-secondary"]').text().replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, ''), 
 					site: $(element).find('p > a').attr('href'),
 				}
 			});
@@ -125,6 +125,7 @@ const getTopics = async (courseURL) => {
 				let topicCode;
 				let topicTitle = $(element).find('td[class="title"]').text();
 				let siteLink = $(element).find('td[class="title"] > a').attr('href');
+
 				
 				if (parseInt(topicTitle)) {
 					topicCode = parseInt(topicTitle).toString();
@@ -132,10 +133,10 @@ const getTopics = async (courseURL) => {
 				} else {
 					topicCode = $(element).find('td[class="code"]').text();
 				}
-
+				
 				return { 
 					code: topicCode,
-					title: topicTitle.replace(/[\n ]/g, ''),
+					title: topicTitle.replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, ''),
 					site: siteLink ? siteLink : undefined,
 					virtuale: siteLink ? await getVirtualLink(siteLink) : undefined,
 				}
