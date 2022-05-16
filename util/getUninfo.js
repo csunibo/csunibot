@@ -131,36 +131,33 @@ const getTopics = async (courseURL) => {
 			topics = $('div[class="table-text"]')
 			.find('div[class="table-text"] > table > tbody > tr')
 			.toArray()
-			.map((element) => {
+			.map(async (element) => {
 				//Parsing section
 				let topicCode;
 				let topicTitle = $(element).find('td[class="title"]').text()
+				let siteLink = $(element).find('td[class="title"] > a').attr('href');
+				
 				if (parseInt(topicTitle)) {
 					topicCode = parseInt(topicTitle).toString();
 					topicTitle = topicTitle.substring(topicCode.length)
-				} else topicCode = $(element).find('td[class="code"]').text()
-				let siteLink = $(element).find('td[class="title"] > a').attr('href');
-				
+				} else {
+					topicCode = $(element).find('td[class="code"]').text();
+				}
+
 				return { 
 					code: topicCode,
-					title: topicTitle.replace(/[\n ]/g, ''), 
+					title: topicTitle.replace(/[\n ]/g, ''),
 					site: siteLink ? siteLink : undefined,
+					virtuale: siteLink ? await getVirtualLink(siteLink) : undefined,
 				}
 			});
 		} else {
 			console.log("We've encountered an error in getting the topics: " + error);
 		}
 	})
-	
-	// While this works, it's really bad, please fix
 	while (!topics) await new Promise((re,rj) => setTimeout(re, 100));
-	for (element of topics) {
-		if (element.site) {
-			// The cycle just waits here for a bit before returning :3
-			// But this is also kinda the only way I found to get the correct values
-			element.virtuale = await getVirtualLink(element.site);
-		}
-	}
+	topics = await Promise.all(topics).catch(err => console.log(err))
+
 	return topics;
 }
 
