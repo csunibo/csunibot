@@ -42,8 +42,7 @@ const getPages = async (url) => {
 const getCourses = async (url) => {
 	const pages = await getPages(url);
 	let corsi = [];
-	let i;
-	for (i = 0; i < pages; i++) {
+	for (let i = 0; i < pages; i++) {
 		let lauree;
 		request({ url:url+`?b_start:int=${i * 20}` }, async (error, response, body) => {
 			if (!error){
@@ -63,19 +62,19 @@ const getCourses = async (url) => {
 						link: link,
 					}
 				});
-				corsi = corsi.concat(lauree);
 			} else {
 				console.log("We've encountered an error in scraping the entries: " + error);
 			}
 		})
 		// Waits for the degrees on the current iterating page to be found
 		while (!lauree) await new Promise((re,rj) => setTimeout(re, 50));
+		corsi = corsi.concat(lauree);
 	}
 	return corsi;
 }
 
 /**
-* Gets all the professors from a given course, independent of year or role
+* Gets all the professors from a given course, independent of year
 * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
 * @returns {[{name: string, site: string}]}
 */
@@ -87,12 +86,14 @@ const getProfessors = async (courseURL) => {
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 			
 			prof = $('div[class="people-wrapper"]')
-			.find('div > div > div > div[class="front"] > div[class="text-wrap"]')
+			.find('div > div > div > div[class="front"]')
 			.toArray()
 			.map(element => { 
 				return { 
-					name: $(element).find('h2[class="text-secondary"]').text().replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, ''), 
-					site: $(element).find('p > a').attr('href'),
+					name: $(element).find('div[class="text-wrap"] > h2[class="text-secondary"]').text().replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, ''), 
+					role: $(element).find('div[class="text-wrap"] > p').first().text(),
+					site: $(element).find('div[class="text-wrap"] > p > a').attr('href'),
+					image: $(element).find('img').attr('src'),
 				}
 			});
 		} else {
@@ -108,9 +109,6 @@ const getProfessors = async (courseURL) => {
 * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
 * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
 *
-*	Fix for /info topic: Informatica <Magistrale>
-*
-*	would be nice to implement a division system for the different types of courses and years
 */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1

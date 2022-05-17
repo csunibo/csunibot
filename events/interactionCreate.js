@@ -18,17 +18,15 @@ module.exports = async (client, interaction) => {
 		let options = await client.slash.get(interaction.commandName).autocompleteOptions(input);
 		
 		// This should make the algorithm faster by pre preparing the array, but no noticable changes
-		// options.forEach(option => option.filePrepared = fuzzysort.prepare(option.name)); 
-		// options.map(option => option.filePrepared);
+		options.forEach(option => option.filePrepared = fuzzysort.prepare(option.name)); 
+		options.map(option => option.filePrepared);
 
 		fuzzysort.go(input, options, {
-			threshold: -100, // Don't return matches worse than this (higher is faster)
-			limit: 24, // Don't return more results than this (lower is faster)
+			threshold: -10000, // Don't return matches worse than this (higher is faster)
+			limit: 30, // Don't return more results than this (lower is faster)
 			all: false, // If true, returns all results for an empty search
 		  
-			key: 'name', // For when targets are objects (see its example usage)
-			// keys: null, // For when targets are objects (see its example usage)
-			// scoreFn: null, // For use with `keys` (see its example usage)
+			key: 'name', // For when targets are objects
 		})
 		
 		// Avoiding calculating levenshteing distances if it's not needed
