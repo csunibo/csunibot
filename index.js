@@ -4,6 +4,7 @@
 // This is just the shard manager, the actual client is in `bot.js`
 // All this isn't really necessary if the bot resides in less than 2000 servers
 // Bots, even without shard manager, reside on the 0 indexed shard either way
+// If you want to remove sharding just delete this file and rename `bot.js` to `index.js`
 
 const colors = require("colors");
 const ConfigFetcher = require("./util/getConfig");
