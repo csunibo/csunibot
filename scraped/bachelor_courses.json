@@ -1,0 +1,482 @@
+[
+    {
+        "name": "Consulente del lavoro e delle relazioni aziendali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ConsulenteLavoroRelazioniAziendali"
+    },
+    {
+        "name": "Giurista per le imprese e per la pubblica amministrazione ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/GiuristaImpresa"
+    },
+    {
+        "name": "Operatore Giuridico Italo-Francese ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/OperatoreGiuridicoItaloFrancese"
+    },
+    {
+        "name": "Lingue e letterature straniere ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/LingueLetteratureStraniere"
+    },
+    {
+        "name": "Lingue, mercati e culture dell'Asia e dell'Africa Mediterranea ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/LingueMercatiCultureAsia"
+    },
+    {
+        "name": "Mediazione linguistica interculturale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/MediazioneLinguisticaInterculturale"
+    },
+    {
+        "name": "Attivita' motorie per il benessere ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/AttivitaMotorieBenessere"
+    },
+    {
+        "name": "Biotecnologie ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Biotecnologie"
+    },
+    {
+        "name": "Controllo di qualita' dei prodotti per la salute ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ControlloProdottiSalute"
+    },
+    {
+        "name": "Scienze farmaceutiche applicate ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeFarmaceutiche"
+    },
+    {
+        "name": "Scienze delle attività motorie e sportive ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeMotorieSportive"
+    },
+    {
+        "name": "Scienze delle attività motorie e sportive ⟨⟨laurea⟩⟩ ⟨⟨Rimini⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeMotorieSportive-Rimini"
+    },
+    {
+        "name": "Scienze della formazione primaria ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/FormazionePrimariaQuadriennale"
+    },
+    {
+        "name": "Educatore nei servizi per l'infanzia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EducatoreServiziInfanzia"
+    },
+    {
+        "name": "Educatore sociale e culturale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EducatoreSocialeCulturaleBologna"
+    },
+    {
+        "name": "Educatore sociale e culturale ⟨⟨laurea⟩⟩ ⟨⟨Rimini⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EducatoreSocialeCulturale-Rimini"
+    },
+    {
+        "name": "Scienze e tecniche psicologiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeTecnichePsicologiche"
+    },
+    {
+        "name": "Scienze geografiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/geografia"
+    },
+    {
+        "name": "Beni culturali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/BeniCulturali"
+    },
+    {
+        "name": "Culture e pratiche della moda ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/CulturePraticheModa"
+    },
+    {
+        "name": "DAMS - Discipline delle arti, della musica e dello spettacolo ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/DAMS"
+    },
+    {
+        "name": "Filosofia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Filosofia"
+    },
+    {
+        "name": "Lettere ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/lettere"
+    },
+    {
+        "name": "Antropologia, religioni, civiltà orientali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeAntropologiche"
+    },
+    {
+        "name": "Scienze della comunicazione ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeComunicazione"
+    },
+    {
+        "name": "Storia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/storia"
+    },
+    {
+        "name": "Acquacoltura e igiene delle produzioni ittiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/acquacoltura"
+    },
+    {
+        "name": "Economia e marketing nel sistema agro-industriale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomiaMarketingAgroIndustriale"
+    },
+    {
+        "name": "Produzioni animali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ProduzioniAnimali"
+    },
+    {
+        "name": "Tecnologie per il territorio e l'ambiente agro-forestale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeTerritorioAmbiente"
+    },
+    {
+        "name": "Tecnologie agrarie ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnologieAgrarie"
+    },
+    {
+        "name": "Tecnologie alimentari ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnologieAlimentari"
+    },
+    {
+        "name": "Viticoltura ed enologia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ViticolturaEnologia"
+    },
+    {
+        "name": "Scienze e tecnologie per il verde e il paesaggio ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/verdepaesaggio"
+    },
+    {
+        "name": "Scienze internazionali e diplomatiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeInternazionaliDiplomatiche"
+    },
+    {
+        "name": "Scienze politiche, sociali e internazionali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzePoliticheSocialiInternazionali"
+    },
+    {
+        "name": "Servizio sociale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ServizioSociale"
+    },
+    {
+        "name": "Sociologia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/SociologiaForli"
+    },
+    {
+        "name": "Sviluppo e cooperazione internazionale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/SviluppoCooperazioneInternazionale"
+    },
+    {
+        "name": "Ingegneria civile ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaCivile"
+    },
+    {
+        "name": "Ingegneria dell'energia elettrica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/elettrica"
+    },
+    {
+        "name": "Ingegneria elettronica e telecomunicazioni ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ElettronicaTelecomunicazioni"
+    },
+    {
+        "name": "Ingegneria informatica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaInformatica"
+    },
+    {
+        "name": "Ingegneria per l'ambiente e il territorio ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriAmbienTerritorio"
+    },
+    {
+        "name": "Design del prodotto industriale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/DesignProdottoIndustriale"
+    },
+    {
+        "name": "Ingegneria aerospaziale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaAerospaziale"
+    },
+    {
+        "name": "Ingegneria dell’automazione ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaAutomazione"
+    },
+    {
+        "name": "Ingegneria biomedica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaBiomedica"
+    },
+    {
+        "name": "Ingegneria chimica e biochimica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaChimicaBiochimica"
+    },
+    {
+        "name": "Building Construction Engineering ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaEdile"
+    },
+    {
+        "name": "Ingegneria elettronica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaElettronicaEnergiaInformazione"
+    },
+    {
+        "name": "Ingegneria elettronica, informatica e telecomunicazioni ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaElettronicaInformaticaTelecomunicazioni"
+    },
+    {
+        "name": "Ingegneria energetica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaEnergetica"
+    },
+    {
+        "name": "Ingegneria gestionale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaGestionale"
+    },
+    {
+        "name": "Ingegneria meccanica ⟨⟨laurea⟩⟩ ⟨⟨Bologna⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaMeccanica-Bologna"
+    },
+    {
+        "name": "Ingegneria meccanica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaMeccanicaForli"
+    },
+    {
+        "name": "Architettura e processo edilizio ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ProcessoEdilizio"
+    },
+    {
+        "name": "Economia dell'impresa ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/clei"
+    },
+    {
+        "name": "Economia del turismo ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/clet"
+    },
+    {
+        "name": "Economia aziendale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomiaAziendale"
+    },
+    {
+        "name": "Economia e commercio ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomiaCommercio"
+    },
+    {
+        "name": "Economia e finanza ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomiaFinanza"
+    },
+    {
+        "name": "Economia, mercati e istituzioni ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomiaMercatiIstituzioni"
+    },
+    {
+        "name": "Statistica, Finanza e Assicurazioni ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/FinanzaAssicurazioniImpresa"
+    },
+    {
+        "name": "Management e marketing ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ManagementMarketing"
+    },
+    {
+        "name": "Scienze statistiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeStatistiche"
+    },
+    {
+        "name": "Chimica e chimica dei materiali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/chimica"
+    },
+    {
+        "name": "Fisica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/fisica"
+    },
+    {
+        "name": "Informatica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/informatica"
+    },
+    {
+        "name": "Astronomia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Astronomia"
+    },
+    {
+        "name": "Chimica e tecnologie per l'ambiente e per i materiali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ChimicaAmbiente"
+    },
+    {
+        "name": "Chimica industriale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ChimicaIndustriale"
+    },
+    {
+        "name": "Chimica e tecnologie per l'ambiente e per i materiali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ChimicaMateriali"
+    },
+    {
+        "name": "Fisica dell'atmosfera e meteorologia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/FisicaAtmosferaMeteorologia"
+    },
+    {
+        "name": "Informatica per il management ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/InformaticaManagement"
+    },
+    {
+        "name": "Ingegneria e scienze informatiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaScienzeInformatiche"
+    },
+    {
+        "name": "Scienze ambientali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeAmbientali"
+    },
+    {
+        "name": "Scienze geologiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeGeologiche"
+    },
+    {
+        "name": "Scienze naturali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeNaturali"
+    },
+    {
+        "name": "Matematica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/matematica"
+    },
+    {
+        "name": "Scienze biologiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeBiologiche"
+    },
+    {
+        "name": "Scienze e tecnologie informatiche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeTecnologieInformatiche"
+    },
+    {
+        "name": "Tecnologie e diagnostica per la conservazione e il restauro dei beni culturali ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/tecore"
+    },
+    {
+        "name": "Educazione professionale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EducazioneProfessionale"
+    },
+    {
+        "name": "Fisioterapia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/fisioterapia"
+    },
+    {
+        "name": "Infermieristica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Infermieristica"
+    },
+    {
+        "name": "Assistenza sanitaria ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/AssistenzaSanitaria"
+    },
+    {
+        "name": "Dietistica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Dietistica"
+    },
+    {
+        "name": "Igiene dentale ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IgieneDentale"
+    },
+    {
+        "name": "Infermieristica ⟨⟨laurea⟩⟩ ⟨⟨Ravenna⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Infermieristica-Ravenna"
+    },
+    {
+        "name": "Infermieristica ⟨⟨laurea⟩⟩ ⟨⟨Rimini⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Infermieristica-Rimini"
+    },
+    {
+        "name": "Logopedia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Logopedia"
+    },
+    {
+        "name": "Tecniche di neurofisiopatologia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Neurofisiopatologia"
+    },
+    {
+        "name": "Ostetricia ⟨⟨laurea⟩⟩ ⟨⟨Rimini⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Ostetricia-Rimini"
+    },
+    {
+        "name": "Podologia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Podologia"
+    },
+    {
+        "name": "Tecniche della prevenzione nell'ambiente e nei luoghi di lavoro ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/PrevenzioneAmbienteLavoro"
+    },
+    {
+        "name": "Tecniche ortopediche ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnicheOrtopediche"
+    },
+    {
+        "name": "Tecniche di radiologia medica, per immagini e radioterapia ⟨⟨laurea⟩⟩ ⟨⟨Rimini⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnicheRadiologiaMedica-Rimini"
+    },
+    {
+        "name": "Ostetricia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ostetricia"
+    },
+    {
+        "name": "Tecniche di radiologia medica, per immagini e radioterapia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnicheRadiologiaMedica"
+    },
+    {
+        "name": "Tecniche di laboratorio biomedico ⟨⟨laurea⟩⟩ ⟨⟨bologna⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/tlb-bologna"
+    },
+    {
+        "name": "Economics and Finance ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomicsFinance"
+    },
+    {
+        "name": "Ingegneria meccatronica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/IngegneriaMeccatronica"
+    },
+    {
+        "name": "Genomics ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Genomics"
+    },
+    {
+        "name": "Business and Economics ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/CLaBE"
+    },
+    {
+        "name": "Management and Economics ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/Management"
+    },
+    {
+        "name": "International Tourism and Leisure Industries ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/InternationalTourism"
+    },
+    {
+        "name": "Stats&Maths ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/StatsMaths"
+    },
+    {
+        "name": "TEST CdS ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/test"
+    },
+    {
+        "name": "Test Corso di laurea ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/testcds"
+    },
+    {
+        "name": "Architettura-Ingegneria ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ArchitetturaIngegneria"
+    },
+    {
+        "name": "Società e culture del mediterraneo: Istituzioni, Sicurezza, Ambiente ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/CultureMediterraneo"
+    },
+    {
+        "name": "Tecniche per l'edilizia e il territorio ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnicheEdiliziaTerritorio"
+    },
+    {
+        "name": "Scienze e cultura della gastronomia ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ScienzeCulturaGastronomia"
+    },
+    {
+        "name": "Tecnologie dei Sistemi Informatici ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/TecnologieSistemiInformatici"
+    },
+    {
+        "name": "ECONOMICS, POLITICS AND SOCIAL SCIENCES ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EconomicsPoliticsSocialSciences"
+    },
+    {
+        "name": "Meccatronica ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/meccatronica"
+    },
+    {
+        "name": "European Studies ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/EuropeanStudies"
+    },
+    {
+        "name": "Biology of Human and Environmental Health ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/HumanEnvironmentalHealth"
+    },
+    {
+        "name": "Metodologie Chimiche per Prodotti e Processi ⟨⟨laurea⟩⟩",
+        "link": "https://corsi.unibo.it/laurea/ChimicaProdottiProcessi"
+    }
+]
