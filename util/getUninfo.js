@@ -107,11 +107,16 @@ const getProfessors = async (courseURL) => {
 * Gets all the topics of a given course independent of year
 * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
 * @returns {[{code: string, title: string, site?: string, virtuale?: string}]}
+*
+*	Fix for /info topic: Informatica <Magistrale>
+*
+*	would be nice to implement a division system for the different types of courses and years
 */
 const getTopics = async (courseURL) => {
 	const year = new Date().getFullYear() - 1
 	const courseId = await getCourseId(courseURL);
 	const url = courseURL + `/insegnamenti/piano/${year}/${courseId}/${year}`;
+	console.log(url);
 	let topics;
 	request({ url:url }, async (error, response, body) => {
 		if (!error){
