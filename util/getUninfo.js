@@ -125,7 +125,6 @@ const getTopics = async (courseURL) => {
 				let topicCode;
 				let topicTitle = $(element).find('td[class="title"]').text();
 				let siteLink = $(element).find('td[class="title"] > a').attr('href');
-
 				
 				if (parseInt(topicTitle)) {
 					topicCode = parseInt(topicTitle).toString();

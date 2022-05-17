@@ -1,5 +1,22 @@
 const fs = require('fs');
 const {getCourses, getProfessors, getTopics } = require('../../util/getUninfo');
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js')
+
+const getButtons = (pageNo, maxPages) => {
+	return new MessageActionRow()
+	.addComponents(
+		new MessageButton()
+		.setCustomId("previous_page")
+		.setEmoji("◀️")
+		.setStyle("PRIMARY")
+		.setDisabled(pageNo == 0),
+		new MessageButton()
+		.setCustomId("next_page")
+		.setEmoji("▶️")
+		.setStyle("PRIMARY")
+		.setDisabled(pageNo == (maxPages - 1)),
+	);
+};
 
 module.exports = {
 	name: "info",
@@ -49,6 +66,18 @@ module.exports = {
 	ownerOnly: false,
 	run: async (client, interaction) => {
 		await interaction.deferReply().catch((_) => {});
+
+				
+		const filter = (i) => {
+			if(i.user.id === interaction.user.id) return true;
+			return i.reply({embeds: [
+				new MessageEmbed()
+				.setColor("RED")
+				.setDescription("This Button Isn't For You")
+			], 
+			ephemeral: true});
+		};
+
 		interaction.editReply({ content: "This may take some time..."})
 		let option = interaction.options.getString('lom');
 		
@@ -100,19 +129,48 @@ module.exports = {
 		else if (option === 'all') {
 			allCourses = await magistraleEntries;
 			allCourses = allCourses.concat(await laureaEntries);
-			fs.writeFile('./scraped/courses.json', JSON.stringify(allCourses, null, 4), err => {
-				if (err) {
-					console.error(err)
-					return
-				}
-				interaction.channel.send({ files: [
-					{
-						name: './scraped/courses.json',
-						attachment: './scraped/courses.json',
-						description: "courses.json",
-					}
-				] })
+			let pages = Math.ceil(allCourses.length / 20);
+			
+			// default Page No.
+			let pageNo = 0;
+			
+			let embed = new MessageEmbed()
+			.setColor(client.config.embedColor)
+			.setAuthor({
+				name: `All UNIBO courses`,
+				iconURL: client.config.iconURL,
 			})
+			.setTimestamp()
+			.setFooter({text: `Page ${pageNo + 1} / ${pages}`});
+			
+			// initial temporary array 
+			let displayingCourses = allCourses.slice(pageNo * 20, (pageNo * 20) + 20);
+			
+			displayingCourses.forEach(course => {
+				embed.addField(`​`, `**[${course.name}](${course.link})**`)
+			});
+				
+			// Should convert this to a selct menu with numbered pages
+			const message = await interaction.editReply({ embeds: [embed], components: [getButtons(pageNo, pages)], fetchReply: true });
+			const collector = message.createMessageComponentCollector({ filter, time: 600000, componentType: "BUTTON" });
+
+			collector.on("collect", async (iter) => {
+				if (iter.customId === "next_page") {
+					pageNo++;
+				} else if (iter.customId === "previous_page") {
+					pageNo--;
+				}
+				
+				embed.fields = [];
+				
+				displayingCourses = allCourses.slice(pageNo * 20, (pageNo * 20) + 20);
+				
+				displayingCourses.forEach(course => {
+					embed.addField(`​`, `**[${course.name}](${course.link})**`)
+					.setFooter({text: `Page ${pageNo + 1} / ${pages}`});
+				});
+				await iter.update({ embeds: [embed], components: [getButtons(pageNo, pages)], fetchReply: true });
+			});
 		}
 		
 		if (interaction.options.getString('professors'))
