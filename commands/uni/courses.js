@@ -49,6 +49,7 @@ module.exports = {
 		let option = interaction.options.getString('lom');
 
 		let courses;
+		const maxElementsPerPage = 10;
 		
 		if (option === 'bachelor')
 		courses = require('../../scraped/bachelor_courses.json')
@@ -58,7 +59,7 @@ module.exports = {
 		courses = await getCourses(`https://corsi.unibo.it/laurea/`);
 		courses = await getCourses(`https://corsi.unibo.it/magistrale/`);
 		 */
-		let pages = Math.ceil(courses.length / 20);
+		let pages = Math.ceil(courses.length / maxElementsPerPage);
 		
 		// default Page No.
 		let pageNo = 0;
@@ -73,7 +74,7 @@ module.exports = {
 		.setFooter({text: `Page ${pageNo + 1} / ${pages}`});
 		
 		// initial temporary array 
-		let displayingCourses = courses.slice(pageNo * 20, (pageNo * 20) + 20);
+		let displayingCourses = courses.slice(pageNo * maxElementsPerPage, (pageNo * maxElementsPerPage) + maxElementsPerPage);
 		
 		displayingCourses.forEach(course => {
 			embed.addField(`​`, `**[${course.name}](${course.link})**`)
@@ -92,7 +93,7 @@ module.exports = {
 			
 			embed.fields = [];
 			
-			displayingCourses = courses.slice(pageNo * 20, (pageNo * 20) + 20);
+			displayingCourses = courses.slice(pageNo * maxElementsPerPage, (pageNo * maxElementsPerPage) + maxElementsPerPage);
 			
 			displayingCourses.forEach(course => {
 				embed.addField(`​`, `**[${course.name}](${course.link})**`)

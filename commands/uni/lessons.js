@@ -5,8 +5,15 @@ const { thisWeek } = require('../../util/dateFetcher');
 
 module.exports = {
 	name: "lessons",
-	usage: "/lessons <year> <date>",
+	usage: "/lessons <course> <year> <date>",
 	options: [
+		{
+			name: "course",
+			type: 3, // "STRING"
+			description: 'What course are you looking for',
+			required: true,
+			autocomplete: true,
+		},
 		{
 			name: 'year',
 			type: 4, // "INTEGER"
@@ -14,15 +21,15 @@ module.exports = {
 			required: true,
 			choices: [
 				{
-					name: "Primo Anno / First Year",
+					name: "First Year",
 					value: 1
 				},
 				{
-					name: "Secondo Anno / Second Year",
+					name: "Second Year",
 					value: 2
 				},
 				{
-					name: "Terzo Anno / Third Year",
+					name: "Third Year",
 					value: 3
 				},
 			],
@@ -34,16 +41,20 @@ module.exports = {
 			required: true,
 			choices: [
 				{
-					name: "Oggi / Today",
+					name: "Today",
 					value: "today"
 				},
 				{
-					name: "Domani / Tomorrow",
+					name: "Tomorrow",
 					value: "tomorrow"
 				},
 			],
 		},
 	],
+	autocompleteOptions: async () => require('../../scraped/courses.json')
+	.map(course => {
+		return { name: course.name, value: course.link }
+	}),
 	category: "uni",
 	description: "Check the lessons",
 	ownerOnly: false,
@@ -51,7 +62,7 @@ module.exports = {
 		const year = interaction.options.getInteger("year");
 		// Added week to have smaller interval on which to iterate everything, should speed up the search
 		const week = thisWeek();
-		let url = `https://corsi.unibo.it/laurea/informatica/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
+		let url = `${interaction.options.getString('course')}/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
 	
 		let validLessons = [];
 		let date = new Date();
