@@ -58,7 +58,7 @@ module.exports = {
 		/* 
 		courses = await getCourses(`https://corsi.unibo.it/laurea/`);
 		courses = await getCourses(`https://corsi.unibo.it/magistrale/`);
-		 */
+		*/
 		let pages = Math.ceil(courses.length / maxElementsPerPage);
 		
 		// default Page No.
@@ -77,7 +77,7 @@ module.exports = {
 		let displayingCourses = courses.slice(pageNo * maxElementsPerPage, (pageNo * maxElementsPerPage) + maxElementsPerPage);
 		
 		displayingCourses.forEach(course => {
-			embed.addField(`​`, `**[${course.name}](${course.link})**`)
+			embed.addField(`${course.name}`, `**[Sito](${course.link})**`)
 		});
 		
 		// Should convert this to a selct menu with numbered pages
@@ -96,11 +96,11 @@ module.exports = {
 			displayingCourses = courses.slice(pageNo * maxElementsPerPage, (pageNo * maxElementsPerPage) + maxElementsPerPage);
 			
 			displayingCourses.forEach(course => {
-				embed.addField(`​`, `**[${course.name}](${course.link})**`)
+				embed.addField(`${course.name}`, `**[Sito](${course.link})**`)
 				.setFooter({text: `Page ${pageNo + 1} / ${pages}`});
 			});
 			await iter.update({ embeds: [embed], components: [getButtons(pageNo, pages)], fetchReply: true });
 		});
-		interaction.editReply({ content: `${option} degrees`})
+		interaction.editReply({ content: `Done!` })
 	},
 }

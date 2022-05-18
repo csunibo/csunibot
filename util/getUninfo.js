@@ -111,10 +111,9 @@ const getProfessors = async (courseURL) => {
 *
 */
 const getTopics = async (courseURL) => {
-	const year = new Date().getFullYear() - 1
+	const year = new Date().getFullYear() - 1;
 	const courseId = await getCourseId(courseURL);
 	const url = courseURL + `/insegnamenti/piano/${year}/${courseId}/${year}`;
-	console.log(url);
 	let topics;
 	request({ url:url }, async (error, response, body) => {
 		if (!error){
