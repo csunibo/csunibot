@@ -19,6 +19,7 @@ module.exports = {
 			type: 4, // "INTEGER"
 			description: 'What year are you looking for',
 			required: true,
+			// TUrn this autocomplete
 			choices: [
 				{
 					name: "First Year",

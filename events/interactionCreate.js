@@ -14,8 +14,9 @@ module.exports = async (client, interaction) => {
 	// node_modules\discord.js\src\structures\AutocompleteInteraction.js
 	if (interaction.isAutocomplete()) {
 		let input = interaction.options.getFocused() || " ";
+		const index = interaction.options._hoistedOptions.map(option => option.focused).indexOf(true);
 		// Gets the autocomplete options provided by the command
-		let options = await client.slash.get(interaction.commandName).autocompleteOptions(input);
+		let options = await client.slash.get(interaction.commandName).autocompleteOptions(input, index, interaction);
 		
 		// This should make the algorithm faster by pre preparing the array, but no noticable changes
 		options.forEach(option => option.filePrepared = fuzzysort.prepare(option.name)); 
