@@ -13,7 +13,9 @@ module.exports = async (client, interaction) => {
 	// and shows them to the user
 	// node_modules\discord.js\src\structures\AutocompleteInteraction.js
 	if (interaction.isAutocomplete()) {
+		// Getting input from user
 		let input = interaction.options.getFocused() || " ";
+		// Gets the index of the option in which the user is currently typing
 		const index = interaction.options._hoistedOptions.map(option => option.focused).indexOf(true);
 		// Gets the autocomplete options provided by the command
 		let options = await client.slash.get(interaction.commandName).autocompleteOptions(input, index, interaction);

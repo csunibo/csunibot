@@ -8,6 +8,10 @@ const campus = [
 ]
 
 /**
+ * TODO: getCurricula
+ */
+
+/**
  * 
  * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
  * @returns {[ { year: string, value: number} ]}
