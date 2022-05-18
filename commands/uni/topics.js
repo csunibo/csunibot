@@ -1,5 +1,4 @@
-const fs = require('fs');
-const {getCourses, getTopics } = require('../../util/getUninfo');
+const { getTopics } = require('../../util/getUninfo');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const courses = require('./courses');
 

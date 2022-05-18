@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const axios = require('axios');
 const { thisWeek } = require('../../util/dateFetcher');
+const { getYears } = require('../../util/getUninfo');
 
 
 module.exports = {
@@ -19,21 +20,7 @@ module.exports = {
 			type: 4, // "INTEGER"
 			description: 'What year are you looking for',
 			required: true,
-			// TUrn this autocomplete
-			choices: [
-				{
-					name: "First Year",
-					value: 1
-				},
-				{
-					name: "Second Year",
-					value: 2
-				},
-				{
-					name: "Third Year",
-					value: 3
-				},
-			],
+			autocomplete: true,
 		},
 		{
 			name: 'date',
@@ -52,10 +39,21 @@ module.exports = {
 			],
 		},
 	],
-	autocompleteOptions: async () => require('../../scraped/courses.json')
-	.map(course => {
-		return { name: course.name, value: course.link }
-	}),
+	autocompleteOptions: async (input, index, interaction) => {
+		if (index === 0) {
+			return require('../../scraped/courses.json')
+			.map(course => {
+				return { name: course.name, value: course.link }
+			})
+		}
+		if (index === 1) {
+			return await getYears(interaction.options._hoistedOptions[0].value).then(result => {
+				return result.map(year => {
+					return { name: year.year, value: year.value }
+				})
+			})
+		}
+	},
 	category: "uni",
 	description: "Check the lessons",
 	ownerOnly: false,
@@ -64,7 +62,7 @@ module.exports = {
 		// Added week to have smaller interval on which to iterate everything, should speed up the search
 		const week = thisWeek();
 		let url = `${interaction.options.getString('course')}/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
-	
+		
 		let validLessons = [];
 		let date = new Date();
 		if(interaction.options.getString("date") === "tomorrow") {
@@ -83,22 +81,23 @@ module.exports = {
 			if(!validLessons.length) {
 				return interaction.reply({ 
 					embeds: [new MessageEmbed()
-					.setColor("RED")
-					.addField("EN", "No lessons found for this date")
-					.addField("IT", "Nessuna lezione trovata per questa data")] 
-				});
-			}
-			// Date objects have zero indexed months
-			let resultDate = `${date.toDateString()}`;
-			let lessonsEmbed = new MessageEmbed().setColor(client.config.embedColor).setTitle(`Here are the lessons for ${resultDate}`);
-			for(element of validLessons) {
-				lessonsEmbed
-				.addField(`${element.time} | ${element.title}`, 
-				`**Prof:**\n${element.docente}\n**In:**\n${element.aule[0].des_edificio}\n${element.aule[0].des_indirizzo}\n**[Teams](${element.teams})**`)
-			}
-			return interaction.reply({ 
-				embeds: [lessonsEmbed]
-			})
-		});
-	},
-};
+						.setColor("RED")
+						.addField("EN", "No lessons found for this date")
+						.addField("IT", "Nessuna lezione trovata per questa data")] 
+					});
+				}
+				// Date objects have zero indexed months
+				let resultDate = `${date.toDateString()}`;
+				let lessonsEmbed = new MessageEmbed().setColor(client.config.embedColor).setTitle(`Here are the lessons for ${resultDate}`);
+				for(element of validLessons) {
+					lessonsEmbed
+					.addField(`${element.time} | ${element.title}`, 
+					`**Prof:**\n${element.docente}\n**In:**\n${element.aule[0].des_edificio}\n${element.aule[0].des_indirizzo}\n**[Teams](${element.teams})**`)
+				}
+				return interaction.reply({ 
+					embeds: [lessonsEmbed]
+				})
+			});
+		},
+	};
+	

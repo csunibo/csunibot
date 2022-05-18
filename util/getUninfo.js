@@ -8,6 +8,44 @@ const campus = [
 ]
 
 /**
+ * 
+ * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
+ * @returns {[ { year: string, value: number} ]}
+ * 
+ * ex: 
+ * 
+ * input: `https://corsi.unibo.it/laurea/informatica`
+ * 
+ * output: 
+ * ```ts 
+ * [{ year: '1° Anno', value: 1}, { year: '2° Anno', value: 2}, { year: '3° Anno', value: 3}] 
+ * ```
+ */
+const getYears = async (courseURL) => {
+	let years;
+	const url = courseURL + '/orario-lezioni';
+	request({ url:url }, async (error, response, body) => {
+		if (!error) {
+			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
+
+			years = $('select[id="search-orari-anno"]')
+			.find('option')
+			.toArray()
+			.map(element => { 
+				return { 
+					year: $(element).text().replace(/(?:^[^\n]*(\n))|(?:(\n)[^\n]*$)/g, ''),
+					value: parseInt($(element).attr('value')),
+				}
+			});
+		} else {
+			console.log("We've encountered an error in counting the years of the course: " + error);
+		}
+	})
+	while (!years) await new Promise((re,rj) => setTimeout(re, 50));
+	return years;
+}
+
+/**
 * Gets the number of pages on one of the parameter links
 * @param {string} url of type https://corsi.unibo.it/laurea/ or 
 * https://corsi.unibo.it/magistrale/
@@ -225,5 +263,6 @@ module.exports = {
 	getCourseId, 
 	getCourses, 
 	getTopics, 
+	getYears,
 	getHTML, 
 };
