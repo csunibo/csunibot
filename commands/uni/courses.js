@@ -1,4 +1,4 @@
-const {getCourses, getProfessors, getTopics } = require('../../util/getUninfo');
+// const {getCourses, getProfessors, getTopics } = require('../../util/getUninfo');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js')
 
 const getButtons = (pageNo, maxPages) => {
@@ -46,7 +46,7 @@ module.exports = {
 		};
 		
 		interaction.editReply({ content: "This may take some time..."});
-		let option = interaction.options.getString('lom');
+		const option = interaction.options.getString('lom');
 
 		let courses;
 		const maxElementsPerPage = 10;

@@ -118,7 +118,7 @@ const getCourses = async (url) => {
 /**
 * Gets all the professors from a given course, independent of year
 * @param {string} courseURL of type https://corsi.unibo.it/laurea/test
-* @returns {[{name: string, site: string}]}
+* @returns {[{name: string, role: string, site: string, image: string}]}
 */
 const getProfessors = async (courseURL) => {
 	const url = courseURL + "/docenti";

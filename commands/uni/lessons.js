@@ -61,10 +61,10 @@ module.exports = {
 		const year = interaction.options.getInteger("year");
 		// Added week to have smaller interval on which to iterate everything, should speed up the search
 		const week = thisWeek();
-		let url = `${interaction.options.getString('course')}/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
+		const url = `${interaction.options.getString('course')}/orario-lezioni/@@orario_reale_json?anno=${year}&start=${week[0]}&end=${week[1]}`
 		
 		let validLessons = [];
-		let date = new Date();
+		const date = new Date();
 		if(interaction.options.getString("date") === "tomorrow") {
 			date.setDate(date.getDate() + 1);
 		}

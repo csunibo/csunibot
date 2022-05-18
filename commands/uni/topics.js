@@ -51,7 +51,7 @@ module.exports = {
 		};
 		
 		interaction.editReply({ content: "This may take some time..."});
-		let topics = await getTopics(interaction.options.getString('course'));
+		const topics = await getTopics(interaction.options.getString('course'));
 
 		if (!topics.length) {
 			return interaction.editReply({ 
@@ -64,9 +64,6 @@ module.exports = {
 		}
 
 		const maxElementsPerPage = 10;
-
-		interaction.editReply({ content: "This may take some time..."});
-
 		let pages = Math.ceil(topics.length / maxElementsPerPage);
 		
 		// default Page No.
