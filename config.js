@@ -21,12 +21,12 @@ module.exports = {
 	nodes: [
 		{
 			identifier: "Lavalink 1", // log id string
-			host: "lavalink.darrenofficial.com",
-			port: 80,
+			host: "lavalink-unibot.biocla.repl.co",
+			port: 443,
 			password: "password",
 			retryAmount: 15, // for lavalink connection attempts
 			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.
-			secure: false, // if SSL lavalink
+			secure: true, // if SSL lavalink
 		},
 	],
 	embedColor: "RANDOM", //Color of the embeds (can also be hex)
