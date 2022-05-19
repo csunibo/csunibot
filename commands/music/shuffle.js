@@ -8,7 +8,13 @@ const command = new SlashCommand()
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
 	else 
-	return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
+	return interaction.reply({ 
+		embeds: [
+			new MessageEmbed()
+			.setColor("RED")
+			.setDescription("Lavalink node is not connected")
+		] 
+	});
 	if (!player) {
 		return interaction.reply({ 
 			embeds: [
