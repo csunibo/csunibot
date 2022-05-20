@@ -10,7 +10,7 @@ module.exports = {
 	scopes: ["bot", "applications.commands"],
 	serverDeafen: true,
 	defaultVolume: 100, 
-	permissions: 8, // 8 = Administrator
+	permissions: 0, // 8 = Administrator, 0 = Doesn't need permissions (uses slash commands)
 	disconnectTime: 30000, // If nothing is playing wait : in milliseconds
 	alwaysplay: false, // ignore presence of members in voice channels
 	debug: true,
