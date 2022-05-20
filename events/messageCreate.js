@@ -14,7 +14,7 @@ module.exports = async (client, message) => {
 			timeout = 10000;
 			embed
 			.setTitle("Reinvite")
-			.setURL(`https://discord.com/oauth2/authorize?client_id=${client.config.clientId}&permissions=${client.config.permissions}&scope=bot%20applications.commands`)
+			.setURL(`https://discord.com/oauth2/authorize?client_id=${client.config.clientId}&permissions=${client.config.permissions}&scope=${client.config.scopes.toString().replace(',', '%20')}`)
 		} else {
 			timeout = 15000;
 			embed
