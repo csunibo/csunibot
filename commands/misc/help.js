@@ -61,7 +61,9 @@ module.exports = {
 		.addOptions([{label: "Commands Overview", value: "overview"}]);
 		let categoryDir = fs.readdirSync("./commands");
 		for (const category of categoryDir) {
-			let commands = fs.readdirSync(`./commands/${category}`);
+			let commands = fs
+			.readdirSync(`./commands/${category}`)
+			.filter((command) => !client.slash.get(command.split(".")[0]).ownerOnly);
 			if(commands.length) {
 				commands.forEach((command, index) => {
 					commands[index] = "`/" + command.split(".")[0] + "`";
@@ -100,10 +102,11 @@ module.exports = {
 
 				for (let command of commandFiles) {
 					command = command.split(".")[0];
-					helpCategoryEmbed.addField(`${command}`, client.slash.get(command).description);
+					const slashCommand = client.slash.get(command);
+					if (!slashCommand.ownerOnly)
+					helpCategoryEmbed.addField(`${command}`, slashCommand.description);
 				}
 			}
-		
 			await interaction.editReply({ embeds: [helpCategoryEmbed] });
 		});
 	}
