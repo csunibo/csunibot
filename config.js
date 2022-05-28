@@ -28,6 +28,15 @@ module.exports = {
 			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.
 			secure: true, // if SSL lavalink
 		},
+		{
+			identifier: "Lavalink 2", // log id string
+			host: "lavalink-unibot2.biocla.repl.co",
+			port: 443,
+			password: "password",
+			retryAmount: 15, // for lavalink connection attempts
+			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.
+			secure: true, // if SSL lavalink
+		},
 	],
 	embedColor: "RANDOM", //Color of the embeds (can also be hex)
 	presence: {

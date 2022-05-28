@@ -44,7 +44,7 @@ const command = new SlashCommand()
 			value: `<@${song.requester.id}>`,
 			inline: true,
 		},
-		// show duration if live show live
+		// show duration, if live show live
 		{
 			name: "Duration",
 			value: song.isStream ? `\`LIVE\`` : `\`${prettyMilliseconds(player.position, {
