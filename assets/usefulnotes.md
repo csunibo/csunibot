@@ -1,6 +1,6 @@
 # Useful structures
 
-## Table of contents
+# Table of contents
 
 - [Messages](#messages)
   - [Base Message](#base-message)
@@ -14,6 +14,10 @@
 - [Shard Manager](#shard-manager)
   - [Base ShardingManager EventEmitter Structure](#base-shardingmanager-eventemitter-structure)
   - [Client events with sharding](#client-events-with-sharding)
+- [Node structures](#node-structures)
+  - [Node](#node)
+  - [Node Manager](#node-manager)
+  - [Node Manager Players](#node-manager-players)
 
 ## Messages
 
@@ -376,4 +380,369 @@ _events: [Object: null prototype] {
 	raw: [Function: bound ],
 	voiceStateUpdate: [Function: bound ] AsyncFunction
 },
+```
+
+## Node structures
+
+### Node
+
+```ts
+Node {
+	options: {
+	port: 443,
+	password: 'password',
+	secure: true,
+	retryAmount: 15,
+	retryDelay: 6000,
+	identifier: 'Lavalink 1',
+	host: 'lavalink-unibot.biocla.repl.co'
+	},
+	socket: WebSocket {
+	_events: [Object: null prototype] {
+		open: [Function: bound open],
+		close: [Function: bound close],
+		message: [Function: bound message],
+		error: [Function: bound error]
+	},
+	_eventsCount: 4,
+	_maxListeners: undefined,
+	_binaryType: 'nodebuffer',
+	_closeCode: 1006,
+	_closeFrameReceived: false,
+	_closeFrameSent: false,
+	_closeMessage: '',
+	_closeTimer: null,
+	_extensions: {},
+	_protocol: '',
+	_readyState: 3,
+	_receiver: null,
+	_sender: null,
+	_socket: null,
+	_bufferedAmount: 0,
+	_isServer: false,
+	_redirects: 0,
+	_url: 'wss://lavalink-unibot.biocla.repl.co:443/',
+	_req: ClientRequest {
+		_events: [Object: null prototype],
+		_eventsCount: 4,
+		_maxListeners: undefined,
+		outputData: [],
+		outputSize: 0,
+		writable: true,
+		destroyed: true,
+		_last: true,
+		chunkedEncoding: false,
+		shouldKeepAlive: true,
+		maxRequestsOnConnectionReached: false,
+		_defaultKeepAlive: true,
+		useChunkedEncodingByDefault: false,
+		sendDate: false,
+		_removedConnection: false,
+		_removedContLen: false,
+		_removedTE: false,
+		_contentLength: 0,
+		_hasBody: true,
+		_trailer: '',
+		finished: true,
+		_headerSent: true,
+		_closed: false,
+		socket: [TLSSocket],
+		_header: 'GET / HTTP/1.1\r\n' +
+		'Sec-WebSocket-Version: 13\r\n' +
+		'Sec-WebSocket-Key: i6oQ/Zjy0pNT3660SOQg0g==\r\n' +
+		'Connection: Upgrade\r\n' +
+		'Upgrade: websocket\r\n' +
+		'Authorization: password\r\n' +
+		'Num-Shards: 1\r\n' +
+		'User-Id: 968967618264453200\r\n' +
+		'Client-Name: InfoBot/v1.0.0 (Bot: 968967618264453200)\r\n' +	 
+		'Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits\r\n' +
+		'Host: lavalink-unibot.biocla.repl.co\r\n' +
+		'\r\n',
+		_keepAliveTimeout: 0,
+		_onPendingData: [Function: nop],
+		agent: undefined,
+		socketPath: undefined,
+		method: 'GET',
+		maxHeaderSize: undefined,
+		insecureHTTPParser: undefined,
+		path: '/',
+		_ended: false,
+		res: [IncomingMessage],
+		aborted: true,
+		timeoutCb: null,
+		upgradeOrConnect: false,
+		parser: [HTTPParser],
+		maxHeadersCount: null,
+		reusedSocket: false,
+		host: 'lavalink-unibot.biocla.repl.co',
+		protocol: 'https:',
+		[Symbol(kCapture)]: false,
+		[Symbol(kNeedDrain)]: false,
+		[Symbol(corked)]: 0,
+		[Symbol(kOutHeaders)]: [Object: null prototype],
+		[Symbol(kError)]: undefined
+	},
+	[Symbol(kCapture)]: false
+	},
+	calls: 1,
+	reconnectAttempts: 2,
+	manager: Manager {
+	_events: [Object: null prototype] {
+		nodeConnect: [Function (anonymous)],
+		nodeReconnect: [Function (anonymous)],
+		nodeDestroy: [Function (anonymous)],
+		nodeDisconnect: [Function (anonymous)],
+		nodeError: [Function (anonymous)],
+		trackError: [Function (anonymous)],
+		trackStuck: [Function (anonymous)],
+		playerMove: [Function (anonymous)],
+		playerCreate: [Function (anonymous)],
+		playerDestroy: [Function (anonymous)],
+		loadFailed: [Function (anonymous)],
+		trackStart: [AsyncFunction (anonymous)],
+		queueEnd: [Function (anonymous)]
+	},
+	_eventsCount: 13,
+	_maxListeners: undefined,
+	players: Collection(1) [Map] { '968969977631764611' => [Player] },	
+	nodes: Collection(2) [Map] {
+		'Lavalink 1' => [Circular *1],
+		'Lavalink 2' => [Node]
+	},
+	initiated: true,
+	options: {
+		plugins: [Array],
+		nodes: [Array],
+		shards: 1,
+		autoPlay: true,
+		clientName: 'InfoBot/v1.0.0 (Bot: 968967618264453200)',
+		retryDelay: undefined,
+		retryAmount: undefined,
+		send: [Function: send],
+		clientId: '968967618264453200'
+	},
+	search: [Function: bound search],
+	[Symbol(kCapture)]: false
+	},
+	stats: {
+	playingPlayers: 0,
+	memory: {
+		reservable: 1073741824,
+		used: 24156016,
+		free: 54487184,
+		allocated: 78643200
+	},
+	players: 0,
+	cpu: { cores: 4, systemLoad: 0, lavalinkLoad: 0.13332523091881382 },
+	uptime: 155926
+	},
+	reconnectTimeout: Timeout {
+	_idleTimeout: 6000,
+	_idlePrev: null,
+	_idleNext: null,
+	_idleStart: 37043,
+	_onTimeout: [Function (anonymous)],
+	_timerArgs: undefined,
+	_repeat: null,
+	_destroyed: true,
+	[Symbol(refed)]: true,
+	[Symbol(kHasPrimitive)]: false,
+	[Symbol(asyncId)]: 939,
+	[Symbol(triggerId)]: 154
+	}
+}
+```
+
+### Node Manager
+
+```ts
+Manager {
+	_events: [Object: null prototype] {
+	nodeConnect: [Function (anonymous)],
+	nodeReconnect: [Function (anonymous)],
+	nodeDestroy: [Function (anonymous)],
+	nodeDisconnect: [Function (anonymous)],
+	nodeError: [Function (anonymous)],
+	trackError: [Function (anonymous)],
+	trackStuck: [Function (anonymous)],
+	playerMove: [Function (anonymous)],
+	playerCreate: [Function (anonymous)],
+	playerDestroy: [Function (anonymous)],
+	loadFailed: [Function (anonymous)],
+	trackStart: [AsyncFunction (anonymous)],
+	queueEnd: [Function (anonymous)]
+	},
+	_eventsCount: 13,
+	_maxListeners: undefined,
+	players: Collection(1) [Map] {
+	'968969977631764611' => Player {
+		options: [Object],
+		queue: [Queue],
+		trackRepeat: false,
+		queueRepeat: false,
+		position: 19120,
+		playing: true,
+		paused: false,
+		voiceChannel: '968969977631764615',
+		textChannel: '968969977631764614',
+		state: 'CONNECTED',
+		bands: [Array],
+		voiceState: [Object],
+		data: {},
+		manager: [Circular *1],
+		guild: '968969977631764611',
+		node: [Node],
+		volume: 100,
+		twentyFourSeven: false,
+		nowPlayingMessage: [Message]
+	}
+	},
+	nodes: Collection(2) [Map] {
+	'Lavalink 1' => Node {
+		options: [Object],
+		socket: [WebSocket],
+		calls: 1,
+		reconnectAttempts: 2,
+		manager: [Circular *1],
+		stats: [Object],
+		reconnectTimeout: Timeout {
+		_idleTimeout: 6000,
+		_idlePrev: null,
+		_idleNext: null,
+		_idleStart: 37043,
+		_onTimeout: [Function (anonymous)],
+		_timerArgs: undefined,
+		_repeat: null,
+		_destroyed: true,
+		[Symbol(refed)]: true,
+		[Symbol(kHasPrimitive)]: false,
+		[Symbol(asyncId)]: 939,
+		[Symbol(triggerId)]: 154
+		}
+	},
+	'Lavalink 2' => Node {
+		options: [Object],
+		socket: [WebSocket],
+		calls: 0,
+		reconnectAttempts: 1,
+		manager: [Circular *1],
+		stats: [Object]
+	}
+	},
+	initiated: true,
+	options: {
+	plugins: [ [Deezer], [AppleMusic], [Spotify], [Facebook] ],
+	nodes: [ [Object], [Object] ],
+	shards: 1,
+	autoPlay: true,
+	clientName: 'InfoBot/v1.0.0 (Bot: 968967618264453200)',
+	retryDelay: undefined,
+	retryAmount: undefined,
+	send: [Function: send],
+	clientId: '968967618264453200'
+	},
+	search: [Function: bound search],
+	[Symbol(kCapture)]: false
+}
+```
+
+### Node Manager Players
+
+```ts
+Collection(1) [Map] {
+	'968969977631764611' => Player {
+	options: {
+		guild: '968969977631764611',
+		voiceChannel: '968969977631764615',
+		textChannel: '968969977631764614',
+		selfDeafen: true,
+		volume: 100
+	},
+	queue: Queue(0) [ current: [Object], previous: null ],
+	trackRepeat: false,
+	queueRepeat: false,
+	position: 19120,
+	playing: true,
+	paused: false,
+	voiceChannel: '968969977631764615',
+	textChannel: '968969977631764614',
+	state: 'CONNECTED',
+	bands: [
+		0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0,
+		0, 0, 0
+	],
+	voiceState: {
+		sessionId: '5de27f2fd7fb3536f49f64d998927f56',
+		op: 'voiceUpdate',
+		guildId: '968969977631764611',
+		event: [Object]
+	},
+	data: {},
+	manager: Manager {
+		_events: [Object: null prototype],
+		_eventsCount: 13,
+		_maxListeners: undefined,
+		players: [Circular *1],
+		nodes: [Collection [Map]],
+		initiated: true,
+		options: [Object],
+		search: [Function: bound search],
+		[Symbol(kCapture)]: false
+	},
+	guild: '968969977631764611',
+	node: Node {
+		options: [Object],
+		socket: [WebSocket],
+		calls: 1,
+		reconnectAttempts: 2,
+		manager: [Manager],
+		stats: [Object],
+		reconnectTimeout: Timeout {
+		_idleTimeout: 6000,
+		_idlePrev: null,
+		_idleNext: null,
+		_idleStart: 37043,
+		_onTimeout: [Function (anonymous)],
+		_timerArgs: undefined,
+		_repeat: null,
+		_destroyed: true,
+		[Symbol(refed)]: true,
+		[Symbol(kHasPrimitive)]: false,
+		[Symbol(asyncId)]: 939,
+		[Symbol(triggerId)]: 154
+		}
+	},
+	volume: 100,
+	twentyFourSeven: false,
+	nowPlayingMessage: Message {
+		channelId: '968969977631764614',
+		guildId: '968969977631764611',
+		id: '980205866160631828',
+		createdTimestamp: 1653769689837,
+		type: 'DEFAULT',
+		system: false,
+		content: '',
+		author: [ClientUser],
+		pinned: false,
+		tts: false,
+		nonce: null,
+		embeds: [Array],
+		components: [],
+		attachments: Collection(0) [Map] {},
+		stickers: Collection(0) [Map] {},
+		editedTimestamp: null,
+		reactions: [ReactionManager],
+		mentions: [MessageMentions],
+		webhookId: null,
+		groupActivityApplication: null,
+		applicationId: null,
+		activity: null,
+		flags: [MessageFlags],
+		reference: null,
+		interaction: null
+	}
+	}
+}
 ```
