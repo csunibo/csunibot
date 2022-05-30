@@ -46,15 +46,6 @@ module.exports = {
 			retryDelay: 6000,
 			secure: true,
 		},
-		{
-			identifier: "Fallback 2",
-			host: "lavalink-unibot2.biocla.repl.co",
-			port: 443,
-			password: "password",
-			retryAmount: 15, 
-			retryDelay: 6000,
-			secure: true, 
-		},
 	],
 	embedColor: "RANDOM", //Color of the embeds (can also be hex)
 	presence: {
