@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const axios = require('axios');
 const { thisWeek } = require('../../util/dateFetcher');
-const { getYears } = require('../../util/getUninfo');
+const { getYears } = require('../../util/scrapeUtil');
 
 
 module.exports = {

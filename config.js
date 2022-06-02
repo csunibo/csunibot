@@ -21,9 +21,9 @@ module.exports = {
 	nodes: [
 		{
 			identifier: "Main 1", // log id string
-			host: "lavalink.cloudblue.ml",
-			port: 1555,
-			password: "danbotbest",
+			host: "lavalink.kapes.eu",
+			port: 2222,
+			password: "lavalinkplay",
 			retryAmount: 15, // for lavalink connection attempts
 			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.
 			secure: false, // if SSL lavalink

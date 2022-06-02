@@ -45,7 +45,7 @@ const command = new SlashCommand()
 					interaction.guild.me.voice.setRequestToSpeak(true);
 				}
 			}
-		}, 2000); //(2s) set timeout here, because bot sometimes takes time before recognizing it's a stage.
+		}, 2000); //recognizing it's a stage channel?
 	}
 	
 	await interaction.reply({
@@ -91,8 +91,10 @@ const command = new SlashCommand()
 	
 	if (res.loadType === "TRACK_LOADED" || res.loadType === "SEARCH_RESULT") {
 		player.queue.add(res.tracks[0]);
+		
 		if (!player.playing && !player.paused && !player.queue.size)
 		player.play();
+		
 		let addQueueEmbed = new MessageEmbed()
 		.setColor(client.config.embedColor)
 		.setAuthor({ name: "Added to queue", iconURL: client.config.iconURL })
@@ -100,13 +102,13 @@ const command = new SlashCommand()
 		.setURL(res.tracks[0].uri)
 		.addField("Added by", `<@${interaction.user.id}>`, true)
 		.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, {colonNotation: true, })}\``, true);
-		try {
-			addQueueEmbed.setThumbnail(res.tracks[0].displayThumbnail("maxresdefault"));
-		} catch (err) {
-			addQueueEmbed.setThumbnail(res.tracks[0].thumbnail);
-		}
+		
+		try { addQueueEmbed.setThumbnail(res.tracks[0].displayThumbnail("maxresdefault")); } 
+		catch (err) { addQueueEmbed.setThumbnail(res.tracks[0].thumbnail); }
+		
 		if (player.queue.totalSize > 1)
 		addQueueEmbed.addField("Position in queue",	`${player.queue.size - 0}`,	true);
+		
 		return interaction
 		.editReply({ embeds: [addQueueEmbed] })
 		.catch(this.warn);
@@ -114,8 +116,10 @@ const command = new SlashCommand()
 	
 	if (res.loadType === "PLAYLIST_LOADED") {
 		player.queue.add(res.tracks);
+		
 		if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length)
 		player.play();
+		
 		let playlistEmbed = new MessageEmbed()
 		.setColor(client.config.embedColor)
 		.setAuthor({name: "Playlist added to queue", iconURL: client.config.iconURL,})
@@ -123,6 +127,7 @@ const command = new SlashCommand()
 		.setDescription(`[${res.playlist.name}](${query})`)
 		.addField("Enqueued", `\`${res.tracks.length}\` songs`, false)
 		.addField("Playlist duration",`\`${client.ms(res.playlist.duration, {colonNotation: true,})}\``,false);
+		
 		return interaction
 		.editReply({ embeds: [playlistEmbed] })
 		.catch(this.warn);

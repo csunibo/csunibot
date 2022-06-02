@@ -1,5 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
+const puppeteer = require('puppeteer');
 const { getPosition } = require('./stringUtil');
 
 const campus = [
@@ -8,7 +9,7 @@ const campus = [
 ]
 
 /**
- * TODO: getCurricula
+ * TODO: getCurricula for each course
  */
 
 /**
@@ -261,7 +262,25 @@ const getHTML = async (URL) => {
 	return HTML;
 }
 
+/**
+ * 
+ * @param {string} imageUrl URL of the image you want to search for
+ * @param {Object} callback Results of the search, provided through callback
+ */
+const reverseImageSearch = async (imageUrl, callback) => {
+	const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+	const page = await browser.newPage();
+	await page.goto('https://www.google.com/searchbyimage?image_url=' + encodeURIComponent(imageUrl));
+
+	const images = await page.evaluate(() => {
+		return Array.from(document.body.querySelectorAll('div div a h3')).slice(2).map(e => e.parentNode).map(el => ({ url: el.href, title: el.querySelector('h3').innerHTML }))
+	})
+	callback(images);
+	await browser.close();
+}
+
 module.exports = { 
+	reverseImageSearch,
 	getVirtualLink, 
 	getProfessors, 
 	getCourseId, 
