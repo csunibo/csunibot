@@ -18,6 +18,8 @@
   - [Node](#node)
   - [Node Manager](#node-manager)
   - [Node Manager Players](#node-manager-players)
+- [Client](#client)
+  - [Client Structure](#client-structure)
 
 ## Messages
 
@@ -395,7 +397,7 @@ Node {
 	retryAmount: 15,
 	retryDelay: 6000,
 	identifier: 'Lavalink 1',
-	host: 'lavalink-unibot.biocla.repl.co'
+	host: 'url'
 	},
 	socket: WebSocket {
 	_events: [Object: null prototype] {
@@ -421,7 +423,7 @@ Node {
 	_bufferedAmount: 0,
 	_isServer: false,
 	_redirects: 0,
-	_url: 'wss://lavalink-unibot.biocla.repl.co:443/',
+	_url: 'wss://url:port/',
 	_req: ClientRequest {
 		_events: [Object: null prototype],
 		_eventsCount: 4,
@@ -449,15 +451,15 @@ Node {
 		socket: [TLSSocket],
 		_header: 'GET / HTTP/1.1\r\n' +
 		'Sec-WebSocket-Version: 13\r\n' +
-		'Sec-WebSocket-Key: i6oQ/Zjy0pNT3660SOQg0g==\r\n' +
+		'Sec-WebSocket-Key: abcdefghi000000000000001\r\n' +
 		'Connection: Upgrade\r\n' +
 		'Upgrade: websocket\r\n' +
 		'Authorization: password\r\n' +
 		'Num-Shards: 1\r\n' +
-		'User-Id: 968967618264453200\r\n' +
-		'Client-Name: InfoBot/v1.0.0 (Bot: 968967618264453200)\r\n' +	 
+		'User-Id: 000000000000000001\r\n' +
+		'Client-Name: Bot/v1.0.0 (Bot: 000000000000000001)\r\n' +	 
 		'Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits\r\n' +
-		'Host: lavalink-unibot.biocla.repl.co\r\n' +
+		'Host: url\r\n' +
 		'\r\n',
 		_keepAliveTimeout: 0,
 		_onPendingData: [Function: nop],
@@ -475,7 +477,7 @@ Node {
 		parser: [HTTPParser],
 		maxHeadersCount: null,
 		reusedSocket: false,
-		host: 'lavalink-unibot.biocla.repl.co',
+		host: 'url',
 		protocol: 'https:',
 		[Symbol(kCapture)]: false,
 		[Symbol(kNeedDrain)]: false,
@@ -505,7 +507,7 @@ Node {
 	},
 	_eventsCount: 13,
 	_maxListeners: undefined,
-	players: Collection(1) [Map] { '968969977631764611' => [Player] },	
+	players: Collection(1) [Map] { '000000000000000001' => [Player] },	
 	nodes: Collection(2) [Map] {
 		'Lavalink 1' => [Circular *1],
 		'Lavalink 2' => [Node]
@@ -516,11 +518,11 @@ Node {
 		nodes: [Array],
 		shards: 1,
 		autoPlay: true,
-		clientName: 'InfoBot/v1.0.0 (Bot: 968967618264453200)',
+		clientName: 'Bot/v1.0.0 (Bot: 000000000000000001)',
 		retryDelay: undefined,
 		retryAmount: undefined,
 		send: [Function: send],
-		clientId: '968967618264453200'
+		clientId: '000000000000000001'
 	},
 	search: [Function: bound search],
 	[Symbol(kCapture)]: false
@@ -576,7 +578,7 @@ Manager {
 	_eventsCount: 13,
 	_maxListeners: undefined,
 	players: Collection(1) [Map] {
-	'968969977631764611' => Player {
+	'000000000000000001' => Player {
 		options: [Object],
 		queue: [Queue],
 		trackRepeat: false,
@@ -584,14 +586,14 @@ Manager {
 		position: 19120,
 		playing: true,
 		paused: false,
-		voiceChannel: '968969977631764615',
-		textChannel: '968969977631764614',
+		voiceChannel: '000000000000000001',
+		textChannel: '000000000000000001',
 		state: 'CONNECTED',
 		bands: [Array],
 		voiceState: [Object],
 		data: {},
 		manager: [Circular *1],
-		guild: '968969977631764611',
+		guild: '000000000000000001',
 		node: [Node],
 		volume: 100,
 		twentyFourSeven: false,
@@ -636,11 +638,11 @@ Manager {
 	nodes: [ [Object], [Object] ],
 	shards: 1,
 	autoPlay: true,
-	clientName: 'InfoBot/v1.0.0 (Bot: 968967618264453200)',
+	clientName: 'Bot/v1.0.0 (Bot: 000000000000000001)',
 	retryDelay: undefined,
 	retryAmount: undefined,
 	send: [Function: send],
-	clientId: '968967618264453200'
+	clientId: '000000000000000001'
 	},
 	search: [Function: bound search],
 	[Symbol(kCapture)]: false
@@ -651,11 +653,11 @@ Manager {
 
 ```ts
 Collection(1) [Map] {
-	'968969977631764611' => Player {
+	'000000000000000001' => Player {
 	options: {
-		guild: '968969977631764611',
-		voiceChannel: '968969977631764615',
-		textChannel: '968969977631764614',
+		guild: '000000000000000001',
+		voiceChannel: '000000000000000001',
+		textChannel: '000000000000000001',
 		selfDeafen: true,
 		volume: 100
 	},
@@ -665,8 +667,8 @@ Collection(1) [Map] {
 	position: 19120,
 	playing: true,
 	paused: false,
-	voiceChannel: '968969977631764615',
-	textChannel: '968969977631764614',
+	voiceChannel: '000000000000000001',
+	textChannel: '000000000000000001',
 	state: 'CONNECTED',
 	bands: [
 		0, 0, 0, 0, 0, 0,
@@ -674,9 +676,9 @@ Collection(1) [Map] {
 		0, 0, 0
 	],
 	voiceState: {
-		sessionId: '5de27f2fd7fb3536f49f64d998927f56',
+		sessionId: 'abcdefghijklmnopq000000000000001',
 		op: 'voiceUpdate',
-		guildId: '968969977631764611',
+		guildId: '000000000000000001',
 		event: [Object]
 	},
 	data: {},
@@ -691,7 +693,7 @@ Collection(1) [Map] {
 		search: [Function: bound search],
 		[Symbol(kCapture)]: false
 	},
-	guild: '968969977631764611',
+	guild: '000000000000000001',
 	node: Node {
 		options: [Object],
 		socket: [WebSocket],
@@ -717,9 +719,9 @@ Collection(1) [Map] {
 	volume: 100,
 	twentyFourSeven: false,
 	nowPlayingMessage: Message {
-		channelId: '968969977631764614',
-		guildId: '968969977631764611',
-		id: '980205866160631828',
+		channelId: '000000000000000001',
+		guildId: '000000000000000001',
+		id: '000000000000000001',
 		createdTimestamp: 1653769689837,
 		type: 'DEFAULT',
 		system: false,
@@ -744,5 +746,333 @@ Collection(1) [Map] {
 		interaction: null
 	}
 	}
+}
+```
+
+## Client
+
+### Client Structure
+
+```ts
+<ref *1> Bot {
+	_events: [Object: null prototype] {
+	shardDisconnect: [Function (anonymous)],
+	ready: [ [Function (anonymous)], [Function: bound ] ],
+	disconnect: [Function (anonymous)],
+	reconnecting: [Function (anonymous)],
+	interactionCreate: [Function: bound ] AsyncFunction,
+	messageCreate: [Function: bound ] AsyncFunction,		
+	raw: [Function: bound ],
+	voiceStateUpdate: [Function: bound ] AsyncFunction	
+	},
+	_eventsCount: 8,
+	_maxListeners: undefined,
+	options: {
+	intents: 641,
+	waitGuildTimeout: 15000,
+	shardCount: 1,
+	makeCache: [Function (anonymous)],
+	messageCacheLifetime: 0,
+	messageSweepInterval: 0,
+	invalidRequestWarningInterval: 0,
+	partials: [],
+	restWsBridgeTimeout: 5000,
+	restRequestTimeout: 15000,
+	restGlobalRateLimit: 0,
+	retryLimit: 1,
+	restTimeOffset: 500,
+	restSweepInterval: 60,
+	failIfNotExists: true,
+	userAgentSuffix: [],
+	presence: { status: 'online', user: [Object] },		 
+	sweepers: {},
+	ws: {
+		large_threshold: 50,
+		compress: false,
+		properties: [Object],
+		version: 9,
+		presence: [Object]
+	},
+	http: {
+		agent: {},
+		version: 9,
+		api: 'https://discord.com/api',
+		cdn: 'https://cdn.discordapp.com',
+		invite: 'https://discord.gg',
+		template: 'https://discord.new',
+		scheduledEvent: 'https://discord.com/events'			
+	},
+	shards: [ 0 ]
+	},
+	rest: RESTManager {
+	client: [Circular *1],
+	handlers: Collection(2) [Map] {
+		'/gateway/bot' => [RequestHandler],
+		'/applications/:id/commands' => [RequestHandler]	
+	},
+	versioned: true,
+	globalLimit: Infinity,
+	globalRemaining: Infinity,
+	globalReset: 1654356317221,
+	globalDelay: null,
+	sweepInterval: Timeout {
+		_idleTimeout: 60000,
+		_idlePrev: [Timeout],
+		_idleNext: [TimersList],
+		_idleStart: 2008,
+		_onTimeout: [Function (anonymous)],
+		_timerArgs: undefined,
+		_repeat: 60000,
+		_destroyed: false,
+		[Symbol(refed)]: false,
+		[Symbol(kHasPrimitive)]: false,
+		[Symbol(asyncId)]: 11,
+		[Symbol(triggerId)]: 1
+	}
+	},
+	_cleanups: Set(4) {
+	[Function: bound ],
+	[Function: bound ],
+	[Function: bound ],
+	[Function: bound ]
+	},
+	_finalizers: FinalizationRegistry {},
+	ws: WebSocketManager {
+	_events: [Object: null prototype] {},
+	_eventsCount: 0,
+	_maxListeners: undefined,
+	gateway: 'wss://gateway.discord.gg/',
+	totalShards: 1,
+	shards: Collection(1) [Map] { 0 => [WebSocketShard] },
+	status: 0,
+	destroyed: false,
+	reconnecting: false,
+	[Symbol(kCapture)]: false
+	},
+	actions: ActionsManager {
+	client: [Circular *1],
+	ChannelCreate: ChannelCreateAction { client: [Circular *1] },
+	ChannelDelete: ChannelDeleteAction { client: [Circular *1], deleted: Map(0) {} },
+	ChannelUpdate: ChannelUpdateAction { client: [Circular *1] },
+	GuildBanAdd: GuildBanAdd { client: [Circular *1] }, 
+	GuildBanRemove: GuildBanRemove { client: [Circular *1] },
+	GuildChannelsPositionUpdate: GuildChannelsPositionUpdate { client: [Circular *1] },
+	GuildDelete: GuildDeleteAction { client: [Circular *1], deleted: Map(0) {} },
+	GuildEmojiCreate: GuildEmojiCreateAction { client: [Circular *1] },
+	GuildEmojiDelete: GuildEmojiDeleteAction { client: [Circular *1] },
+	GuildEmojiUpdate: GuildEmojiUpdateAction { client: [Circular *1] },
+	GuildEmojisUpdate: GuildEmojisUpdateAction { client:
+ [Circular *1] },
+	GuildIntegrationsUpdate: GuildIntegrationsUpdate { client: [Circular *1] },
+	GuildMemberRemove: GuildMemberRemoveAction { client:
+ [Circular *1] },
+	GuildMemberUpdate: GuildMemberUpdateAction { client:
+ [Circular *1] },
+	GuildRoleCreate: GuildRoleCreate { client: [Circular *1] },
+	GuildRoleDelete: GuildRoleDeleteAction { client: [Circular *1] },
+	GuildRoleUpdate: GuildRoleUpdateAction { client: [Circular *1] },
+	GuildRolesPositionUpdate: GuildRolesPositionUpdate { client: [Circular *1] },
+	GuildScheduledEventCreate: GuildScheduledEventCreateAction { client: [Circular *1] },
+	GuildScheduledEventDelete: GuildScheduledEventDeleteAction { client: [Circular *1] },
+	GuildScheduledEventUpdate: GuildScheduledEventUpdateAction { client: [Circular *1] },
+	GuildScheduledEventUserAdd: GuildScheduledEventUserAddAction { client: [Circular *1] },
+	GuildScheduledEventUserRemove: GuildScheduledEventUserRemoveAction { client: [Circular *1] },
+	GuildStickerCreate: GuildStickerCreateAction { client: [Circular *1] },
+	GuildStickerDelete: GuildStickerDeleteAction { client: [Circular *1] },
+	GuildStickerUpdate: GuildStickerUpdateAction { client: [Circular *1] },
+	GuildStickersUpdate: GuildStickersUpdateAction { client: [Circular *1] },
+	GuildUpdate: GuildUpdateAction { client: [Circular *1] },
+	InteractionCreate: InteractionCreateAction { client:
+ [Circular *1] },
+	InviteCreate: InviteCreateAction { client: [Circular *1] },
+	InviteDelete: InviteDeleteAction { client: [Circular *1] },
+	MessageCreate: MessageCreateAction { client: [Circular *1] },
+	MessageDelete: MessageDeleteAction { client: [Circular *1] },
+	MessageDeleteBulk: MessageDeleteBulkAction { client:
+ [Circular *1] },
+	MessageReactionAdd: MessageReactionAdd { client: [Circular *1] },
+	MessageReactionRemove: MessageReactionRemove { client: [Circular *1] },
+	MessageReactionRemoveAll: MessageReactionRemoveAll { client: [Circular *1] },
+	MessageReactionRemoveEmoji: MessageReactionRemoveEmoji { client: [Circular *1] },
+	MessageUpdate: MessageUpdateAction { client: [Circular *1] },
+	PresenceUpdate: PresenceUpdateAction { client: [Circular *1] },
+	StageInstanceCreate: StageInstanceCreateAction { client: [Circular *1] },
+	StageInstanceDelete: StageInstanceDeleteAction { client: [Circular *1] },
+	StageInstanceUpdate: StageInstanceUpdateAction { client: [Circular *1] },
+	ThreadCreate: ThreadCreateAction { client: [Circular *1] },
+	ThreadDelete: ThreadDeleteAction { client: [Circular *1] },
+	ThreadListSync: ThreadListSyncAction { client: [Circular *1] },
+	ThreadMemberUpdate: ThreadMemberUpdateAction { client: [Circular *1] },
+	ThreadMembersUpdate: ThreadMembersUpdateAction { client: [Circular *1] },
+	TypingStart: TypingStart { client: [Circular *1] }, 
+	UserUpdate: UserUpdateAction { client: [Circular *1] },
+	VoiceStateUpdate: VoiceStateUpdate { client: [Circular *1] },
+	WebhooksUpdate: WebhooksUpdate { client: [Circular *1] }
+	},
+	voice: ClientVoiceManager { adapters: Map(0) {} },		
+	shard: ShardClientUtil {
+	client: [Circular *1],
+	mode: 'process',
+	parentPort: null
+	},
+	users: UserManager {},
+	guilds: GuildManager {},
+	channels: ChannelManager {},
+	sweepers: Sweepers {
+	options: {},
+	intervals: {
+		applicationCommands: null,
+		bans: null,
+		emojis: null,
+		invites: null,
+		guildMembers: null,
+		messages: null,
+		presences: null,
+		reactions: null,
+		stageInstances: null,
+		stickers: null,
+		threadMembers: null,
+		threads: null,
+		users: null,
+		voiceStates: null
+	}
+	},
+	presence: ClientPresence {
+	userId: null,
+	guild: null,
+	status: 'online',
+	activities: [ [Activity] ],
+	clientStatus: null
+	},
+	user: ClientUser {
+	id: '000000000000000001',
+	bot: true,
+	system: false,
+	flags: null,
+	username: 'username',
+	discriminator: '0001',
+	avatar: 'avatar',
+	banner: undefined,
+	accentColor: undefined,
+	verified: true,
+	mfaEnabled: true
+	},
+	application: ClientApplication {
+	id: '000000000000000001',
+	name: null,
+	description: null,
+	icon: null,
+	flags: ApplicationFlags { bitfield: 2916352 },			
+	cover: null,
+	rpcOrigins: [],
+	botRequireCodeGrant: null,
+	botPublic: null,
+	owner: null,
+	commands: ApplicationCommandManager {
+		permissions: [ApplicationCommandPermissionsManager]
+	}
+	},
+	readyAt: 2022-06-04T15:25:16.184Z,
+	slash: Collection(/* Number of Commands */ 2) [Map] {
+	'command' => {
+		name: 'command',
+		usage: '/command <command>',
+		options: [Array],
+		autocompleteOptions: [Function: autocompleteOptions],
+		category: 'category',
+		description: 'command description',
+		property: prototype.property,
+		run: [AsyncFunction: run]
+	},
+	'command2' => {
+		name: 'command2',
+		usage: '/command2 <command>',
+		options: [Array],
+		autocompleteOptions: [Function: autocompleteOptions],
+		category: 'category',
+		description: 'command description',
+		property: prototype.property,
+		run: [AsyncFunction: run]
+	},
+	},
+	logger: Logger {
+	logger: DerivedLogger {
+		_readableState: [ReadableState],
+		readable: true,
+		_events: [Object: null prototype],
+		_eventsCount: 3,
+		_maxListeners: undefined,
+		_writableState: [WritableState],
+		writable: true,
+		allowHalfOpen: true,
+		_transformState: [Object],
+		silent: undefined,
+		format: [Format],
+		defaultMeta: null,
+		levels: [Object],
+		level: 'info',
+		exceptions: [ExceptionHandler],
+		rejections: [RejectionHandler],
+		profilers: {},
+		exitOnError: true,
+		[Symbol(kCapture)]: false
+	}
+	},
+	ms: [Function (anonymous)],
+	getChannel: [AsyncFunction (anonymous)],
+	getLavalink: [AsyncFunction (anonymous)],
+	config: {
+	ownerID: '000000000000000001',
+	token: 'TOKEN',
+	serverDeafen: true,
+	defaultVolume: 100,
+	permissions: 0,
+	disconnectTime: 30000,
+	alwaysplay: false,
+	debug: true,
+	nodes: [ [Object], [Object], [Object] ],
+	embedColor: 'RANDOM',
+	presence: { status: 'online', activities: [Array] },		iconURL: 'iconURL'
+	},
+	manager: Manager {
+	_events: [Object: null prototype] {
+		nodeConnect: [Function (anonymous)],
+		nodeReconnect: [Function (anonymous)],
+		nodeDestroy: [Function (anonymous)],
+		nodeDisconnect: [Function (anonymous)],
+		nodeError: [Function (anonymous)],
+		trackError: [Function (anonymous)],
+		trackStuck: [Function (anonymous)],
+		playerMove: [Function (anonymous)],
+		playerCreate: [Function (anonymous)],
+		playerDestroy: [Function (anonymous)],
+		loadFailed: [Function (anonymous)],
+		trackStart: [AsyncFunction (anonymous)],
+		queueEnd: [Function (anonymous)]
+	},
+	_eventsCount: 13,
+	_maxListeners: undefined,
+	players: Collection(0) [Map] {},
+	nodes: Collection(3) [Map] {
+		'Lavalink 1' => [Node],
+		'Lavaliin 2' => [Node],
+		'Lavalink 3' => [Node]
+	},
+	initiated: true,
+	options: {
+		plugins: [Array],
+		nodes: [Array],
+		shards: 1,
+		autoPlay: true,
+		clientName: 'Bot/v1.0.0 (Bot: 000000000000000001)',
+		retryDelay: undefined,
+		retryAmount: undefined,
+		send: [Function: send],
+		clientId: '000000000000000001'
+	},
+	search: [Function: bound search],
+	[Symbol(kCapture)]: false
+	},
+	[Symbol(kCapture)]: false
 }
 ```

@@ -1,4 +1,5 @@
 const SlashCommand = require("../../lib/SlashCommand");
+const prettyMilliseconds = require("pretty-ms");
 const {
 	MessageEmbed,
 	MessageActionRow,
@@ -102,6 +103,9 @@ option
 			resultFromSearch.push({
 				label: `${track.title}`,
 				value: `${track.uri}`,
+				description: track.isStream ? `LIVE` : `${prettyMilliseconds(track.duration, {
+					secondsDecimalDigits: 0,
+				})} - ${track.author}`,
 			});
 		});
 		

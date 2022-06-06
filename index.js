@@ -7,16 +7,26 @@
 // If you want to remove sharding just delete this file and rename `bot.js` to `index.js`
 
 const colors = require("colors");
+const { exec } = require("child_process");
 const ConfigFetcher = require("./util/getConfig");
 const { ShardingManager } = require('discord.js');
 
-ConfigFetcher().then((conf) => {
-	const manager = new ShardingManager('./bot.js', { token: conf.token });
-	
-	manager.on('shardCreate', shard => {
-		let d = new Date();
-		let time = `[${d.getDate()}:${d.getMonth()}:${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()}]`;
-		console.log(colors.gray(time) + colors.cyan(" | " + `Launched shard ${shard.id}`));
+process.on('unhandledRejection', (reason, promise) => {
+	promise.catch((err) => {
+		if (err.status === 429) { exec("kill 1") }
 	});
-	manager.spawn();
-})
+});
+
+try {
+	ConfigFetcher().then((conf) => {
+		const manager = new ShardingManager('./bot.js', { token: conf.token, respawn: true });
+		manager.on('shardCreate', shard => {
+			let d = new Date();
+			let time = `[${d.getDate()}:${d.getMonth()}:${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()}]`;
+			console.log(colors.gray(time) + colors.cyan(" | " + `Launched shard ${shard.id}`));
+		});
+		manager.spawn();
+	})
+} catch (err) {
+	console.log(err) 
+}

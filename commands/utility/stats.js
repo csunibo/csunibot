@@ -22,7 +22,7 @@ module.exports = {
 		const statsEmbed = new MessageEmbed()
 		.setTitle(`${client.user.username} Information`)
 		.setColor(client.config.embedColor)
-		.setDescription(`\`\`\`yml\nName: ${client.user.username}#${client.user.discriminator} [${client.user.id}]\nAPI: ${client.ws.ping}ms\nRuntime: ${runtime}\n\`\`\``)
+		.setDescription(`\`\`\`yml\nName: ${client.user.username}#${client.user.discriminator} [${client.user.id}]\nRuntime: ${runtime}\n\`\`\``)
 		.setFields([
 			{
 				name: "Bot stats",
