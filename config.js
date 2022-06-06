@@ -3,7 +3,8 @@ require('dotenv').config()
 
 // Allows for other files to see all the properties in this module
 module.exports = {
-	ownerID: process.env.DEVUID || ["AdminID"], //Admin of the bot
+	replId: process.env.REPL_ID, //Replit container ID, used to check if `unhandledRejection` listener is needed for 429 errors
+	ownerId: process.env.DEVUID || ["AdminID"], //Admin of the bot
 	token: process.env.TOKEN || "", //Bot's Token
 	clientId: process.env.CLIENTID || "", //ID of the bot
 	clientSecret: process.env.CLIENTSECRET || "", //Client Secret of the bot

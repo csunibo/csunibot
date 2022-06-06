@@ -11,14 +11,17 @@ const { exec } = require("child_process");
 const ConfigFetcher = require("./util/getConfig");
 const { ShardingManager } = require('discord.js');
 
-process.on('unhandledRejection', (reason, promise) => {
-	promise.catch((err) => {
-		if (err.status === 429) { exec("kill 1") }
-	});
-});
 
 try {
 	ConfigFetcher().then((conf) => {
+		if (conf.replId) {
+			console.log("Replit system detected, initiating special `unhandledRejection` event listener | index.js:19")
+			process.on('unhandledRejection', (reason, promise) => {
+				promise.catch((err) => {
+					if (err.status === 429) { exec("kill 1") }
+				});
+			}); 
+		}
 		const manager = new ShardingManager('./bot.js', { token: conf.token, respawn: true });
 		manager.on('shardCreate', shard => {
 			let d = new Date();
