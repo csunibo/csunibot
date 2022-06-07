@@ -1,6 +1,5 @@
 const SlashCommand = require("../../lib/SlashCommand");
-const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
-const load = require("lodash");
+const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 
 const command = new SlashCommand()

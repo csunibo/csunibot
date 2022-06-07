@@ -8,12 +8,12 @@
 
 const colors = require("colors");
 const { exec } = require("child_process");
-const ConfigFetcher = require("./util/getConfig");
+const getConfig = require("./util/getConfig");
 const { ShardingManager } = require('discord.js');
 
 
 try {
-	ConfigFetcher().then((conf) => {
+	getConfig().then((conf) => {
 		if (conf.replId) {
 			console.log("Replit system detected, initiating special `unhandledRejection` event listener | index.js:19")
 			process.on('unhandledRejection', (reason, promise) => {

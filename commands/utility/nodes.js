@@ -1,7 +1,6 @@
 const moment = require("moment");
 require("moment-duration-format");
 const { MessageEmbed } = require("discord.js");
-const os = require("os");
 
 module.exports = {
 	name: "nodes",
