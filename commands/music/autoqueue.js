@@ -55,10 +55,10 @@ const command = new SlashCommand()
 		res = await player.search(search, interaction.user);
 		player.queue.add(res.tracks[1]);
 		
-		embed.setDescription(`Autoplay is ON`);
+		embed.setDescription(`Auto Queue is \`ON\``);
 	} else {
 		player.set("autoQueue", false);
-		embed.setDescription(`Autoplay is OFF`)
+		embed.setDescription(`Auto Queue is \`OFF\``)
 	}
 	return interaction.editReply({ embeds: [embed] });
 });
