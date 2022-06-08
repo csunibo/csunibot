@@ -1,9 +1,9 @@
-const SlashCommand = require("../../lib/SlashCommand");
 const { MessageEmbed } = require("discord.js");
+const SlashCommand = require("../../lib/SlashCommand");
 
 const command = new SlashCommand()
-.setName("previous")
-.setDescription("Go back to the previous song.")
+.setName("autoplay")
+.setDescription("Autoplay music toggle")
 .setRun(async (client, interaction, options) => {
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
@@ -41,29 +41,28 @@ const command = new SlashCommand()
 			ephemeral: true 
 		});
 	}
+	await interaction.deferReply();
+	let embed = new MessageEmbed().setColor(client.config.embedColor);
+	const autoplay = player.get("autoQueue");
 	
-	let previousSong = player.queue.previous;
-
-	if (!previousSong)
-	return interaction.reply({
-		embeds: [
-			new MessageEmbed()
-			.setColor("RED")
-			.setDescription("There is no previous song in the queue."),
-		],
-	});
-	
-	const currentSong = player.queue.current;
-	player.play(previousSong);
-	interaction.reply({
-		embeds: [
-			new MessageEmbed()
-			.setColor(client.config.embedColor)
-			.setDescription(`⏮ | Previous song: **${previousSong.title}**\nRequested By: **${previousSong.requester.username}**`),
-		],
-	});
-	
-	if (currentSong) player.queue.unshift(currentSong);
+	if (!autoplay) {
+		const identifier = player.queue.current.identifier;
+		
+		player.set("autoQueue", true);
+		player.set("requester", interaction.user);
+		player.set("identifier", identifier);
+		const search = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
+		res = await player.search(search, interaction.user);
+		player.queue.add(res.tracks[1]);
+		
+		embed.setDescription(`Autoplay is ON`);
+	} else {
+		player.set("autoQueue", false);
+		player.queue.clear();
+		
+		embed.setDescription(`Autoplay is OFF`)
+	}
+	return interaction.editReply({ embeds: [embed] });
 });
 
 module.exports = command;

@@ -7,10 +7,9 @@ module.exports = async (client, message) => {
 	// Checks if, on every message sent in a server in which the bot is in, the bot is being mentioned and
 	// determines if it should behave in a manner or another according to if the user is a bot dev or not
 	if (message.content.match(mention)) {
-		message.delete();
 		let timeout;
 		let embed = new MessageEmbed().setColor(client.config.embedColor);
-		if (client.config.ownerID.includes(message.author.id)) {
+		if (client.config.ownerId.includes(message.author.id)) {
 			timeout = 10000;
 			embed
 			.setTitle("Reinvite")
@@ -22,6 +21,6 @@ module.exports = async (client, message) => {
 			.setThumbnail(`${client.config.iconURL}`)
 		}
 		embed.setFooter({ text: `Message will be deleted in ${timeout / 1000} seconds`});
-		return message.channel.send({ embeds: [embed], }).then(msg => setTimeout(() => msg.delete(), timeout));
+		return message.channel.send({ embeds: [embed], ephemeral: true }).then(msg => setTimeout(() => msg.delete(), timeout));
 	}
 };

@@ -52,10 +52,28 @@ module.exports = async (client, interaction) => {
 	// run only if everything is valid
 	if (interaction.isCommand()) {
 		const command = client.slash.get(interaction.commandName);
-		if (!command || !command.run)
-		return interaction.reply("Sorry the command you used doesn't have any run function");
-		if (command.ownerOnly && !client.config.ownerId.includes(interaction.user.id)){
+		if (!command || !command.run) {
+			return interaction.reply("Sorry the command you used doesn't have any run function");
+		}
+		
+		if (command.ownerOnly && !client.config.ownerId.includes(interaction.user.id)) {
 			return interaction.reply({ content: "This command is only for the bot developers!", ephemeral: true });
+		}
+
+		if (command.permissions) {
+			let missingUserPerms = [];
+			let missingBotPerms = [];
+			command.permissions.forEach(permission => {
+				if (!interaction.guild.members.cache.get(interaction.member.user.id).permissions.has(permission))
+				missingUserPerms.push("`" + permission + "`");
+				if (!interaction.guild.me.permissions.has(permission))
+				missingBotPerms.push("`" + permission + "`");
+			});
+			
+			if (missingUserPerms)
+			return interaction.reply({ content: `You do not have the required permissions for this command:\n${missingUserPerms.join(", ")}`, ephemeral: true})
+			if (missingBotPerms)
+			return interaction.reply({ content: `I need these permissions for this command:\n${missingBotPerms.join(", ")}`, ephemeral: true})
 		}
 		
 		const args = [];

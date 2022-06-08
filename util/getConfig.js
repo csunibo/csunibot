@@ -1,11 +1,11 @@
 // Promise based module to get and return the contents of `config.js`
 module.exports = () => {
-	return new Promise((re, rj) => {
+	return new Promise((resolve, reject) => {
 		try {
 			const config = require("../config");
-			re(config);
+			resolve(config);
 		} catch {
-			rj("No config file found.");
+			reject("No config file found.");
 		}
 	}).catch(err => {
 		console.log(err);
