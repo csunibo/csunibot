@@ -46,21 +46,11 @@ const command = new SlashCommand()
 	const autoQueue = player.get("autoQueue");
 	
 	if (!autoQueue || autoQueue === false) {
-		const identifier = player.queue.current.identifier;
-		
 		player.set("autoQueue", true);
-		player.set("requester", interaction.user);
-		player.set("identifier", identifier);
-		const search = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
-		res = await player.search(search, interaction.user);
-		player.queue.previous = player.queue.current;
-		player.queue.add(res.tracks[1]);
-		
-		embed.setDescription(`Auto Queue is \`ON\``);
 	} else {
 		player.set("autoQueue", false);
-		embed.setDescription(`Auto Queue is \`OFF\``)
 	}
+	embed.setDescription(`Auto Queue is \`${(autoQueue ? "ON" : "OFF")}\``)
 	return interaction.editReply({ embeds: [embed] });
 });
 
