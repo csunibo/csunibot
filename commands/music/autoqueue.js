@@ -2,8 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const SlashCommand = require("../../lib/SlashCommand");
 
 const command = new SlashCommand()
-.setName("autoplay")
-.setDescription("Autoplay music toggle")
+.setName("autoqueue")
+.setDescription("Automatically add songs to the queue (toggle)")
 .setRun(async (client, interaction, options) => {
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
@@ -43,9 +43,9 @@ const command = new SlashCommand()
 	}
 	await interaction.deferReply();
 	let embed = new MessageEmbed().setColor(client.config.embedColor);
-	const autoplay = player.get("autoQueue");
+	const autoQueue = player.get("autoQueue");
 	
-	if (!autoplay) {
+	if (!autoQueue || autoQueue === false) {
 		const identifier = player.queue.current.identifier;
 		
 		player.set("autoQueue", true);
@@ -58,8 +58,6 @@ const command = new SlashCommand()
 		embed.setDescription(`Autoplay is ON`);
 	} else {
 		player.set("autoQueue", false);
-		player.queue.clear();
-		
 		embed.setDescription(`Autoplay is OFF`)
 	}
 	return interaction.editReply({ embeds: [embed] });
