@@ -44,6 +44,7 @@ const command = new SlashCommand()
 	await interaction.deferReply();
 	let embed = new MessageEmbed().setColor(client.config.embedColor);
 	const autoQueue = player.get("autoQueue");
+	player.set("requester", interaction.guild.me)
 	
 	if (!autoQueue || autoQueue === false) {
 		player.set("autoQueue", true);
