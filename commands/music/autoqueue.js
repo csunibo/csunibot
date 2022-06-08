@@ -50,7 +50,7 @@ const command = new SlashCommand()
 	} else {
 		player.set("autoQueue", false);
 	}
-	embed.setDescription(`Auto Queue is \`${(autoQueue ? "ON" : "OFF")}\``)
+	embed.setDescription(`Auto Queue is \`${(!autoQueue ? "ON" : "OFF")}\``)
 	return interaction.editReply({ embeds: [embed] });
 });
 
