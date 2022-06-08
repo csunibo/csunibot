@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("previous")
 .setDescription("Go back to the previous song.")
-.setRun(async (client, interaction, options) => {
+.setRun(async (client, interaction) => {
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
 	else 
@@ -63,7 +63,7 @@ const command = new SlashCommand()
 		],
 	});
 	
-	if (currentSong) player.queue.unshift(currentSong);
+	previousSong = currentSong;
 });
 
 module.exports = command;

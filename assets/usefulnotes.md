@@ -1032,7 +1032,8 @@ Collection(1) [Map] {
 	debug: true,
 	nodes: [ [Object], [Object], [Object] ],
 	embedColor: 'RANDOM',
-	presence: { status: 'online', activities: [Array] },		iconURL: 'iconURL'
+	presence: { status: 'online', activities: [Array] },
+	iconURL: 'iconURL'
 	},
 	manager: Manager {
 	_events: [Object: null prototype] {

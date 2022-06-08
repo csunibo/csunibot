@@ -53,6 +53,7 @@ const command = new SlashCommand()
 		player.set("identifier", identifier);
 		const search = `https://www.youtube.com/watch?v=${identifier}&list=RD${identifier}`;
 		res = await player.search(search, interaction.user);
+		player.queue.previous = player.queue.current;
 		player.queue.add(res.tracks[1]);
 		
 		embed.setDescription(`Auto Queue is \`ON\``);

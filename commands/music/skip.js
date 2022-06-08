@@ -47,7 +47,10 @@ const command = new SlashCommand()
 			ephemeral: true 
 		});
 	}
+
+	player.queue.previous = player.queue.current;
 	player.stop();
+	
 	interaction.reply({ 
 		embeds: [
 			new MessageEmbed()
