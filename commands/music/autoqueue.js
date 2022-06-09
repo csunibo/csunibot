@@ -4,7 +4,7 @@ const SlashCommand = require("../../lib/SlashCommand");
 const command = new SlashCommand()
 .setName("autoqueue")
 .setDescription("Automatically add songs to the queue (toggle)")
-.setRun(async (client, interaction, options) => {
+.setRun(async (client, interaction) => {
 	let player;
 	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
 	else 
@@ -52,6 +52,8 @@ const command = new SlashCommand()
 		player.set("autoQueue", false);
 	}
 	embed.setDescription(`Auto Queue is \`${(!autoQueue ? "ON" : "OFF")}\``)
+	client.warn(`Player: ${player.options.guild} | [${colors.blue("AUTOQUEUE")}] has been [${colors.blue(!autoQueue ? "ENABLED" : "DISABLED")}] in ${client.guilds.cache.get(player.options.guild) ? client.guilds.cache.get(player.options.guild).name : "a guild"}`)
+
 	return interaction.editReply({ embeds: [embed] });
 });
 
