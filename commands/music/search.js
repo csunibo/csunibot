@@ -98,7 +98,7 @@ option
 			embeds: [
 				new MessageEmbed()
 				.setColor(client.config.embedColor)
-				.setDescription(`Here are searched result I found for \`${search}\`. Please select track within \`30 seconds\``),
+				.setDescription(`Here are some of the results I found for \`${search}\`. Please select track within \`30 seconds\``),
 			],
 			components: [menus],
 		});
