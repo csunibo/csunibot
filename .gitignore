@@ -9,6 +9,7 @@ lerna-debug.log*
 
 # Test files
 commands/utility/test.js
+commands/misc/invite.js
 
 # Scrape directory
 # scraped/
