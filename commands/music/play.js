@@ -98,7 +98,8 @@ const command = new SlashCommand()
 		catch (err) { addQueueEmbed.setThumbnail(res.tracks[0].thumbnail); }
 		
 		if (player.queue.totalSize > 1)
-		addQueueEmbed.addField("Position in queue",	`${player.queue.size - 0}`,	true);
+		addQueueEmbed.addField("Position in queue",	`${player.queue.size}`,	true);
+		else {player.queue.previous = player.queue.current}
 		
 		return interaction
 		.editReply({ embeds: [addQueueEmbed] })
