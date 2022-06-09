@@ -28,7 +28,7 @@ option
 			.setDescription("Lavalink node is not connected")
 		] 
 	});
-	
+
 	if (player.state !== "CONNECTED") {
 		player.connect();
 	}
@@ -98,7 +98,7 @@ option
 			embeds: [
 				new MessageEmbed()
 				.setColor(client.config.embedColor)
-				.setDescription(`Here are searched result I found for \`${result}\`. Please select track within \`30 seconds\``),
+				.setDescription(`Here are searched result I found for \`${search}\`. Please select track within \`30 seconds\``),
 			],
 			components: [menus],
 		});
