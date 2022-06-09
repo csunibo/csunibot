@@ -15,51 +15,26 @@ option
 .setDescription("The song to search for")
 .setRequired(true)
 )
-
 .setRun(async (client, interaction, options) => {
-	const result = interaction.options.getString("query");
+	let channel = await client.getChannel(client, interaction);
+	if (!channel) return;
+	
 	let player;
-	if(client.manager)
-	player = client.manager.get(interaction.guild.id);
-	
-	if (!interaction.member.voice.channel) {
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("You need to join voice channel before you can use this command.")
-			], 
-			ephemeral: true 
-		});
-	}
-	
-	if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {		
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("You must be in the same voice channel as me.")
-			], 
-			ephemeral: true 
-		});
-	}
-	
-	if (!player) {
-		player = client.manager.create({
-			guild: interaction.guild.id,
-			voiceChannel: interaction.member.voice.channel.id,
-			textChannel: interaction.channel.id,
-			selfDeafen: client.config.selfDeafen,
-			volume: client.config.defaultVolume,
-		});
-	}
+	if (client.manager) 
+	player = client.createPlayer(interaction.channel, channel);
+	else return interaction.reply({ 
+		embeds: [new MessageEmbed()
+			.setColor("RED")
+			.setDescription("Lavalink node is not connected")
+		] 
+	});
 	
 	if (player.state !== "CONNECTED") {
 		player.connect();
 	}
 	
+	const search = interaction.options.getString("query");
 	let res;
-	const search = result;
 	
 	try {
 		res = await player.search(search, interaction.user);

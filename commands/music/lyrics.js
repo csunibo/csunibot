@@ -21,13 +21,17 @@ option
 		],
 	});
 	
-	const args = interaction.options.getString("song");
-	
 	let player;
-	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
-	else 
-	return interaction.editReply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
+	if (client.manager) 
+	player = client.manager.players.get(interaction.guild.id); 
+	else return interaction.reply({ 
+		embeds: [new MessageEmbed()
+			.setColor("RED")
+			.setDescription("Lavalink node is not connected")
+		] 
+	});
 	
+	const args = interaction.options.getString("song");
 	if (!args && !player)
 	return interaction.editReply({
 		embeds: [

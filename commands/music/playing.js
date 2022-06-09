@@ -6,10 +6,18 @@ const command = new SlashCommand()
 .setName("playing")
 .setDescription("Shows the current song playing in the voice channel.")
 .setRun(async (client, interaction, options) => {
+	let channel = await client.getChannel(client, interaction);
+	if (!channel) return;
 	
 	let player;
-	if(client.manager)
-	player = interaction.client.manager.players.get(interaction.guild.id);
+	if (client.manager) 
+	player = client.manager.players.get(interaction.guild.id); 
+	else return interaction.reply({ 
+		embeds: [new MessageEmbed()
+			.setColor("RED")
+			.setDescription("Lavalink node is not connected")
+		] 
+	});
 	
 	if (!player) {
 		return interaction.reply({ 

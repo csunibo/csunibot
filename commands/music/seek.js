@@ -15,61 +15,27 @@ option
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
 	
-	let node = await client.getLavalink(client);
-	if (!node) {
-		return interaction.reply({embeds: [new MessageEmbed()
-			.setColor("RED")
-			.setDescription("Lavalink node is not connected")]
-		});
-	}
-	
-	let args = options.getString("time", true);
 	let player;
-	if(client.manager)
-	player = client.createPlayer(interaction.channel, channel);
-	if (!interaction.member.voice.channel) {
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("You must be in a voice channel to use this command.")
-			], 
-			ephemeral: true 
-		});
-	}
+	if (client.manager) 
+	player = client.manager.players.get(interaction.guild.id); 
+	else return interaction.reply({ 
+		embeds: [new MessageEmbed()
+			.setColor("RED")
+			.setDescription("Lavalink node is not connected")
+		] 
+	});
 	
 	if (!player) {
 		return interaction.reply({ 
 			embeds: [
 				new MessageEmbed()
 				.setColor("RED")
-				.setDescription("**There's nothing playing in the queue**")
+				.setDescription("There is no music playing.")
 			], 
 			ephemeral: true 
 		});
 	}
 	
-	if (!interaction.member.voice.channel) {
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("**You must be in a voice channel to use this command.**")
-			], 
-			ephemeral: true 
-		});
-	}
-	
-	if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("**You must be in the same voice channel as me to use this command!**")
-			], 
-			ephemeral: true 
-		});
-	}
 	await interaction.deferReply();
 	
 	const time = ms(args);

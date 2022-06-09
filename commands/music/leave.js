@@ -5,38 +5,25 @@ const command = new SlashCommand()
 .setName("leave")
 .setDescription("Stops whatever the bot is playing and leaves the voice channel\n(This command will clear the queue)")
 .setRun(async (client, interaction, options) => {
+	let channel = await client.getChannel(client, interaction);
+	if (!channel) return;
+	
 	let player;
-	if (client.manager) player = client.manager.players.get(interaction.guild.id); 
-	else 
-	return interaction.reply({ embeds: [new MessageEmbed().setColor("RED").setDescription("Lavalink node is not connected")] });
-	if (!player)
-	return interaction.reply({
-		embeds: [
-			new MessageEmbed()
+	if (client.manager) 
+	player = client.manager.players.get(interaction.guild.id); 
+	else return interaction.reply({ 
+		embeds: [new MessageEmbed()
 			.setColor("RED")
-			.setDescription("I'm not in a channel.")
-		],
+			.setDescription("Lavalink node is not connected")
+		] 
 	});
 	
-	if (!interaction.member.voice.channel) {
-		
+	if (!player) {
 		return interaction.reply({ 
 			embeds: [
 				new MessageEmbed()
 				.setColor("RED")
-				.setDescription("You must be in a voice channel to use this command!")
-			], 
-			ephemeral: true 
-		});
-	}
-	
-	if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {
-		
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("You must be in the same voice channel as me to use this command!")
+				.setDescription("I'm not in a channel.")
 			], 
 			ephemeral: true 
 		});

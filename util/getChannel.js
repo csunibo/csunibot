@@ -9,15 +9,18 @@ module.exports = async (client, interaction) => {
 					.setColor("RED")
 					.setDescription("You must be in a voice channel to use this command!"),
 				],
+				ephemeral: true
 			});
 			return resolve(false);
 		}
-		if (interaction.guild.me.voice.channel && interaction.member.voice.channel.id !== interaction.guild.me.voice.channel.id) {
-			await interaction.reply({
-				embeds: [new MessageEmbed()
+		if (interaction.guild.me.voice.channel && !interaction.guild.me.voice.channel.equals(interaction.member.voice.channel)) {		
+			await interaction.reply({ 
+				embeds: [
+					new MessageEmbed()
 					.setColor("RED")
-					.setDescription("You must be in the same voice channel as me to use this command!"),
-				],
+					.setDescription("You must be in the same voice channel as me.")
+				], 
+				ephemeral: true 
 			});
 			return resolve(false);
 		}

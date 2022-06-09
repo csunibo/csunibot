@@ -12,30 +12,20 @@ const command = new SlashCommand()
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
 	
-	let node = await client.getLavalink(client);
-	if (!node) {
-		return interaction.reply({embeds: [new MessageEmbed()
-			.setColor("RED")
-			.setDescription("Lavalink node is not connected")]
-		});
-	}
-	let query = options.getString("query", true);
 	let player;
-	if(client.manager)
+	if (client.manager) 
 	player = client.createPlayer(interaction.channel, channel);
-	if (!interaction.member.voice.channel) {
-		return interaction.reply({ 
-			embeds: [
-				new MessageEmbed()
-				.setColor("RED")
-				.setDescription("You must be in a voice channel to use this command.")
-			], 
-			ephemeral: true 
-		});
-	}
+	else return interaction.reply({ 
+		embeds: [new MessageEmbed()
+			.setColor("RED")
+			.setDescription("Lavalink node is not connected")
+		] 
+	});
+
 	if (player.state !== "CONNECTED") {
 		player.connect();
 	}
+	
 	if (channel.type == "GUILD_STAGE_VOICE") {
 		setTimeout(() => {
 			if (interaction.guild.me.voice.suppress == true) {
@@ -56,6 +46,7 @@ const command = new SlashCommand()
 		],
 	});
 	
+	let query = options.getString("query", true);
 	let res = await player.search(query, interaction.user).catch((err) => {
 		client.error(err);
 		return {
