@@ -35,11 +35,11 @@ option
 			ephemeral: true 
 		});
 	}
-	
+
 	await interaction.deferReply();
-	
+
+	const args = interaction.options.getString("time");
 	const time = ms(args);
-	const position = player.position;
 	const duration = player.queue.current.duration;
 	
 	if (time <= duration) {
