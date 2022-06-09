@@ -40,6 +40,7 @@ option
 
 	const args = interaction.options.getString("time");
 	const time = ms(args);
+	const position = player.position;
 	const duration = player.queue.current.duration;
 	
 	if (time <= duration) {
@@ -48,7 +49,7 @@ option
 			embeds: [
 				new MessageEmbed()
 				.setColor(client.config.embedColor)
-				.setDescription(`⏩ | **${player.queue.current.title}** has been seeked to **${ms(time)}**`)
+				.setDescription(`⏩ | **${player.queue.current.title}** has been ${(time < position) ? "rewound" : "seeked"} to **${ms(time)}**`)
 			] 
 		});
 	} else {
