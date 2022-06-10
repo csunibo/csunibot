@@ -46,7 +46,7 @@ const command = new SlashCommand()
 		embeds: [
 			new MessageEmbed()
 			.setColor(client.config.embedColor)
-			.setDescription(`⏮ | Previous song: **${previousSong.title}**\nRequested By: **${previousSong.requester.username}**`),
+			.setDescription(`⏮ | Previous song: **${previousSong.title}**`),
 		],
 	});
 	
