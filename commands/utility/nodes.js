@@ -22,10 +22,13 @@ module.exports = {
 				lavaram = (lavaclientstats.memory.used / 1024 / 1024).toFixed(2);
 				lavalloc = (lavaclientstats.memory.allocated / 1024 / 1024).toFixed(2);
 
-				statsEmbed.addField( `${index}`,
+				statsEmbed.addField( 
+					`${index}`,
 					`\`\`\`yml\nUptime: ${lavauptime}\nRAM: ${lavaram} / ${lavalloc}MB\nPlaying: ${lavaclientstats.playingPlayers} out of ${lavaclientstats.players}\n\`\`\``,
 				)
 			}
+		} else {
+			statsEmbed.setDescription("**Lavalink manager was not initialized on startup, there are no nodes connected.**")
 		}
 		return interaction.reply({ embeds: [statsEmbed], ephemeral: true });
 	},
