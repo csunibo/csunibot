@@ -18,13 +18,14 @@ module.exports = {
 			for (const [index, lavalinkClient] of client.manager.nodes.entries()){
 
 				lavaclientstats = lavalinkClient.stats;
+				lavacores = lavaclientstats.cpu.cores;
 				lavauptime = moment.duration(lavaclientstats.uptime).format("d[ Days]・h[ Hrs]・m[ Mins]・s[ Secs]");
 				lavaram = (lavaclientstats.memory.used / 1024 / 1024).toFixed(2);
 				lavalloc = (lavaclientstats.memory.allocated / 1024 / 1024).toFixed(2);
 
 				statsEmbed.addField( 
 					`${index}`,
-					`\`\`\`yml\nUptime: ${lavauptime}\nRAM: ${lavaram} / ${lavalloc}MB\nPlaying: ${lavaclientstats.playingPlayers} out of ${lavaclientstats.players}\n\`\`\``,
+					`\`\`\`yml\nUptime: ${lavauptime}\nRAM: ${lavaram} / ${lavalloc}MB\nCPU: ${(lavacores === 1) ? "1 Core" : `${lavacores} Cores`}\nPlaying: ${lavaclientstats.playingPlayers} out of ${lavaclientstats.players}\n\`\`\``,
 				)
 			}
 		} else {
