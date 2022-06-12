@@ -64,7 +64,6 @@ module.exports = async (client, interaction) => {
 			let missingUserPerms = [];
 			let missingBotPerms = []
 
-			let missingPermsEmbed = new MessageEmbed().setColor(client.config.embedColor);
 			command.permissions.forEach(permission => {
 				if (!interaction.guild.members.cache.get(interaction.member.user.id).permissions.has(permission))
 					missingUserPerms.push("`" + permission + "`");
@@ -72,6 +71,7 @@ module.exports = async (client, interaction) => {
 					missingBotPerms.push("`" + permission + "`");
 			});
 
+			let missingPermsEmbed = new MessageEmbed().setColor(client.config.embedColor);
 			if (missingUserPerms.length || missingBotPerms.length) {
 				if (missingUserPerms.length)
 					missingPermsEmbed.addField("You're missing some permissions:", `${missingUserPerms.join(", ")}`)
