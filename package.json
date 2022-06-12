@@ -29,7 +29,6 @@
     "dotenv": "^16.0.0",
     "erela.js": "^2.3.3",
     "erela.js-deezer": "^1.0.7",
-    "erela.js-facebook": "^1.0.4",
     "fuzzysort": "^1.9.0",
     "luxon": "^2.3.2",
     "moment": "^2.29.3",
