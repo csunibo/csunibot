@@ -1,4 +1,4 @@
-# Useful structures
+# structures
 
 # Table of contents
 
