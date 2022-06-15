@@ -6,6 +6,7 @@ const os = require("os");
 module.exports = {
 	name: "stats",
 	category: "utility",
+	usage: "/stats",
 	description: "Check the bot's stats!",
 	ownerOnly: false,
 	run: async (client, interaction) => {

@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("resume")
 .setDescription("Resume current track")
+.setCategory("music")
+.setUsage("/resume")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

@@ -5,6 +5,8 @@ const SlashCommand = require("../../lib/SlashCommand");
 const command = new SlashCommand()
 .setName("247")
 .setDescription("Prevents the bot from ever disconnecting from a VC (toggle)")
+.setUsage("/247")
+.setCategory("music")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

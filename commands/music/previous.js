@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("previous")
 .setDescription("Go back to the previous song.")
+.setCategory("music")
+.setUsage("/previous")
 .setRun(async (client, interaction) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

@@ -5,12 +5,13 @@ const ms = require("ms");
 const command = new SlashCommand()
 .setName("seek")
 .setDescription("Seek to a specific time in the current song.")
-.addStringOption((option) =>
-option
-.setName("time")
-.setDescription("Seek to time you want. Ex 2m | 10s | 53s")
-.setRequired(true)
+.addStringOption((option) => option
+	.setName("time")
+	.setDescription("Seek to time you want. Ex 2m | 10s | 53s")
+	.setRequired(true)
 )
+.setCategory("music")
+.setUsage("/seek <time>")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

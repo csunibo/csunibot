@@ -5,6 +5,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "reload",
 	category: "utility",
+	usage: "/reload",
 	description: "Reload all slash commands (This is a debug command available only to the developer of the bot)",
 	ownerOnly: true,
 	run: async (client, interaction) => {

@@ -5,6 +5,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
 	name: "nodes",
 	category: "utility",
+	usage: "/nodes",
 	description: "Check the bot's lavalink node statistics!",
 	ownerOnly: false,
 	run: async (client, interaction) => {

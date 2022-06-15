@@ -5,9 +5,12 @@ const command = new SlashCommand()
 .setName("play")
 .setDescription("Searches and plays the requested song\n__Supports:__\nYoutube, Spotify, Deezer, Apple Music")
 .addStringOption((option) => option
-.setName("query")
-.setDescription("What am I looking for?")
-.setRequired(true))
+	.setName("query")
+	.setDescription("What am I looking for?")
+	.setRequired(true)
+)
+.setCategory("music")
+.setUsage("/play <query>")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
@@ -35,7 +38,7 @@ const command = new SlashCommand()
 					interaction.guild.me.voice.setRequestToSpeak(true);
 				}
 			}
-		}, 2000); //recognizing it's a stage channel?
+		}, 2000); //recognizing if it's a stage channel?
 	}
 	
 	await interaction.reply({
@@ -88,11 +91,11 @@ const command = new SlashCommand()
 		
 		let addQueueEmbed = new MessageEmbed()
 		.setColor(client.config.embedColor)
-		.setAuthor({ name: "Added to queue", iconURL: client.config.iconURL })
+		.setAuthor({ name: "Queued", iconURL: client.config.iconURL })
 		.setDescription(`[${res.tracks[0].title}](${res.tracks[0].uri})` || "No Title")
 		.setURL(res.tracks[0].uri)
 		.addField("Added by", `<@${interaction.user.id}>`, true)
-		.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, {colonNotation: true, })}\``, true);
+		.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, {secondsDecimalDigits: 0,})}\``, true);
 		
 		try { addQueueEmbed.setThumbnail(res.tracks[0].displayThumbnail("maxresdefault")); } 
 		catch (err) { addQueueEmbed.setThumbnail(res.tracks[0].thumbnail); }

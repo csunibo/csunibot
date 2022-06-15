@@ -4,6 +4,8 @@ const { MessageEmbed } = require('discord.js');
 const command = new SlashCommand()
 .setName("skip")
 .setDescription("Skip the current song")
+.setCategory("music")
+.setUsage("/skip")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
@@ -38,7 +40,8 @@ const command = new SlashCommand()
 			.setColor(client.config.embedColor)
 			.setDescription("✅ | **Skipped!**")
 		] 
-	});
+	})
+	setTimeout(() => interaction.deleteReply(), 5000);
 });
 
 module.exports = command;

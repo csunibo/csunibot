@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("loopq")
 .setDescription("Loop the current song queue")
+.setCategory("music")
+.setUsage("/loopq")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

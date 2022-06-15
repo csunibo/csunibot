@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("shuffle")
 .setDescription("Randomizes the queue")
+.setCategory("music")
+.setUsage("/shuffle")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

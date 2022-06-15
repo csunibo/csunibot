@@ -5,6 +5,8 @@ const prettyMilliseconds = require("pretty-ms");
 const command = new SlashCommand()
 .setName("save")
 .setDescription("Saves current song to your DM's")
+.setCategory("music")
+.setUsage("/save")
 .setRun(async (client, interaction) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

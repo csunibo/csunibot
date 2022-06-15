@@ -3,6 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
 	name: "ping",
 	category: "utility",
+	usage: "/ping",
 	description: "Is the bot running slow? Check the bot's ping and see if it's lagging or if you are!",
 	ownerOnly: false,
 	run: async (client, interaction) => {

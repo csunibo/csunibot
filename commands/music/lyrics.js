@@ -5,13 +5,13 @@ const fetch = require("node-fetch");
 const command = new SlashCommand()
 .setName("lyrics")
 .setDescription("Prints the lyrics of a song")
-// get user input
-.addStringOption((option) =>
-option
-.setName("song")
-.setDescription("The song to get lyrics for")
-.setRequired(false)
+.addStringOption((option) => option
+	.setName("song")
+	.setDescription("The song to get lyrics for")
+	.setRequired(false)
 )
+.setCategory("music")
+.setUsage("/lyrics <song>")
 .setRun(async (client, interaction, options) => {
 	await interaction.reply({
 		embeds: [

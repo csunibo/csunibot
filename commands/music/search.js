@@ -9,12 +9,13 @@ const {
 const command = new SlashCommand()
 .setName("search")
 .setDescription("Search for a song")
-.addStringOption((option) =>
-option
-.setName("query")
-.setDescription("The song to search for")
-.setRequired(true)
+.addStringOption((option) => option
+	.setName("query")
+	.setDescription("The song to search for")
+	.setRequired(true)
 )
+.setCategory("music")
+.setUsage("/search <query>")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("pause")
 .setDescription("Pauses the current playing track")
+.setCategory("music")
+.setUsage("/pause")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

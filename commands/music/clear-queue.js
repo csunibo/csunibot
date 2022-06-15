@@ -3,6 +3,8 @@ const { MessageEmbed } = require ('discord.js');
 module.exports = {
 	name: "clear-queue",
 	description: "Clear the queue of songs",
+	usage: "/clear-queue",
+	category: "music",
 	run: async (client, interaction) => {
 		let channel = await client.getChannel(client, interaction);
 		if (!channel) return;

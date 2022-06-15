@@ -4,6 +4,8 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("leave")
 .setDescription("Stops whatever the bot is playing and leaves the voice channel\n(This command will clear the queue)")
+.setUsage("/leave")
+.setCategory("music")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;

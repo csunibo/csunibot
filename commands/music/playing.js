@@ -5,6 +5,8 @@ const prettyMilliseconds = require("pretty-ms");
 const command = new SlashCommand()
 .setName("playing")
 .setDescription("Shows the current song playing in the voice channel.")
+.setCategory("music")
+.setUsage("/playing")
 .setRun(async (client, interaction, options) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
@@ -41,32 +43,40 @@ const command = new SlashCommand()
 		});
 	}
 	
+	let activeProperties = [
+		player.get("autoQueue") ? "autoqueue" : null,
+		player.get("twentyFourSeven") ? "24/7" : null,
+	]
+	
 	const song = player.queue.current;
-	const embed = new MessageEmbed()
-	.setColor(client.config.embedColor)
-	.setAuthor({ name: "Now Playing", iconURL: client.config.iconURL })
-	// show who requested the song via setField, also show the duration of the song
-	.setFields([
-		{
-			name: "Requested by",
-			value: `<@${song.requester.id}>`,
-			inline: true,
-		},
-		// show duration, if live show live
-		{
-			name: "Duration",
-			value: song.isStream ? `\`LIVE\`` : `\`${prettyMilliseconds(player.position, {
-				secondsDecimalDigits: 0,
-			})} / ${prettyMilliseconds(song.duration, {
-				secondsDecimalDigits: 0,
-			})}\``,
-			inline: true,
-		},
-	])
-	// show the thumbnail of the song using displayThumbnail("maxresdefault")
-	.setThumbnail(song.displayThumbnail("maxresdefault"))
-	// show the title of the song and link to it
-	.setDescription(`[${song.title}](${song.uri})`);
-	return interaction.reply({ embeds: [embed] });
+	return interaction.reply({ 
+		embeds: [new MessageEmbed()
+			.setColor(client.config.embedColor)
+			.setAuthor({ name: "Now Playing", iconURL: client.config.iconURL })
+			// show who requested the song via setField, also show the duration of the song
+			.setFields([
+				{
+					name: "Requested by",
+					value: `<@${song.requester.id}>`,
+					inline: true,
+				},
+				// show duration, if live show live
+				{
+					name: "Duration",
+					value: song.isStream ? `\`LIVE\`` : `\`${prettyMilliseconds(player.position, {
+						secondsDecimalDigits: 0,
+					})} / ${prettyMilliseconds(song.duration, {
+						secondsDecimalDigits: 0,
+					})}\``,
+					inline: true,
+				},
+			])
+			// show the thumbnail of the song using displayThumbnail("maxresdefault")
+			.setThumbnail(song.displayThumbnail("maxresdefault"))
+			// show the title of the song and link to it
+			.setDescription(`[${song.title}](${song.uri})`)
+			.setFooter({ text: `${activeProperties.filter(e=>e).join(" • ")}` })
+		]
+	});
 });
 module.exports = command;

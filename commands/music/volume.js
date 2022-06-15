@@ -4,12 +4,13 @@ const { MessageEmbed } = require("discord.js");
 const command = new SlashCommand()
 .setName("volume")
 .setDescription("Change the volume of the current song.")
-.addNumberOption((option) =>
-option
-.setName("amount")
-.setDescription("Amount of volume you want to change. Ex: 10")
-.setRequired(false)
+.addNumberOption((option) => option
+	.setName("amount")
+	.setDescription("Amount of volume you want to change. Ex: 10")
+	.setRequired(false)
 )
+.setCategory("music")
+.setUsage("/volume <amount>")
 .setRun(async (client, interaction) => {
 	let channel = await client.getChannel(client, interaction);
 	if (!channel) return;
