@@ -14,6 +14,7 @@ module.exports = {
 	disconnectTime: 30000, // If nothing is playing wait : in milliseconds
 	nonRepeatingSongsThreshold: 10000, // Number of songs to log in order to avoid repeating in autoqueue
 	alwaysplay: false, // ignore presence of members in voice channels
+	devDebug: false,
 	debug: true,
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
 	//Or host one yourself -> https://github.com/freyacodes/Lavalink 

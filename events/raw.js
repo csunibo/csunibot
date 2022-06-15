@@ -25,8 +25,13 @@ OPCODES:
 10	Hello					Receive			Sent immediately after connecting, contains the heartbeat_interval to use.
 11	Heartbeat ACK			Receive			Sent in response to receiving a heartbeat to acknowledge that it has been received.
 
+Heartbeat regex: ^\{[^}]*\}","[^"]*":"\[[^\]]*\]"\}$
 */
+const exceptions = [11, 1];
+
 module.exports = (client, data) => {
+	if (client.config.devDebug && !exceptions.includes(data.op))
+	client.debug("> rawData", JSON.stringify(data, null, 4))
 	if(client.manager) {
 		client.manager.updateVoiceState(data);
 	} else return;
