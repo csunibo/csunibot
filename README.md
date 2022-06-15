@@ -9,7 +9,7 @@ Same for the `./schedules` folder. Keeping this in mind, the code will have A LO
 ## ⛔ | Prerequisites
 
 - [Node.js 16+](https://nodejs.org/en/download/)
-- [Lavalink Server](https://github.com/freyacodes/Lavalink) (If you want music functionalities, check `config.js` for more in depth documentation on nodes and lavalink documentation)
+- [Lavalink Server](https://github.com/freyacodes/Lavalink) (If you want music functionalities check `config.js` for more in depth documentation on nodes and lavalink documentation as well as the [Original Music Client Structure](https://github.com/SudhanPlayz/Discord-MusicBot/tree/v5))
 
 ## 🏃‍♂ | Installing and running the bot
 
