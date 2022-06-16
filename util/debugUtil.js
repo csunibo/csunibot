@@ -1,6 +1,9 @@
 "use strict";
 
 /*
+
+https://discord-ts.js.org/docs/general/events/
+
 UNUSED EVENTS
 [
 	'applicationCommandCreate',
@@ -21,7 +24,6 @@ UNUSED EVENTS
 	'inviteCreate',
 	'inviteDelete',
 	'roleUpdate',
-	'voiceServerUpdate',
 	'guildBanAdd',
 	'guildBanRemove',
 	'channelCreate',
@@ -51,7 +53,6 @@ UNUSED EVENTS
 	'stageInstanceCreate',
 	'stageInstanceUpdate',
 	'stageInstanceDelete',
-	'voiceStateUpdate',
 	'presenceUpdate',
 	'emojiCreate',
 	'emojiDelete',
@@ -72,6 +73,10 @@ UNUSED EVENTS
 */
 
 /* 
+https://discord.js.org/#/docs/main/stable/class/GuildAuditLogs
+https://discord.js.org/#/docs/main/stable/typedef/AuditLogAction
+https://discord.js.org/#/docs/main/stable/class/Guild?scrollTo=fetchAuditLogs 
+
 await guild.fetchAuditLogs().then(audit => client.warn(JSON.stringify(audit.entries.first())))
 */
 
@@ -85,6 +90,8 @@ const events = [
 	'shardResume',
 	'invalidated',
 	'apiResponse',
+	'voiceStateUpdate',
+	'voiceServerUpdate',
 	'invalidRequestWarning',
 ]
 

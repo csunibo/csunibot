@@ -12,7 +12,7 @@ module.exports = {
 	serverDeafen: true,
 	permissions: 0, // 8 = Administrator, 0 = Doesn't need permissions (uses slash commands)
 	disconnectTime: 30000, // If nothing is playing wait : in milliseconds
-	nonRepeatingSongsThreshold: 10000, // Number of songs to log in order to avoid repeating in autoqueue
+	nonRepeatingSongsThreshold: 25, // Number of songs to log in order to avoid repeating in autoqueue
 	alwaysplay: false, // ignore presence of members in voice channels
 	devDebug: false,
 	debug: true,
