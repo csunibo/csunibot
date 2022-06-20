@@ -30,8 +30,9 @@ Heartbeat regex: ^\{[^}]*\}","[^"]*":"\[[^\]]*\]"\}$
 const exceptions = [11, 1];
 
 module.exports = (client, data) => {
-	if (client.config.devDebug && !exceptions.includes(data.op))
+	if (client.config.devDebug && !exceptions.includes(parseInt(data.op)))
 	client.debug("> rawData", JSON.stringify(data, null, 4))
+
 	if(client.manager) {
 		client.manager.updateVoiceState(data);
 	} else return;

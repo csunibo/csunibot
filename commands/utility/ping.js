@@ -8,13 +8,12 @@ module.exports = {
 	ownerOnly: false,
 	run: async (client, interaction) => {
 		const msg = await interaction.channel.send(`🏓 Pinging...`);
-		const pingEmbed = new MessageEmbed()
-		.setTitle(':signal_strength: PONG!')
-		.addField("BOT", `\`\`\`yml\n${Math.floor(msg.createdAt - interaction.createdAt)}ms\`\`\``, true)
-		.addField("API", `\`\`\`yml\n${client.ws.ping}ms\`\`\``, true)
-		.setColor(client.config.embedColor)
-		.setTimestamp();
-		await interaction.reply({ embeds: [pingEmbed] });
+		await interaction.reply({ embeds: [new MessageEmbed()
+			.setTitle(':signal_strength: PONG!')
+			.addField("BOT", `\`\`\`yml\n${Math.floor(msg.createdAt - interaction.createdAt)}ms\`\`\``, true)
+			.addField("API", `\`\`\`yml\n${client.ws.ping}ms\`\`\``, true)
+			.setColor(client.config.embedColor)
+			.setTimestamp()] });
 		msg.delete();
 	},
 };

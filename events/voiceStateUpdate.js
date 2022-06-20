@@ -6,7 +6,7 @@ const { MessageEmbed } = require('discord.js');
 // @voiceStateUpdate: [oldState: VoiceState, newState: VoiceState];
 module.exports = async (client, oldState, newState) => {
 	let guildId = newState.guild.id;
-
+	
 	//Checks if the music manager is setup correctly in order to use it's update functions
 	if(client.manager) {
 		//gets player for the guild where the new voiceStateUpdate happened
@@ -46,19 +46,25 @@ module.exports = async (client, oldState, newState) => {
 			case "JOIN":
 			if (client.config.alwaysplay === false) {
 				if (stateChange.members.size === 1 && player.paused) {
+					player.pause(false);
+					
 					let playerResumed = new MessageEmbed()
 					.setColor(client.config.embedColor)
 					.setTitle(`Resumed!`, client.config.iconURL)
+					.setDescription(`Playing  [${player.queue.current.title}](${player.queue.current.uri})`)
 					.setFooter({ text: `The current song has been resumed.` });
-					await client.channels.cache
-					.get(player.textChannel)
-					.send({ embeds: [playerResumed] });
 					
-					let playerPlaying = await client.channels.cache
+					let resumeMessage = await client.channels.cache
 					.get(player.textChannel)
-					.send({embeds: [player.nowPlayingMessage.embeds[0]] });
-					player.setNowplayingMessage(playerPlaying);
-					player.pause(false);
+					.send({ embeds: [playerResumed] })
+					player.setResumeMessage(client, resumeMessage);
+					
+					setTimeout(() => { 
+						if (!client.isMessageDeleted(resumeMessage)) {
+							resumeMessage.delete();
+							client.markMessageAsDeleted(resumeMessage);
+						} 
+					}, 5000);
 				}
 			}
 			break;
@@ -70,10 +76,12 @@ module.exports = async (client, oldState, newState) => {
 					let playerPaused = new MessageEmbed()
 					.setColor(client.config.embedColor)
 					.setTitle(`Paused!`, client.config.iconURL)
-					.setFooter({text: `The current song has been paused because theres no one in the voice channel.`});
-					await client.channels.cache
+					.setFooter({ text: `The current song has been paused because theres no one in the voice channel.` });
+					
+					let pausedMessage = await client.channels.cache
 					.get(player.textChannel)
 					.send({ embeds: [playerPaused] });
+					player.setPausedMessage(client, pausedMessage);
 				}
 			}
 			break;

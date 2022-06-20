@@ -41,9 +41,7 @@ const command = new SlashCommand()
 	.setDescription(`**Saved [${player.queue.current.title}](${player.queue.current.uri}) to your DM**`)
 	.addFields({
 		name: "Track Duration",
-		value: `\`${prettyMilliseconds(player.queue.current.duration, {
-			colonNotation: true,
-		})}\``,
+		value: `\`${prettyMilliseconds(player.queue.current.duration, { secondsDecimalDigits: 0, })}\``,
 		inline: true,
 	},
 	{

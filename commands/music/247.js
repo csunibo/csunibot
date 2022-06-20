@@ -45,7 +45,7 @@ const command = new SlashCommand()
 	twentyFourSevenEmbed.setDescription(`✅ | **24/7 mode is \`${!twentyFourSeven ? "ON" : "OFF"}\`**`);
 	client.warn(`Player: ${player.options.guild} | [${colors.blue("24/7")}] has been [${colors.blue(!twentyFourSeven ? "ENABLED" : "DISABLED")}] in ${client.guilds.cache.get(player.options.guild) ? client.guilds.cache.get(player.options.guild).name : "a guild"}`);
 	
-	if (!player.playing && player.queue.totalSize === 0)
+	if (!player.playing && player.queue.totalSize === 0 && twentyFourSeven)
 	player.destroy()
 
 	return interaction.reply({ embeds: [twentyFourSevenEmbed] });

@@ -128,7 +128,7 @@ const command = new SlashCommand()
 						.setThumbnail(res.tracks[0].displayThumbnail("maxresdefault"))
 						.setDescription(`[${trackForPlay?.tracks[0]?.title}](${trackForPlay?.tracks[0].uri})` || "No Title")
 						.addField("Added by", `<@${interaction.user.id}>`, true)
-						.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, { colonNotation: true, })}\``, true)
+						.addField("Duration", res.tracks[0].isStream ? `\`LIVE\`` : `\`${client.ms(res.tracks[0].duration, { secondsDecimalDigits: 0, })}\``, true)
 						.setColor(client.config.embedColor),
 					],
 					components: [],

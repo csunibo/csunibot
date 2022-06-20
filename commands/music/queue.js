@@ -49,30 +49,23 @@ module.exports = {
 			});
 		}
 		
-		if (!player.playing) {
-			return interaction.reply({ 
-				embeds: [
-					new MessageEmbed()
-					.setColor("RED")
-					.setDescription("There's nothing playing.")
-				], 
-				ephemeral: true 
-			});
-		}
-		
 		const tracks = player.queue;
+		const currentTrack = player.queue.current;
+
 		//if there are no other tracks, information
 		if (!tracks.length) {
 			return interaction.reply({ 
 				embeds: [new MessageEmbed()
 					.setColor(client.config.embedColor)
 					.setAuthor({ name: 'Now Playing' })
-					.setTitle(`${player.queue.current.title}`)
-					.setURL(`${player.queue.current.uri}`)
-					.setThumbnail(player.queue.current.thumbnail)
+					.setTitle(`${currentTrack.title}`)
+					.setURL(`${currentTrack.uri}`)
+					.setThumbnail(currentTrack.thumbnail)
 					.addFields({
 						name: "Duration",
-						value: `\`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\``,
+						value: currentTrack.isStream
+						? `\`LIVE\``
+						: `\`${ms(player.position, { secondsDecimalDigits: 0, })} / ${ms(currentTrack.duration, { secondsDecimalDigits: 0, })}\``,
 						inline: true,
 					},
 					{
@@ -102,13 +95,14 @@ module.exports = {
 		.setColor(client.config.embedColor)
 		.setAuthor({ name: `Queue list | ${pageNo + 1} of ${maxPages} (${tracks.size})`, iconURL: client.config.iconURL})
 		.setTimestamp()
-		.setTitle(`Currently playing: ${player.queue.current.title}`)
-		.setURL(`${player.queue.current.uri}`)
-		.setThumbnail(player.queue.current.thumbnail)
-		.setDescription(`Playing: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\`\n
-		**__Coming up:__**`);
+		.setTitle(`Currently playing: ${currentTrack.title}`)
+		.setURL(`${currentTrack.uri}`)
+		.setThumbnail(currentTrack.thumbnail)
+		.setDescription(`Playing: \`${ms(player.position, { secondsDecimalDigits: 0, })} / ${ms(currentTrack.duration, { secondsDecimalDigits: 0,
+		})}\`\n**__Coming up:__**`);
 		for (const [index, track] of currentPageSlice.entries()) {
-			queuePageEmbed.addField(`​`, `[${track.title}](${track.uri}) || \`${ms(track.duration, {colonNotation: true})}\`\n**Requested by: **${track.requester}`);
+			queuePageEmbed.addField(`​`, `[${track.title}](${track.uri}) || \`${ms(track.duration, { secondsDecimalDigits: 0,
+			})}\`\n**Requested by: **${track.requester}`);
 		}
 		
 		const pageEmbed = await interaction.editReply({ 
@@ -129,18 +123,21 @@ module.exports = {
 					pageNo--;
 				}
 				
-				// epmtying, refilling the fields to update the latest occurences in the queue
+				// emptying, refilling the fields to update the latest occurrences in the queue
 				queuePageEmbed.fields = [];
 				queuePageEmbed
 				.setAuthor({ name: `Queue list | ${pageNo + 1} of ${maxPages} (${tracks.size})`, iconURL: client.config.iconURL})
-				.setTitle(`Currently playing: ${player.queue.current.title}`)
-				.setURL(`${player.queue.current.uri}`)
-				.setThumbnail(player.queue.current.thumbnail)
-				.setDescription(`Playing: \`${ms(player.position, { colonNotation: true })} / ${ms(player.queue.current.duration, { colonNotation: true })}\`\n
+				.setTitle(`Currently playing: ${currentTrack.title}`)
+				.setURL(`${currentTrack.uri}`)
+				.setThumbnail(currentTrack.thumbnail)
+				.setDescription(`Playing: \`${ms(player.position, { secondsDecimalDigits: 0, 
+				})} / ${ms(currentTrack.duration, { secondsDecimalDigits: 0, })}\`\n
 				**__Coming up:__**`);			
 				currentPageSlice = tracks.slice(pageNo * offset, (pageNo * offset) + offset);
 				for (const [index, track] of currentPageSlice.entries()) {
-					queuePageEmbed.addField(`​`, `[${track.title}](${track.uri}) || \`${ms(track.duration, {colonNotation: true})}\`\n**Requested by: **${track.requester}`);
+					queuePageEmbed
+					.addField(`​`, `[${track.title}](${track.uri}) || \`${ms(track.duration, { secondsDecimalDigits: 0, 
+					})}\`\n**Requested by: **${track.requester}`);
 				}
 				await buttonInteraction.update({ embeds: [queuePageEmbed], components: [getButtons(pageNo, maxPages)], fetchReply: true });
 			});

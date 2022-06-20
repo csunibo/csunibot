@@ -59,6 +59,7 @@ const command = new SlashCommand()
 	
 	if (res.loadType === "LOAD_FAILED") {
 		if (!player.queue.current) player.destroy();
+		client.error(res);
 		return interaction
 		.editReply({
 			embeds: [
@@ -121,7 +122,7 @@ const command = new SlashCommand()
 		.setThumbnail(res.tracks[0].thumbnail)
 		.setDescription(`[${res.playlist.name}](${query})`)
 		.addField("Enqueued", `\`${res.tracks.length}\` songs`, false)
-		.addField("Playlist duration",`\`${client.ms(res.playlist.duration, {colonNotation: true,})}\``,false);
+		.addField("Playlist duration",`\`${client.ms(res.playlist.duration, { secondsDecimalDigits: 0, })}\``,false);
 		
 		return interaction
 		.editReply({ embeds: [playlistEmbed] })
