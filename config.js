@@ -22,22 +22,22 @@ module.exports = {
 	//--> https://darrennathanael.com/post/how-to-lavalink/
 	nodes: [
 		{
-			identifier: "Main 1",
-			host: "lavalink.darrenofficial.com",
-			port: 80,
-			password: "password",
-			retryAmount: 15, 
-			retryDelay: 6000,
-			secure: false,
-		},
-		{
-			identifier: "Main 2", // log id string
+			identifier: "Main 1", // log id string
 			host: "lavalink.kapes.eu",
 			port: 2222,
 			password: "lavalinkplay",
 			retryAmount: 15, // for lavalink connection attempts
 			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.
 			secure: false, // if SSL lavalink
+		},
+		{
+			identifier: "Main 2",
+			host: "lavalink.darrenofficial.com",
+			port: 80,
+			password: "password",
+			retryAmount: 15, 
+			retryDelay: 6000,
+			secure: false,
 		},
 		{
 			identifier: "Fallback 1",
