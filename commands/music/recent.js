@@ -19,15 +19,8 @@ const getButtons = (pageNo, maxPages) => {
 module.exports = {
 	name: "recent",
 	category: "music",
-	usage: "/recent <span>",
-	options: [
-		{
-			name: 'span',
-			type: 4, // "INTEGER"
-			description: 'Amount of songs to look back',
-		},
-	],
-	description: "See what songs the bot has played recently! (default is 10)",
+	usage: "/recent",
+	description: "See what songs the bot has played recently!",
 	run: async (client, interaction, options) => {
 		let playedTracks = client.playedTracks;
 		await interaction.deferReply().catch((_) => {});
