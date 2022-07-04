@@ -56,7 +56,7 @@ module.exports = async (client, interaction) => {
 			return interaction.reply("Sorry the command you used doesn't have any run function");
 		}
 
-		if (command.ownerOnly && !client.config.ownerId.includes(interaction.user.id)) {
+		if (command.ownerOnly === true && !client.config.ownerId.includes(interaction.user.id)) {
 			return interaction.reply({ content: "This command is only for the bot developers!", ephemeral: true });
 		}
 
