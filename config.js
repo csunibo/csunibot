@@ -21,15 +21,7 @@ module.exports = {
 	//--> https://github.com/melike2d/lavalink
 	//--> https://darrennathanael.com/post/how-to-lavalink/
 	nodes: [
-		{
-			identifier: "Main 1", // log id string
-			host: "lavalink.kapes.eu",
-			port: 2222,
-			password: "lavalinkplay",
-			retryAmount: 15, // for lavalink connection attempts
-			retryDelay: 6000, // Delay between reconnect attempts if connection is lost.
-			secure: false, // if SSL lavalink
-		},
+		/*
 		{
 			identifier: "Fallback 1",
 			host: "lavalink-unibot.biocla.repl.co",
@@ -38,7 +30,8 @@ module.exports = {
 			retryAmount: 15, 
 			retryDelay: 6000,
 			secure: true,
-		},
+		}, 
+		*/
 	],
 	embedColor: "RANDOM", //Color of the embeds (can also be hex)
 	presence: {
