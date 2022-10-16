@@ -171,6 +171,10 @@ const events = [
 	'invalidRequestWarning',
 ]
 
+/**
+ * Loads the event listeners from the DISCORD API WS on the client 
+ * @param {Client} client 
+ */
 const LoadDebugListeners = (client) => {
 	for (const listener of events) {
 		client.on(listener, (...data) => {
