@@ -21,17 +21,15 @@ module.exports = {
 	//--> https://github.com/melike2d/lavalink
 	//--> https://darrennathanael.com/post/how-to-lavalink/
 	nodes: [
-		/*
 		{
-			identifier: "Fallback 1",
-			host: "lavalink-unibot.biocla.repl.co",
-			port: 443,
-			password: "password",
-			retryAmount: 15, 
-			retryDelay: 6000,
-			secure: true,
-		}, 
-		*/
+            identifier: "Fallback 1",
+            host: "lavalink.oops.wtf",
+            port: 443,
+            password: "www.freelavalink.ga",
+            retryAmount: 15, 
+            retryDelay: 6000,
+            secure: true,
+        }, 
 	],
 	embedColor: "RANDOM", //Color of the embeds (can also be hex)
 	presence: {
