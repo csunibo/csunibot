@@ -18,7 +18,7 @@ try {
 			console.log("Replit system detected, initiating special `unhandledRejection` event listener | index.js:19")
 			process.on('unhandledRejection', (reason, promise) => {
 				promise.catch((err) => {
-					if (err.status === 429) { 
+					if (err.status) { 
 						console.log("something went wrong while logging in, resetting..."); 
 						exec("kill 1"); 
 					}
