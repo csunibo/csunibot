@@ -1,5 +1,8 @@
 const { MessageEmbed } = require('discord.js');
 
+// You can edit this file depeding on the course and year you are building the bot for
+// Eventually a MongoDB can be integrated to allow you to add your own notes dynamically
+
 // Ew spaghetti code :barf:... 
 module.exports = {
 	name: "notes",

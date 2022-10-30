@@ -7,24 +7,12 @@
 // If you want to remove sharding just delete this file and rename `bot.js` to `index.js`
 
 const colors = require("colors");
-const { exec } = require("child_process");
 const getConfig = require("./util/getConfig");
 const { ShardingManager } = require('discord.js');
 
 
 try {
 	getConfig().then((conf) => {
-		if (conf.replId) {
-			console.log("Replit system detected, initiating special `unhandledRejection` event listener | index.js:19")
-			process.on('unhandledRejection', (reason, promise) => {
-				promise.catch((err) => {
-					if (err.status) { 
-						console.log("something went wrong while logging in, resetting..."); 
-						exec("kill 1"); 
-					}
-				});
-			}); 
-		}
 		const manager = new ShardingManager('./bot.js', { token: conf.token, respawn: true });
 		manager.on('shardCreate', shard => {
 			let d = new Date();
@@ -34,5 +22,5 @@ try {
 		manager.spawn();
 	})
 } catch (err) {
-	console.log(err) 
+	console.log(err)
 }

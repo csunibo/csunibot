@@ -22,14 +22,14 @@ module.exports = {
 	//--> https://darrennathanael.com/post/how-to-lavalink/
 	nodes: [
 		{
-            identifier: "Fallback 1",
-            host: "lavalink.oops.wtf",
-            port: 443,
-            password: "www.freelavalink.ga",
-            retryAmount: 15, 
-            retryDelay: 6000,
-            secure: true,
-        }, 
+			identifier: "Fallback 1",
+			host: "lavalink.oops.wtf",
+			port: 443,
+			password: "www.freelavalink.ga",
+			retryAmount: 15,
+			retryDelay: 6000,
+			secure: true,
+		},
 	],
 	embedColor: "RANDOM", //Color of the embeds (can also be hex)
 	presence: {
@@ -46,6 +46,10 @@ module.exports = {
 			},
 			{
 				name: "all your favorite tracks!",
+				type: "PLAYING",
+			},
+			{
+				name: "MNK Games",
 				type: "PLAYING",
 			},
 			{

@@ -15,7 +15,7 @@ module.exports = {
 				.setColor(client.config.embedColor)
 				.setDescription("This bot is supposed to be a public project, allowing those who are interested to easily learn js while doing something fun!" +
 				"\nAll contributors are heartily welcomed and appreciated! Suggestions keep the project going, so be sure to report anything you would like to be seen added to the bot!")
-				.addField("GitHub", "[**Check out the GitHub repo**](https://github.com/csunibo/cs-discord-bot#readme)" + 
+				.addField("GitHub", "[**Check out the GitHub repo**](https://github.com/csunibo/csunibot#readme)" + 
 				"\nBe sure to leave a star if you like it or find it useful!")
 				.setTimestamp()
 			] 

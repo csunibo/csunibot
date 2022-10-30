@@ -4,7 +4,7 @@ module.exports = {
 	name: "purge",
 	category: "utility",
 	usage: "/purge <#of messages> <user?>",
-	description: "Delete message in the channel",
+	description: "Bulk delete messages in the channel",
 	options: [
 		{
 			name: 'amount',
