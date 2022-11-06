@@ -1,4 +1,4 @@
-const { getProfessors } = require('../../util/scrapeUtil');
+const { getProfessors } = require('../../util/scrape');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js')
 
 const getButtons = (pageNo, maxPages) => {

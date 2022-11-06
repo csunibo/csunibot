@@ -1,7 +1,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
-const { getPosition } = require('./stringUtil');
+const { getPosition } = require('./string');
 
 const campus = [
 	'bologna', 'cesena', 'forli', 'ravenna', 'rimini',

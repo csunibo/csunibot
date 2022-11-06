@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { getHTML } = require('../../util/scrapeUtil');
+const { getHTML } = require('../../util/scrape');
 
 module.exports = {
 	name: "scrape",

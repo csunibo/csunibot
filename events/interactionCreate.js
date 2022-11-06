@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fuzzysort = require('fuzzysort')
-const { getPosition, levDistance } = require('../util/stringUtil');
+const { getPosition, levDistance } = require('../util/string');
 
 // Defines whenever a "interactionCreate" event is fired, basically whenever a user writes a slash command in 
 // a server in which the bot is present
