@@ -5,7 +5,7 @@ module.exports = () => {
 			const config = require("../config");
 			resolve(config);
 		} catch {
-			reject("No config file found.");
+			reject("No config file found.\nMake sure it is filled in completely!");
 		}
 	}).catch(err => {
 		console.log(err);

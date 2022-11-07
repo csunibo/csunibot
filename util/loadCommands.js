@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-// Modular functions to load directories
+// Loads all commands from the commands folder
 const LoadCommands = () => {
 	return new Promise(async (resolve) => {
 		let slash = await LoadCommandsDir();
@@ -9,6 +9,7 @@ const LoadCommands = () => {
 	});
 };
 
+// Needs to be updated to conform the method in InfoBot.js
 // fills the commands array and resolves it to the calling function
 const LoadCommandsDir = () => {
 	return new Promise((resolve) => {
@@ -34,6 +35,7 @@ const LoadCommandsDir = () => {
 	});
 };
 
+// Dunno where I found this function but I'm pretty sure it's not mine
 // Reads all files of a dir and sub dirs
 const getFiles = (dir, files_) => {
 	files_ = files_ || [];
