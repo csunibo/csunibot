@@ -1,6 +1,6 @@
 {
   "name": "infobot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -38,6 +38,8 @@
     "pretty-ms": "^7.0.1",
     "puppeteer": "^14.1.2",
     "request": "^2.88.2",
+    "sequelize": "^6.25.4",
+    "sqlite3": "^5.1.2",
     "winston": "^3.7.2"
   },
   "directories": {

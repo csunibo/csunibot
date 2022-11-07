@@ -3,19 +3,22 @@ require('dotenv').config()
 
 // Allows for other files to see all the properties in this module
 module.exports = {
+	name: "InfoBot", // A fancy name to give your bot :D
 	replId: process.env.REPL_ID, //Replit container ID, used to check if `unhandledRejection` listener is needed for 429 errors
 	ownerId: process.env.DEVUID || ["AdminID"], //Admin of the bot
 	token: process.env.TOKEN || "", //Bot's Token
 	clientId: process.env.CLIENTID || "", //ID of the bot
 	clientSecret: process.env.CLIENTSECRET || "", //Client Secret of the bot
+	dbUser: process.env.DBUSER || "user", //Username of the database
+	dbPass: process.env.DBPASS || "password", //Password of the database
 	scopes: ["bot", "applications.commands"],
 	serverDeafen: true,
 	permissions: 0, // 8 = Administrator, 0 = Doesn't need permissions (uses slash commands)
 	disconnectTime: 30000, // If nothing is playing wait : in milliseconds
 	nonRepeatingSongsThreshold: 50, // Number of songs to log in order to avoid repeating in autoqueue
 	alwaysplay: false, // ignore presence of members in voice channels
-	devDebug: false,
-	debug: true,
+	devDebug: false, // Enables in-depth logging for inspection and debugging of the discord API
+	debug: false, // Enables error listeners for inspection
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
 	//Or host one yourself -> https://github.com/freyacodes/Lavalink 
 	//--> https://github.com/melike2d/lavalink

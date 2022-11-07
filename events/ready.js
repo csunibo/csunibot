@@ -13,5 +13,5 @@ module.exports = (client) => {
 			type: activities[index].type
 		});
 	}, 10000);
-	client.log("Successfully logged in as " + client.user.tag);
+	client.info("Successfully logged in as " + client.user.tag);
 };

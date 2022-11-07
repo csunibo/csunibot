@@ -17,7 +17,7 @@ try {
 		manager.on('shardCreate', shard => {
 			let d = new Date();
 			let time = `[${d.getDate()}:${d.getMonth()}:${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()}]`;
-			console.log(colors.gray(time) + colors.cyan(" | " + `Launched shard ${shard.id}`));
+			console.log(colors.gray(time) + colors.cyan(" | " + `Spawned shard ${shard.id}`));
 		});
 		manager.spawn();
 	})

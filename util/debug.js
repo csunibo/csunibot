@@ -176,13 +176,42 @@ const events = [
  * @param {Client} client 
  */
 const LoadDebugListeners = (client) => {
-	for (const listener of events) {
-		client.on(listener, (...data) => {
-			client.debug("> devDebug", listener, ...data);
-		})
+	if (client.config.devDebug === true) {
+		client.warn('Loading debug listeners...')
+		for (const listener of events) {
+			client.on(listener, (...data) => {
+				client.debug("> devDebug", listener, ...data);
+			})
+		}
+		client.info('Loaded debug listeners!')
+	}
+};
+
+/**
+ * Loads appropiate error handlers based on config of the client
+ * @param {Client} client
+ */
+function LoadErrorHandler(client) {
+	if (client.config.debug === true) {
+		client.warn('Loading debug error handlers...')
+		process.on("unhandledRejection", (error) => {
+			client.error(`[FATAL] Possibly Unhandled Rejection:\n\terror: ${error}\n`);
+			console.log(error);
+		});
+		process.on("uncaughtException", (error) => {
+			client.error(`[FATAL] Possibly Unhandled Exception:\n\terror: ${error}\n`);
+			console.log(error);
+		});
+		client.info('Loaded debug error handlers!')
+	} else {
+		// Puts listener but never gets used (reduced clutter and dispels catch clauses)
+		process.on("unhandledRejection", (error) => console.log());
+		process.on("uncaughtException", (error) => console.log());
+		client.info('Error handlers inhibited!')
 	}
 };
 
 module.exports = {
 	LoadDebugListeners,
+	LoadErrorHandler,
 }
