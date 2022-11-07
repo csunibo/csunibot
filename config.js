@@ -11,8 +11,8 @@ module.exports = {
 	clientSecret: process.env.CLIENTSECRET || "", //Client Secret of the bot
 	dbUser: process.env.DBUSER || "user", //Username of the database
 	dbPass: process.env.DBPASS || "password", //Password of the database
-	scopes: ["bot", "applications.commands"],
-	serverDeafen: true,
+	scopes: ["bot", "applications.commands"], // Scopes for the bot
+	serverDeafen: true, // Whether or not the bot should deafen itself when joining a voice channel
 	permissions: 0, // 8 = Administrator, 0 = Doesn't need permissions (uses slash commands)
 	disconnectTime: 30000, // If nothing is playing wait : in milliseconds
 	nonRepeatingSongsThreshold: 50, // Number of songs to log in order to avoid repeating in autoqueue
