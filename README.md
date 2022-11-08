@@ -6,6 +6,8 @@ The commands are completely modular and can be created with little to no knowled
 Any folder and file within can be removed or added freely and will automatically be integrated into the structure of the bot.
 Same for the `./schedules` folder. Keeping this in mind, the code will have A LOT of comments scattered around in order to guide you through the program and allow you to understand the diverse features that have been implemented and how they are used.
 
+Typically and if possible some functions and methods from lessons will be integrated into the bot, so keep your eye out for those!
+
 ## ⛔ | Prerequisites
 
 - [Node.js 16+](https://nodejs.org/en/download/)
@@ -28,26 +30,22 @@ Same for the `./schedules` folder. Keeping this in mind, the code will have A LO
 ### Now that everything is set up on the discord side of things:
   - To actually set up the bot and get it running you can run
 ```bash
-bash build.sh
+npm run update
+npm run deploy
 ```
-or alternatively (in the root directory of the bot) to install all required dependencies and automatically post slash commands to the discord bot application:
-```bash
-npm i
-node run deploy
-``` 
+to install all required dependencies and automatically post slash commands to the discord bot application:
   - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application or make a `.env` file and fill in the contents in this manner:
 ```env
 TOKEN=botToken
 CLIENTID=botClientId
 CLIENTSECRET=botClientSecretToken
+DEVUID=yourDiscordUID
+DBUSER=user
+DBPASS=password
 ```
   - To run the bot:
 ```bash
-npm start
-```
-or
-```bash
-node run start
+npm run start
 ```
 If you want to test/host it on replit:
 [![Run on Repl.it](https://repl.it/badge/github/csunibo/InfoBot)](https://repl.it/github/csunibo/InfoBot)
