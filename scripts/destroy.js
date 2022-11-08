@@ -14,7 +14,7 @@ const rl = readline.createInterface({
 // https://github.com/discordjs/discord-api-types/
 (async () => {
 	const config = await getConfig();
-	const rest = new REST({ version: "9" }).setToken(config.token);
+	const rest = new REST({ version: "10" }).setToken(config.token);
 	
 	rl.question("Enter the guild id you want to delete commands in: ", async (guild) => {
 		console.log("Bot has started to delete commands...");

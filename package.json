@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "deploy": "node deploy/global",
-    "guild": "node deploy/guild"
+    "deploy": "node scripts/global",
+    "guild": "node scripts/guild",
+    "update": "node scripts/update"
   },
   "engines": {
     "node": ">=16.x"

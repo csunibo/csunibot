@@ -9,7 +9,7 @@ const LoadCommands = require("../util/loadCommands");
 // https://github.com/discordjs/discord-api-types/
 (async () => {
 	const config = await getConfig();
-	const rest = new REST({ version: "9" }).setToken(config.token);
+	const rest = new REST({ version: "10" }).setToken(config.token);
 	const commands = await LoadCommands().then((cmds) => {
 		return cmds.slash;
 	});
