@@ -28,20 +28,19 @@ Typically and if possible some functions and methods from lessons will be integr
 (It should look something like `https://discord.com/oauth2/authorize?client_id={clientId}&permissions={permissions}&scope=bot%20applications.commands` Obviously replace the {variables} with the correct values if you intend to write it out yourself)
 
 ### Now that everything is set up on the discord side of things:
-  - To actually set up the bot and get it running you can run
+  - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application or make a `.env` file and fill in the contents in this manner (lines marked with `*` are optional):
 ```bash
-npm run update
-npm run deploy
-```
-to install all required dependencies and automatically post slash commands to the discord bot application:
-  - You will need to fill in all the blanks in the `config.js` with the appropriate contents of your discord bot application or make a `.env` file and fill in the contents in this manner:
-```env
 TOKEN=botToken
 CLIENTID=botClientId
 CLIENTSECRET=botClientSecretToken
-DEVUID=yourDiscordUID
-DBUSER=user
-DBPASS=password
+DEVUID=yourDiscordUID *
+DBUSER=user *
+DBPASS=password *
+```
+  - To actually set up the bot and get it running you need to install all required dependencies and post slash commands to the discord bot application:
+```bash
+npm run update
+npm run deploy # this should be a one time thing
 ```
   - To run the bot:
 ```bash
