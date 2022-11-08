@@ -1,6 +1,6 @@
 const readline = require("readline");
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
+const { Routes } = require("discord-api-types/v10");
 const getConfig = require("../util/getConfig");
 
 const rl = readline.createInterface({

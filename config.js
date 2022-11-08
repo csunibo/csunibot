@@ -38,8 +38,8 @@ module.exports = {
 	/**
 	 * Debug switches
 	 */
-	devDebug: false, // Enables in-depth logging for inspection and debugging of the discord API
-	debug: false, // Enables error listeners for inspection
+	devDebug: true, // Enables in-depth logging for inspection and debugging of the discord API
+	debug: true, // Enables error listeners for inspection
 	
 	// Lavalink server; optional public lavalink -> https://lavalink-list.darrennathanael.com/
 	//Or host one yourself -> https://github.com/freyacodes/Lavalink 

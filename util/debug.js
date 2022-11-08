@@ -75,11 +75,11 @@ await guild.fetchAuditLogs().then(audit => client.warn(JSON.stringify(audit.entr
 
 /* 
 {
-    '0-999': '(Unused)',
-    '1016-1999': '(For WebSocket standard)',
-    '2000-2999': '(For WebSocket extensions)',
-    '3000-3999': '(For libraries and frameworks)',
-    '4000-4999': '(For applications)'
+	'0-999': '(Unused)',
+	'1016-1999': '(For WebSocket standard)',
+	'2000-2999': '(For WebSocket extensions)',
+	'3000-3999': '(For libraries and frameworks)',
+	'4000-4999': '(For applications)'
 }
 [
 	'1000' : {
@@ -192,22 +192,23 @@ const LoadDebugListeners = (client) => {
  * @param {Client} client
  */
 function LoadErrorHandler(client) {
+	client.warn('Loading error handlers...');
 	if (client.config.debug === true) {
-		client.warn('Loading debug error handlers...')
-		process.on("unhandledRejection", (error) => {
-			client.error(`[FATAL] Possibly Unhandled Rejection:\n\terror: ${error}\n`);
-			console.log(error);
+		process.on("unhandledRejection", (reason, promise) => {
+			client.error(`[FATAL] Possibly Unhandled Rejection\n\tReason: ${reason}\n`);
+			console.log(promise);
 		});
-		process.on("uncaughtException", (error) => {
-			client.error(`[FATAL] Possibly Unhandled Exception:\n\terror: ${error}\n`);
-			console.log(error);
+		process.on("uncaughtException", (reason, promise) => {
+			client.error(`[FATAL] Possibly Uncaught Exception\n\tReason: ${reason}\n`);
+			console.log(promise);
 		});
-		client.info('Loaded debug error handlers!')
+		client.info('Loaded debug error handlers!');
 	} else {
 		// Puts listener but never gets used (reduced clutter and dispels catch clauses)
-		process.on("unhandledRejection", (error) => console.log());
-		process.on("uncaughtException", (error) => console.log());
-		client.info('Error handlers inhibited!')
+		const inhibitedLogString = "\tSomething happened, activate debug mode to see more details.";
+		process.on("unhandledRejection", () => console.log(inhibitedLogString));
+		process.on("uncaughtException", () => console.log(inhibitedLogString));
+		client.error('Error handlers inhibited!');
 	}
 };
 
