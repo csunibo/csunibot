@@ -2,8 +2,8 @@
 // 'IT' being the builder which can be foung in `./lib/InfoBot`
 //						\/\/\/\/\/\/\/\/
 const InfoBot = require('./lib/InfoBot');
-const { exec } = require("child_process");
 const getConfig = require("./util/getConfig");
+const { run } = require('./scripts/update');
 
 getConfig().then((conf) => {
 	if (conf.replId) {
@@ -13,7 +13,7 @@ getConfig().then((conf) => {
 			promise.catch((err) => {
 				if (err.status) {
 					console.log("something went wrong while logging in, resetting...");
-					exec("kill 1");
+					run("kill 1");
 				}
 			});
 		});

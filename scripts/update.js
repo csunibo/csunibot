@@ -24,3 +24,7 @@ function run(command, argv) {
 	console.log("Installing dependencies...");
 	run("npm", ["install"]);
 })();
+
+module.exports = {
+	run,
+};
