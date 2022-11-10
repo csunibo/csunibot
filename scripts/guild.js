@@ -1,13 +1,8 @@
-const readline = require("readline");
+const { rl } = require("../util/common");
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v10");
 const getConfig = require("../util/getConfig");
+const { Routes } = require("discord-api-types/v10");
 const LoadCommands = require("../util/loadCommands");
-
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
 
 // Posts slash commands to a given guild containing the bot
 // Docs: https://discordjs.guide/interactions/slash-commands.html#guild-commands

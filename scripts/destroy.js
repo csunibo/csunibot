@@ -1,12 +1,7 @@
-const readline = require("readline");
+const { rl } = require("../util/common");
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v10");
 const getConfig = require("../util/getConfig");
-
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
+const { Routes } = require("discord-api-types/v10");
 
 // Removes all slash commands from a given guild (shell command `node "./deploy/destroy"`)
 // Basically a reverse `guild.js`, instead of 'put' it's 'delete' iykyk

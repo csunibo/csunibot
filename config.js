@@ -60,7 +60,7 @@ module.exports = {
 	/**
 	 * Other parameters used variously throughout the bot
 	 */
-	embedColor: "RANDOM", //Color of the embeds (can also be hex)
+	embedColor: "RANDOM", //Color of the embeds (can also be hex) (check the table below)
 	presence: {
 		//PresenceData object | https://discord.js.org/#/docs/main/stable/typedef/PresenceData
 		status: "online", // online, idle, dnd, invisible
@@ -91,10 +91,13 @@ module.exports = {
 			},
 		],
 	},
-	iconURL: "https://cdn.discordapp.com/attachments/972036024790298644/972036386322534420/logo-unibo1-1.png", //This icon will be in every embed's author field
+	//This icon will be in every embed's author field
+	iconURL: "https://cdn.discordapp.com/attachments/972036024790298644/972036386322534420/logo-unibo1-1.png",
 };
 
 /*	Constant colors 
+	// These are like macros which can be used in discord.js embeds
+RANDOM: changes everytime a new embed is sent
 DEFAULT: 0x000000;
 WHITE: 0xffffff;
 AQUA: 0x1abc9c;

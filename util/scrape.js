@@ -29,7 +29,7 @@ const campus = [
 const getYears = async (courseURL) => {
 	let years;
 	const url = courseURL + '/orario-lezioni';
-	request({ url:url }, async (error, response, body) => {
+	request(url, async (error, response, body) => {
 		if (!error) {
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 
@@ -58,7 +58,7 @@ const getYears = async (courseURL) => {
 */
 const getPages = async (url) => {
 	let pages = 0;
-	request({ url:url }, async (error, response, body) => {
+	request(url, async (error, response, body) => {
 		if (!error){
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 			
@@ -87,7 +87,7 @@ const getCourses = async (url) => {
 	let corsi = [];
 	for (let i = 0; i < pages; i++) {
 		let lauree;
-		request({ url:url+`?b_start:int=${i * 20}` }, async (error, response, body) => {
+		request(url+`?b_start:int=${i * 20}`, async (error, response, body) => {
 			if (!error){
 				let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 				lauree = $('div[class="entries"]')
@@ -124,7 +124,7 @@ const getCourses = async (url) => {
 const getProfessors = async (courseURL) => {
 	const url = courseURL + "/docenti";
 	let prof;
-	request({ url:url }, async (error, response, body) => {
+	request(url, async (error, response, body) => {
 		if (!error){
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 			
@@ -158,7 +158,7 @@ const getTopics = async (courseURL) => {
 	const courseId = await getCourseId(courseURL);
 	const url = courseURL + `/insegnamenti/piano/${year}/${courseId}/${year}`;
 	let topics;
-	request({ url:url }, async (error, response, body) => {
+	request(url, async (error, response, body) => {
 		if (!error){
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''));
 			
@@ -203,7 +203,7 @@ const getTopics = async (courseURL) => {
 const getCourseId = async (courseURL) => {
 	const url = courseURL + `/insegnamenti`;
 	let courseId = 0;
-	request({ url:url }, async (error, response, body) => {
+	request(url, async (error, response, body) => {
 		if (!error){
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 			
@@ -228,7 +228,7 @@ const getCourseId = async (courseURL) => {
 */
 const getVirtualLink = async (courseURL) => {
 	let link;
-	request({ url:courseURL }, (error, response, body) => {
+	request(courseURL, (error, response, body) => {
 		if (!error) {
 			let $ = cheerio.load(body.replace(/^\s+/gm, ''))
 			
@@ -251,7 +251,7 @@ const getVirtualLink = async (courseURL) => {
 */
 const getHTML = async (URL) => {
 	let HTML;
-	request({ url:URL }, async (error, response, body) => {
+	request(URL, async (error, response, body) => {
 		if (!error){
 			HTML = body;
 		} else {

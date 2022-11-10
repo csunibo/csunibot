@@ -1,6 +1,6 @@
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v10");
 const getConfig = require("../util/getConfig");
+const { Routes } = require("discord-api-types/v10");
 const LoadCommands = require("../util/loadCommands");
 
 // Posts slash commands to all guilds containing the bot

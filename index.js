@@ -15,6 +15,7 @@ const { ShardingManager } = require('discord.js');
 
 
 try {
+	// Gets the config file and passes it (as if returned) to the function in `.then( () => {} )`
 	getConfig().then((conf) => {
 		const manager = new ShardingManager('./bot.js', { token: conf.token, respawn: true });
 		manager.on('shardCreate', shard => {
